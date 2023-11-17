@@ -209,8 +209,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-=======
     "com.unity.postprocessing": {
       "version": "3.2.2",
       "depth": 0,
@@ -220,7 +218,6 @@
       },
       "url": "https://packages.unity.com"
     },
->>>>>>> 220dd7da9e45b7b6fbe3bf08df195f153b6f731d
     "com.unity.purchasing": {
       "version": "4.9.3",
       "depth": 0,

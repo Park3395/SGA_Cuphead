@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 3.0f;         //이동속도
 
     public float jump = 5.0f;          //점프력
-    public LayerMask groundLayer;       //착지 가능한 레이어
+    public LayerMask groundLayer;      //착지 가능한 레이어
     bool goJump = false;               //점프키 입력상태
     bool onGround = false;             //지면과 접촉상태
     

@@ -48,11 +48,11 @@ public class NewBehaviourScript : MonoBehaviour
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                v =  0.9f*v;
+                v =  0.9f * v;
             }
 
             Rigidbody2D body = peashooter.GetComponent<Rigidbody2D>();
-            //총알이 앞으로 가게 근데 이제 여기서 플레이어가 보는 방향에 따라 다르게 가야 ㅎㅎ;
+            // 총알이 앞으로 가게 근데 이제 여기서 플레이어가 보는 방향에 따라 다르게 가야 ㅎㅎ;
             body.AddForce(v, ForceMode2D.Impulse);
             
             //shootdelay가 좀 빠른 거 같기도 하다

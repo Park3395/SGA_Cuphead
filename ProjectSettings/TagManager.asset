@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - OutLine
+  - Descend
+  - Parry
+  - Door
   layers:
   - Default
   - TransparentFX

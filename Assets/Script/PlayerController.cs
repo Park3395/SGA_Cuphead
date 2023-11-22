@@ -6,12 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rbody;
     float axisH = 0.0f;                //좌우 방향키 입력
-    public float speed = 3.0f;         //이동속도
+    float axisV = 0.0f;                
+    public float speed = 4.0f;         //이동속도, 3.0f -> 4.0f로 변경
 
     public float jump = 5.0f;          //점프력
-    public LayerMask groundLayer;      //착지 가능한 레이어
+    public float dash = 50.0f;          //대쉬력
+    public LayerMask groundLayer;       //착지 가능한 레이어
     bool goJump = false;               //점프키 입력상태
     bool onGround = false;             //지면과 접촉상태
+    bool goDash = false;               //대쉬 입력 상태
     
     //애니메이터
     Animator animator;
@@ -26,13 +29,20 @@ public class PlayerController : MonoBehaviour
     public string duckidleAnime = "PlayerDuckIdle";//아래방향키를 계속 누르고 있을 때의 애니메이션
     public string duckshootAnime = "PlayerDuckShoot"; //수그린 상태에서 발사할 때 애니메이션
     public string peashooterspawnanime = "PeaShooterSpawn"; //장난감 총 발사될 때 애니메이션
+    public string rundiagonlaupAnime = "PlayerRunDiagonalUp"; //움직이면서 대각선 조준할때나 대각선 발사할 때 애니메이션
+    public string dashAnime = "PlayerDash";
+    public string dustAnime = "PlayerDust"; //대쉬할 때 사라지는 애니메이션
+    public string hitAnime = "PlayerHit";   //맞았을 때 애니메이션
+
     string nowAnime = "";
     string oldAnime = "";
 
     bool isMoving = false;
 
     public static string gameState = "playing";
-    public float angleZ; //회전을 위한
+    public float angleZ = -90.0f; //회전
+    public static int hp = 3;
+    bool inDamage = false;
  
     // Start is called before the first frame update
     void Start()
@@ -61,20 +71,46 @@ public class PlayerController : MonoBehaviour
         if(isMoving == false)
         {
            axisH = Input.GetAxisRaw("Horizontal");
+           axisV = Input.GetAxisRaw("Vertical");
         }
+        //키 입력을 통해 이동각도를 구하기
+        Vector2 fromPt = transform.position;
+        Vector2 toPt = new Vector2(fromPt.x + axisH, fromPt.y + axisV);
+        angleZ = GetAngle(fromPt, toPt);
+
+       
 
         //캐릭터 방향 조절
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             //오른쪽 이동
             Debug.Log("오른쪽 이동");
             transform.localScale = new Vector2(1, 1);
+            //나는 8방향 발사보단 8방향 애니메이션을 만들려고 했는데 왜 8방향 발사가 됨?
+            
         }
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+        {
+            // 우대각 방향
+            Debug.Log("우대각");
+            nowAnime = rundiagonlaupAnime;
+            animator.Play(nowAnime);
+        }
+        
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             //왼쪽 이동
             Debug.Log("왼쪽 이동");
             transform.localScale = new Vector2(-1, 1); //좌우 반전
+        }
+
+        if(Input.GetKey(KeyCode.LeftArrow)&&Input.GetKey(KeyCode.UpArrow))
+        {
+            //좌대각 방향
+            Debug.Log("좌대각");
+            nowAnime = rundiagonlaupAnime;
+            animator.Play(nowAnime);
         }
 
         if(Input.GetKeyDown(KeyCode.Z))
@@ -84,11 +120,18 @@ public class PlayerController : MonoBehaviour
             animator.Play(nowAnime);
           
         }
+        if(Input.GetKeyUp(KeyCode.Z))
+        {
+            Debug.Log("z키에서 손 땜");
+            nowAnime = stopAnime;
+            animator.Play(nowAnime);
 
-        if(Input.GetKey(KeyCode.RightArrow) && Input.GetKeyDown(KeyCode.Z))
+        }
+
+        if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.Z) && axisV ==0)
         {
             Debug.Log("오른쪽 이동하면서 발사");
-            //transform.localScale = new Vector2(1, 1);
+            transform.localScale = new Vector2(1, 1);
             nowAnime = runshootstraightAnime;
             animator.Play(nowAnime);
             
@@ -98,10 +141,10 @@ public class PlayerController : MonoBehaviour
             nowAnime = runAnime;
             animator.Play(nowAnime);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Z) && axisV == 0)
         {
             Debug.Log("왼쪽 이동하면서 발사");
-            //transform.localScale = new Vector2(-1, 1);
+            transform.localScale = new Vector2(-1, 1);
             nowAnime = runshootstraightAnime;
             animator.Play(nowAnime);
         }
@@ -127,28 +170,38 @@ public class PlayerController : MonoBehaviour
         //윗 방향키에서 손을 뗐을 때 애니메이션 바꾸기
         if(Input.GetKeyUp(KeyCode.UpArrow))
         {
-            Debug.Log("위쪽 방향키 땜");
+            Debug.Log("윗 방향키 손 땜");
             nowAnime = stopAnime;
             animator.Play(nowAnime);
         }
+
         //위를 보면서 동시에 z를 눌렀을 때
         //if문에 GetKeyDown을 두 개 쓰면 한 프레임에 키 두 개를 다 입력했는지 검사하기에 구현이 어렵다.
-        if (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow))
+        //윗방향 발사
+        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Z) && axisH == 0)
         {
             nowAnime = shootupAnime;
-            animator.Play(nowAnime);
+            animator.Play(shootupAnime);
             Debug.Log("윗방향키, Z키 누름");
             
         }
        //이렇게 if문이 수도 없이 늘어나는게 맞나????
-       else if (Input.GetKeyUp(KeyCode.Z) && Input.GetKey(KeyCode.UpArrow))
+       if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z)  )
         {
             nowAnime = aimupAnime;
             animator.Play(nowAnime);
-            Debug.Log("윗방향키, Z키 땜");
+            Debug.Log("윗방향키, Z키 땜");       
         }
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Z))
+        {
+            //우대각 발사
+            Debug.Log("우대각 발사");
+            nowAnime = rundiagonlaupAnime;
+            animator.Play(nowAnime);
+        }
+
         //아래방향키를 눌렀을 때 이 애니메이션에서 스프라이트 위치가 잘 안맞는 문제가 있으니 수정해야함
-        if(Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             nowAnime = duckidleAnime;
             animator.Play(nowAnime);
@@ -168,7 +221,14 @@ public class PlayerController : MonoBehaviour
             nowAnime = duckidleAnime;
             animator.Play(nowAnime);
         }
-
+        //대쉬, x키를 눌렀을 때 대쉬 애니메이션을 그냥 블링크로 바꾸자
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            Dash();
+            nowAnime = dustAnime;
+            animator.Play(nowAnime);
+            
+        }
 
 
 
@@ -214,6 +274,18 @@ public class PlayerController : MonoBehaviour
             goJump = false;  //점프 플래그 off
                                                                               
         }
+        //이 if문을 넣었을 때 대쉬 함수와 이 if문이 활성화 되긴 하나 대쉬가 되진 않았다 대쉬의 기본값을 크게 늘려주자 대쉬를 했다..
+        //대쉬를 연속적으로 못하게 하고 싶긴하지만 나중에 시간 날때 구현하자.
+        if(goDash)
+        {
+            Debug.Log("대쉬!");
+            //rbody.velocity = new Vector2(axisH * dash, rbody.velocity.y);
+            rbody.AddForce(new Vector2(dash * axisH, 0), ForceMode2D.Impulse);
+            goDash = false;
+
+
+
+        }
 
         if(onGround)
         {
@@ -243,5 +315,38 @@ public class PlayerController : MonoBehaviour
         goJump = true; //점프 플래그 활성화
         Debug.Log("점프");
     }
-    
+
+    public void Dash()
+    {
+        goDash = true;
+        Debug.Log("대쉬");
+        
+    }
+    public void DashFalse()
+    { 
+        goDash = false; 
+    }
+
+    //p1에서 p2까지의 각도를 계산한다. 이 계산이 왜 이렇게 되는지는 이해가 어렵다 아직
+    float GetAngle(Vector2 p1, Vector2 p2)
+    {
+        float angle;
+
+        if(axisH != 0 || axisV != 0)
+        {
+            //p2와 p1의 차를 구하기(원점을 0으로 하기 위해)
+            float dx = p2.x - p1.x;
+            float dy = p2.y - p1.y;
+
+            //아크탄젠트 함수로 라디안 구하기. 근데 어떤 식으로 적용되는 함수임?
+            float rad = Mathf.Atan2(dy, dx);
+
+            angle = rad * Mathf.Rad2Deg;
+        }
+        else
+        {
+            angle = angleZ;
+        }
+        return angle;
+    }
 }

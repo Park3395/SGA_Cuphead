@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 3709025184565749238}
   - component: {fileID: 5505446279940948219}
   - component: {fileID: 1059722037749456097}
+  - component: {fileID: -2241512105374332635}
   m_Layer: 0
   m_Name: MovefloatB
   m_TagString: Untagged
@@ -237,3 +238,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7501545, y: 0.28435016}
   m_EdgeRadius: 0
+--- !u!114 &-2241512105374332635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973043620711612798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2166eb09c0558c4bbe614705bc3b4ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveX: 0
+  moveY: 0
+  times: 0
+  weight: 0

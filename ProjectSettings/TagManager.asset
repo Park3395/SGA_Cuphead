@@ -9,6 +9,10 @@ TagManager:
   - Descend
   - Parry
   - Door
+  - Enemy
+  - GroundLine
+  - Object
+  - JumpLine
   layers:
   - Default
   - TransparentFX

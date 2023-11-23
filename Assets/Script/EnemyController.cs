@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float HP = 0.0f;
+    public float HP = 0.0f;     // Ã¼·Â
+    
 
     // Start is called before the first frame update
     void Start()

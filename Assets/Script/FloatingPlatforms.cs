@@ -15,7 +15,6 @@ public class FloatingPlatforms : MonoBehaviour
     Vector3 defPos;                         // 초기 위치
     bool isReverse = false;                 // 이동 방향 반전
 
-
     // Start is called before the first frame update
     void Start()
     {

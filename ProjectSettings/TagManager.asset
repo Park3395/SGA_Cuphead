@@ -9,6 +9,10 @@ TagManager:
   - Descend
   - Parry
   - Door
+  - Enemy
+  - GroundLine
+  - Object
+  - JumpLine
   layers:
   - Default
   - TransparentFX
@@ -17,8 +21,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Platform
+  - Enemy
   - 
   - 
   - 

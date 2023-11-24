@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flowergrunt : EnemyController
 {
     public float speed = 0.0f;  // 이동속도
-    public float jump = 0.0f;   // 점프력
+    public float jump = 4.0f;   // 점프력
 
     bool onGround = false;          // 지면과 접촉 상태 검사
 
@@ -34,18 +34,10 @@ public class Flowergrunt : EnemyController
             if (dx < 0)
             {
                 direction = "left";
-                if (direction == "right")
-                {
-                    Turn();
-                }
             }
             else if (dx > 0)
             {
                 direction = "right";
-                if (direction == "left")
-                {
-                    Turn();
-                }
             }
         }
     }
@@ -56,10 +48,18 @@ public class Flowergrunt : EnemyController
         if (direction == "right")
         {
             rbody.velocity = new Vector2(speed, rbody.velocity.y);
+            if (direction == "left")
+            {
+                animator.SetBool("Turn", true);
+            }
         }
         else
         {
             rbody.velocity = new Vector2(-speed, rbody.velocity.y);
+            if (direction == "right")
+            {
+                animator.SetBool("Turn", true);
+            }
         }
     }
 
@@ -70,8 +70,9 @@ public class Flowergrunt : EnemyController
             defPos = transform.position;
             animator.SetBool("isGround", true);
             animator.SetBool("Jump", false);
+            onGround = true;
         }
-
+        
         if (collision.gameObject.tag == "Player")
         {
             HP--;
@@ -81,13 +82,12 @@ public class Flowergrunt : EnemyController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "GroundLine")
-        {            
-            animator.SetBool("isGround", true);
-        }
-        if (collision.gameObject.tag == "JumpLine")
+        if (collision.gameObject.tag == "Object")
         {
-            Jump();
+            if (onGround)
+            {
+                Jump();
+            }
         }
     }
 
@@ -99,22 +99,22 @@ public class Flowergrunt : EnemyController
         rbody.AddForce(jumpPw, ForceMode2D.Impulse);    // 순간적인 힘을 가한다.
     }
 
-    public void Turn()
-    {
-        speed = 0;
-        animator.SetBool("Turn", true);        
-    }
-
     public void FlipX()
     {
-        if (spriteRenderer.flipX == true)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else
+        if(direction=="right")
         {
             spriteRenderer.flipX = true;
         }
+        else if(direction=="left")
+        {
+            spriteRenderer.flipX = false;
+        }
+    }
+
+    public void Jumpend()
+    {
+        animator.SetBool("Jump", false);
+        animator.SetBool("isGround", true);
     }
 
     public void Move()

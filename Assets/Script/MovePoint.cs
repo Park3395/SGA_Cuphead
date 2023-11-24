@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum point
+public enum point
 {
     LEFT,
-    RIGHT,
-    UP,
-    DOWN
+    RIGHT
 }
 public class MovePoint : MonoBehaviour
 {
-    [SerializeField]
-    point pcase;
+    public bool isTwoPoint;
+    public point pcase;
     [SerializeField]
     GameObject player;
     [SerializeField]
     GameObject cameraMaster;
+    [SerializeField]
+    GameObject togoPoint;
+
     CameraController camControl;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,22 +36,47 @@ public class MovePoint : MonoBehaviour
             {
                 case point.LEFT:
                     if (player.transform.position.x < this.transform.position.x)
+                    {
                         camControl.move = false;
+                        if (camControl.ispoint)
+                        {
+                            camControl.move = true;
+                            camControl.ispoint = false;
+                        }
+                    }
                     else
+                    {
                         camControl.move = true;
+
+                        if (isTwoPoint)
+                        {
+                            camControl.yScale = (togoPoint.transform.position.y - this.transform.position.y) / Vector3.Distance(this.transform.position, togoPoint.transform.position);
+                            camControl.ispoint = true;
+                        }
+                    }
                     break;
                 case point.RIGHT:
-                    if (player.transform.position.x > this.transform.position.x)
-                        camControl.move = false;
-                    else
+                    if (player.transform.position.x < this.transform.position.x)
+                    {
                         camControl.move = true;
+
+                        if (isTwoPoint)
+                        {
+                            camControl.yScale = (togoPoint.transform.position.y - this.transform.position.y) / Vector3.Distance(this.transform.position, togoPoint.transform.position);
+                            camControl.ispoint = true;
+                        }
+                    }
+                    else
+                    {
+                        camControl.move = false;
+                        if(camControl.ispoint)
+                        {
+                            camControl.move = true;
+                            camControl.ispoint = false;
+                        }
+                    }
                     break;
-                //case point.UP:
-
-                //case point.DOWN:
+            }
         }
-
-        }
-
     }
 }

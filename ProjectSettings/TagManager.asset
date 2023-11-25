@@ -10,9 +10,9 @@ TagManager:
   - Parry
   - Door
   - Enemy
-  - GroundLine
   - Object
-  - JumpLine
+  - Dead
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blobmelt : EnemyController
+public class Blobmelt : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

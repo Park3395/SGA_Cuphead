@@ -4,134 +4,110 @@ using UnityEngine;
 
 public class Flowergrunt : EnemyController
 {
-    public float speed = 0.0f;  // 이동속도
-    public float jump = 4.0f;   // 점프력
-
-    bool onGround = false;          // 지면과 접촉 상태 검사
-
-    Animator animator;
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rbody;    
-
-    public string direction = "left";       // 이동 방향
-    Vector3 defPos;                         // 시작 위치
-
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rbody = GetComponent<Rigidbody2D>();
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            float dx = player.transform.position.x - transform.position.x;
-            if (dx < 0)
-            {
-                direction = "left";
-            }
-            else if (dx > 0)
-            {
-                direction = "right";
-            }
-        }
+        base .Update();
     }
 
     private void FixedUpdate()
     {
-        Rigidbody2D rbody = GetComponent<Rigidbody2D>();
-        if (direction == "right")
+        if (direction1 == "right")
         {
             rbody.velocity = new Vector2(speed, rbody.velocity.y);
-            if (direction == "left")
+            if (direction2 == "left")
             {
-                animator.SetBool("Turn", true);
+                animator.SetBool("turn", true);
             }
         }
         else
         {
             rbody.velocity = new Vector2(-speed, rbody.velocity.y);
-            if (direction == "right")
+            if (direction2 == "right")
             {
-                animator.SetBool("Turn", true);
+                animator.SetBool("turn", true);
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            defPos = transform.position;
-            animator.SetBool("isGround", true);
-            animator.SetBool("Jump", false);
-            onGround = true;
-        }
-        
-        if (collision.gameObject.tag == "Player")
-        {
-            HP--;
-        }
-        
+        base.OnCollisionEnter2D(collision);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Object")
         {
-            if (onGround)
-            {
-                Jump();
-            }
+            Jump();
+        }
+        else if (collision.gameObject.tag == "Dead")
+        {
+            speed = 0.0f;
+            hp = 0;
+
+            Dead();
         }
     }
 
+    // 점프
     public void Jump()
     {
-        animator.SetBool("Jump", true);
-        animator.SetBool("isGround", false);
+        animator.SetBool("jumpA", true);
         Vector2 jumpPw = new Vector2(0, jump);          // 점프를 위한 벡터
         rbody.AddForce(jumpPw, ForceMode2D.Impulse);    // 순간적인 힘을 가한다.
     }
-
-    public void FlipX()
+    public void NextJumpBAni()
     {
-        if(direction=="right")
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if(direction=="left")
-        {
-            spriteRenderer.flipX = false;
-        }
+        animator.SetBool("jumpA", false);
+        animator.SetBool("jumpB", true);
     }
 
+    public void NextJumpCAni()
+    {
+        animator.SetBool("jumpA", false);
+        animator.SetBool("jumpB", false);
+        animator.SetBool("jumpC", true);
+    }
     public void Jumpend()
     {
-        animator.SetBool("Jump", false);
-        animator.SetBool("isGround", true);
+        animator.SetBool("jumpA", false);
+        animator.SetBool("jumpB", false);
+        animator.SetBool("jumpC", false);
     }
 
+    // 턴    
+    public void FlipX()
+    {
+        if (direction1 == "right")
+        {
+            spriteRenderer.flipX = true;
+            direction2 = "right";
+            animator.SetBool("turn", false);
+        }
+        else if (direction1 == "left")
+        {
+            spriteRenderer.flipX = false;
+            direction2 = "left";
+            animator.SetBool("turn", false);
+        }
+    }
+
+    // 움직임
     public void Move()
     {
         speed = 3.0f;
     }
 
+    // 멈춤
     public void Stop()
     {
         speed = 0.0f;
-    }
-
-    public void Dead()
-    {
-        if (HP <= 0)
-        {
-
-        }
     }
 }

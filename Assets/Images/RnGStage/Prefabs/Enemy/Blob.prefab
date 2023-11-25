@@ -183,3 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e0e29c94497154187e66e71d39b29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  speed: 0
+  jump: 0
+  reactionDistance: 0
+  range: 0
+  reviveDelay: 0

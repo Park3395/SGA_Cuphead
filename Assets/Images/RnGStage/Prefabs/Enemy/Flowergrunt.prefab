@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2818824410521790445}
   - component: {fileID: 6408693845851354920}
   - component: {fileID: 2759356648589629799}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flowergrunt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -183,9 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0a6e6a9b27b904da1cad79009b00c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 1
-  deadEffect1: []
-  deadEffect2: []
+  hp: 0
   speed: 0
   jump: 8
-  direction: left
+  reactionDistance: 0

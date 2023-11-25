@@ -82,23 +82,6 @@ public class Flowergrunt : EnemyController
         animator.SetBool("jumpC", false);
     }
 
-    // 턴    
-    public void FlipX()
-    {
-        if (direction1 == "right")
-        {
-            spriteRenderer.flipX = true;
-            direction2 = "right";
-            animator.SetBool("turn", false);
-        }
-        else if (direction1 == "left")
-        {
-            spriteRenderer.flipX = false;
-            direction2 = "left";
-            animator.SetBool("turn", false);
-        }
-    }
-
     // 움직임
     public void Move()
     {

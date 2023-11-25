@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     public int hp = 0;     // 체력
     public float speed = 0.0f;  // 이동속도
     public float jump = 0.0f;   // 점프력
+    public float reactionDistance = 0.0f;   // 인식 거리
 
     protected string direction1 = "left";      // 이동 방향
     protected string direction2 = "left";      // 바라보는 방향
@@ -33,11 +34,11 @@ public class EnemyController : MonoBehaviour
         if (player != null)
         {
             float dx = player.transform.position.x - transform.position.x;
-            if (dx < 0)
+            if (dx < reactionDistance)
             {
                 direction1 = "left";        // 플레이어가 몬스터보다 왼쪽에 있을 시 왼쪽으로 이동
             }
-            else if (dx > 0)
+            else if (dx > reactionDistance)
             {
                 direction1 = "right";       // 플레이어가 몬스터보다 오른쪽에 있을 시 오른쪽으로 이동
             }
@@ -81,8 +82,30 @@ public class EnemyController : MonoBehaviour
 
             CsCollider.enabled = false;     // CapsuleCollider2D 끄기
             rbody.simulated = false;        // rigidBody2D 끄기
-
-            Destroy(gameObject, 1.5f);      // 오브젝트 삭제
         }
     }
+
+    // 턴    
+    public void FlipX()
+    {
+        if (direction1 == "right")
+        {
+            spriteRenderer.flipX = true;
+            direction2 = "right";
+            animator.SetBool("turn", false);
+        }
+        else if (direction1 == "left")
+        {
+            spriteRenderer.flipX = false;
+            direction2 = "left";
+            animator.SetBool("turn", false);
+        }
+    }
+
+    public void OnDestroy()
+    {
+        Destroy(gameObject);
+    }
+
+    
 }

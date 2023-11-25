@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4708471340521343642}
   - component: {fileID: 6203020382759104471}
   - component: {fileID: 4391627411390910091}
-  m_Layer: 0
+  - component: {fileID: 2542475590138869415}
+  m_Layer: 9
   m_Name: LobberSeed
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -140,9 +141,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0027284622, y: -0.040934563}
+  m_Offset: {x: 0.0027284622, y: 0.0064001232}
   serializedVersion: 2
-  m_Radius: 0.18626118
+  m_Radius: 0.15657671
 --- !u!50 &4391627411390910091
 Rigidbody2D:
   serializedVersion: 4
@@ -170,3 +171,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2542475590138869415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4244508981572626512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159fb79a8cfb61d4f8d9ee670f4c5e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

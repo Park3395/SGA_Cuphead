@@ -33,6 +33,11 @@ public class Lobber : EnemyController
         }
     }
 
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+    }
+
     public void Attack()
     {                
         GameObject seedObj = Instantiate(seedPrefab, lobberUpPrefab.transform.position, Quaternion.identity);

@@ -60,15 +60,10 @@ public class EnemyController : MonoBehaviour
 
             Dead();
         }
-        // 맨 왼쪽 벽에 닿았을 때
-        else if (collision.gameObject.tag == "Wall")
-        {
-            CsCollider.isTrigger = true;    // 트리거를 true로 바꿔 벽을 통과하게 함
-        }
     }
 
     // 사망
-    public void Dead()
+    public virtual void Dead()
     {
         if (hp <= 0)
         {
@@ -107,5 +102,15 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+    public void collideroff()
+    {
+        CsCollider.enabled = false;
+        rbody.simulated = false;
+    }
+
+    public void collideron()
+    {
+        CsCollider.enabled = true;
+        rbody.simulated = true;
+    }
 }

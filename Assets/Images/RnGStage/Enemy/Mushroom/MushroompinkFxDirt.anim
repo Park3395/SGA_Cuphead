@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MushroomPopout
+  m_Name: MushroompinkFxDirt
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,25 +21,23 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: deab6a5be697fba43b5bf8895a9c901d, type: 3}
+      value: {fileID: 21300000, guid: 5b839513f0ca10d49b295e546a4e094e, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 8b3c48041e7170d468e51ddaa12272c5, type: 3}
+      value: {fileID: 21300000, guid: e365ec4882254a147b0300f94e0688c8, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 04131174747927d45b1303469873324b, type: 3}
+      value: {fileID: 21300000, guid: ad6c1e57166275849987306524a93aad, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: 22680bb107d1ced4da151243de85da0a, type: 3}
+      value: {fileID: 21300000, guid: 142c2ff16479aa34899dbaa8eba2540c, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: cee872b9dc596404997de3ceede926ca, type: 3}
+      value: {fileID: 21300000, guid: fb108b48e27265c4090d0818ad798734, type: 3}
     - time: 0.41666666
-      value: {fileID: 21300000, guid: c52e0178ef115414cb8d3b06345b27bf, type: 3}
+      value: {fileID: 21300000, guid: 0e7e2287fb8568e41be5371b3d91b9d0, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: 5fb35e016c2a1b44daea5dab1ded67c7, type: 3}
+      value: {fileID: 21300000, guid: 02c73f52e70b62e45874ffda6548edff, type: 3}
     - time: 0.5833333
-      value: {fileID: 21300000, guid: ccd25b82973e8db4d91ef0a82243b664, type: 3}
+      value: {fileID: 21300000, guid: 152f3b12f1ec2a244828d7ac49bbdb8c, type: 3}
     - time: 0.6666667
-      value: {fileID: 21300000, guid: 6258aa6b0ef887447b678de1beffc660, type: 3}
-    - time: 0.75
-      value: {fileID: 21300000, guid: fd692ab4b0e6d4043adfc260d1ba757b, type: 3}
+      value: {fileID: 21300000, guid: f346ac310c90ec24da9b3de4a55d42a3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -62,27 +60,26 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: deab6a5be697fba43b5bf8895a9c901d, type: 3}
-    - {fileID: 21300000, guid: 8b3c48041e7170d468e51ddaa12272c5, type: 3}
-    - {fileID: 21300000, guid: 04131174747927d45b1303469873324b, type: 3}
-    - {fileID: 21300000, guid: 22680bb107d1ced4da151243de85da0a, type: 3}
-    - {fileID: 21300000, guid: cee872b9dc596404997de3ceede926ca, type: 3}
-    - {fileID: 21300000, guid: c52e0178ef115414cb8d3b06345b27bf, type: 3}
-    - {fileID: 21300000, guid: 5fb35e016c2a1b44daea5dab1ded67c7, type: 3}
-    - {fileID: 21300000, guid: ccd25b82973e8db4d91ef0a82243b664, type: 3}
-    - {fileID: 21300000, guid: 6258aa6b0ef887447b678de1beffc660, type: 3}
-    - {fileID: 21300000, guid: fd692ab4b0e6d4043adfc260d1ba757b, type: 3}
+    - {fileID: 21300000, guid: 5b839513f0ca10d49b295e546a4e094e, type: 3}
+    - {fileID: 21300000, guid: e365ec4882254a147b0300f94e0688c8, type: 3}
+    - {fileID: 21300000, guid: ad6c1e57166275849987306524a93aad, type: 3}
+    - {fileID: 21300000, guid: 142c2ff16479aa34899dbaa8eba2540c, type: 3}
+    - {fileID: 21300000, guid: fb108b48e27265c4090d0818ad798734, type: 3}
+    - {fileID: 21300000, guid: 0e7e2287fb8568e41be5371b3d91b9d0, type: 3}
+    - {fileID: 21300000, guid: 02c73f52e70b62e45874ffda6548edff, type: 3}
+    - {fileID: 21300000, guid: 152f3b12f1ec2a244828d7ac49bbdb8c, type: 3}
+    - {fileID: 21300000, guid: f346ac310c90ec24da9b3de4a55d42a3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8333333
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

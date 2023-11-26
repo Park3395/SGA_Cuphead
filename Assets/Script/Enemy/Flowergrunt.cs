@@ -39,6 +39,11 @@ public class Flowergrunt : EnemyController
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
+        // 맨 왼쪽 벽에 닿았을 때
+        if (collision.gameObject.tag == "Wall")
+        {
+            CsCollider.isTrigger = true;    // 트리거를 true로 바꿔 벽을 통과하게 함
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

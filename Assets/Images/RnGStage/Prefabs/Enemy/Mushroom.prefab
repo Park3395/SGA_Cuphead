@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8519261936740438450}
   - component: {fileID: 3832414109167039098}
   - component: {fileID: 1119922819842174516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mushroom
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -183,12 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47965941f670c024083f795fb4b0f89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 2
-  deadEffect1:
-  - {fileID: 198508501179318728, guid: 6eec23968d75eb0448bd2cd69ab39df6, type: 3}
-  - {fileID: 5103049068101912272, guid: 27dc12148784dd4468f48eb4c8f31c3d, type: 3}
-  - {fileID: 9032218767594004080, guid: 1cccf918d7eab914a87b1458916c6b3a, type: 3}
-  deadEffect2:
-  - {fileID: 1522051200298590415, guid: c7e5b0ab2fcde4d4cbd91dbbd8652a29, type: 3}
-  - {fileID: 321877916271192156, guid: c9940956ce4acc440900926ffbecf8da, type: 3}
-  - {fileID: 2846681957237512090, guid: 65f769590b51d584e89c58f5089f61d4, type: 3}
+  hp: 0
+  speed: 0
+  jump: 0
+  reactionDistance: 0

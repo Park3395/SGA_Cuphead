@@ -8,6 +8,10 @@ public class OverworldChar : MonoBehaviour
     //씬 변경 여부확인
     public GameObject TitleCard;
     public GameObject WindowBlack;
+
+    //상점 스크립트 불러오기
+    public GameObject Shop_obj;
+
     int Title_flag = 0;
     //이동 관련
     Animator anim;
@@ -17,6 +21,7 @@ public class OverworldChar : MonoBehaviour
     float v;
     //1. Home 2. Dungeon 3. Tree 4. Shop 5. Botanic
     int Tag_Num = 0;//무엇과 상호 작용 중인가.
+    public GameObject Shop;
     //Apple과 대화중
     int AppleNpc_Page = 0;
     bool AppleNpc_ZkeyStay = false;//z키 입력 가능 지역일때
@@ -30,7 +35,7 @@ public class OverworldChar : MonoBehaviour
     public GameObject Text1_1;
     public GameObject Text1_2;
     public GameObject Text1_3;
-
+    
 
     //GameObject scanObject;
 
@@ -58,9 +63,16 @@ public class OverworldChar : MonoBehaviour
                 else if (Tag_Num == 3)
                     SceneManager.LoadScene("TestScene");//트리
                 else if (Tag_Num == 4)
-                    SceneManager.LoadScene("TestScene");//샵
+                {
+                    Shop.SetActive(true);
+                    TitleCard.SetActive(false);
+                    Tag_Num = 0;
+                    anim.SetBool("Shop_Idle", true);
+                    Invoke("Shop_Idle_Control",1.5f);
+                }
                 else if (Tag_Num == 5)
                     SceneManager.LoadScene("TestScene");//농장
+                
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -211,5 +223,10 @@ public class OverworldChar : MonoBehaviour
         WindowBlack.SetActive(true);
         isHorizonMove = false;
         Title_flag = 10;
+    }
+    void Shop_Idle_Control()
+    {
+        
+        Shop_obj.GetComponent<ShopAnimeM>().Shop_Idle();
     }
 }

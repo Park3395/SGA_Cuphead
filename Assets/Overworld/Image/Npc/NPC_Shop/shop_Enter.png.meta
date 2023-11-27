@@ -1,0 +1,721 @@
+fileFormatVersion: 2
+guid: 174265a508914934d946e02067f96f9e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shop_Enter_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 957.3334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ada990a76c4c3c4aa32e3a02b4a5e06
+      internalID: -956831568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_1
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 957.3334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1226dbe565b7884ea867910e1c23eaa
+      internalID: -1715445966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_2
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 957.3334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c60103ede235e3418e38b1c1289acd2
+      internalID: -47167880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_3
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 957.3334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeef1bb85c5981441981ec83ad486739
+      internalID: 1438638772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_4
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 957.3334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac33be4072555e5499c0182ab7ed40a4
+      internalID: -1437061725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_5
+      rect:
+        serializedVersion: 2
+        x: 2385
+        y: 957.3334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f62a0b918e2eb34480ae5fb8bfe58f4
+      internalID: 162796714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_6
+      rect:
+        serializedVersion: 2
+        x: 2862
+        y: 957.3334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f24d034f7513e043b6df94a1ca1736b
+      internalID: -640526415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_7
+      rect:
+        serializedVersion: 2
+        x: 3339
+        y: 957.3334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814495027ec18be4aa56920d324f663e
+      internalID: 1562827398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_8
+      rect:
+        serializedVersion: 2
+        x: 3816
+        y: 957.3334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bba5fa289f4aa8479a69683e249fa83
+      internalID: -423369456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 479.33334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b7e8d594cb0909408959bd4f3075512
+      internalID: 1932405122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_10
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 479.33334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ed9b41a52102b04f8b82d34106a4e3a
+      internalID: 455528267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_11
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 479.33334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc13f419ecfd257489fa2d51115e6aa0
+      internalID: 2004069248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_12
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 479.33334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb53653058b3d34eabe996534532b23
+      internalID: -151353893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_13
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 479.33334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f59714c3d26d1424786995eccd858f75
+      internalID: -37517519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_14
+      rect:
+        serializedVersion: 2
+        x: 2385
+        y: 479.33334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a9ae1f3b058e3142acf193872dcd491
+      internalID: -220147610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_15
+      rect:
+        serializedVersion: 2
+        x: 2862
+        y: 479.33334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f4a767538424db4abd9c01aa248d529
+      internalID: -1839424217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_16
+      rect:
+        serializedVersion: 2
+        x: 3339
+        y: 479.33334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5dcbc38654318744b608ae2fe863e5e
+      internalID: -1146183010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_17
+      rect:
+        serializedVersion: 2
+        x: 3816
+        y: 479.33334
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95458dce586fa0b4b892c81276faf52c
+      internalID: 1509258088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.3333435
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ef0e10851020e4fba3e61f1981fcc1
+      internalID: 1446864573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_19
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 1.3333435
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9520cec4bb276e2469bf7998a94d9d34
+      internalID: 907373034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_20
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 1.3333435
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d48c4d1e8b3cd044b252646cbfc5234
+      internalID: -894581182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_21
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 1.3333435
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a70c0b1747b4e1499be67f9dc28f679
+      internalID: 1033243912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_22
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 1.3333435
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a3e03b5eeec8a545a1b881a9432f328
+      internalID: 563343853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_23
+      rect:
+        serializedVersion: 2
+        x: 2385
+        y: 1.3333435
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 918cc6d8fea378447a1dfc8f3f1a4954
+      internalID: 1678349234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_24
+      rect:
+        serializedVersion: 2
+        x: 2862
+        y: 1.3333435
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 306347ffad34bd14996176e0974dc165
+      internalID: 1040879417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_25
+      rect:
+        serializedVersion: 2
+        x: 3339
+        y: 1.3333435
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 905d3a7f93ba8b74cb0baf4a1605adc1
+      internalID: -1142520831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Enter_26
+      rect:
+        serializedVersion: 2
+        x: 3816
+        y: 1.3333435
+        width: 477.22223
+        height: 478.66666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a01c4e2d8f1325843b2b01673b77206f
+      internalID: 1768741822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      shop_Enter_0: -956831568
+      shop_Enter_1: -1715445966
+      shop_Enter_10: 455528267
+      shop_Enter_11: 2004069248
+      shop_Enter_12: -151353893
+      shop_Enter_13: -37517519
+      shop_Enter_14: -220147610
+      shop_Enter_15: -1839424217
+      shop_Enter_16: -1146183010
+      shop_Enter_17: 1509258088
+      shop_Enter_18: 1446864573
+      shop_Enter_19: 907373034
+      shop_Enter_2: -47167880
+      shop_Enter_20: -894581182
+      shop_Enter_21: 1033243912
+      shop_Enter_22: 563343853
+      shop_Enter_23: 1678349234
+      shop_Enter_24: 1040879417
+      shop_Enter_25: -1142520831
+      shop_Enter_26: 1768741822
+      shop_Enter_3: 1438638772
+      shop_Enter_4: -1437061725
+      shop_Enter_5: 162796714
+      shop_Enter_6: -640526415
+      shop_Enter_7: 1562827398
+      shop_Enter_8: -423369456
+      shop_Enter_9: 1932405122
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

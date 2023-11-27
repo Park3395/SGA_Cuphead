@@ -9,6 +9,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public GameObject peashooterPrefab; //장난감 총(기본 총)
     bool isAttack = false;
+    GameObject spawnBullet;
 
     
     // Start is called before the first frame update
@@ -45,11 +46,12 @@ public class NewBehaviourScript : MonoBehaviour
             float y = Mathf.Sin(angleZ * Mathf.Deg2Rad);
             Vector3 v = new Vector3(x, y) * shootspeed;
             
-
+            /*
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 v =  0.9f*v;
             }
+            */
 
             Rigidbody2D body = peashooter.GetComponent<Rigidbody2D>();
             //총알이 앞으로 가게 근데 이제 여기서 플레이어가 보는 방향에 따라 다르게 가야 ㅎㅎ;

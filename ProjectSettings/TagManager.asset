@@ -3,21 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags:
-  - Ground
-  - OutLine
-  - Descend
-  - Parry
-  - Door
-  - Enemy
-  - Object
-  - Dead
-  - Wall
-  - Turnwall
-=======
   tags: []
->>>>>>> 6ec166ccc8dd9ebe97efda133069c62ae3adebba
   layers:
   - Default
   - TransparentFX

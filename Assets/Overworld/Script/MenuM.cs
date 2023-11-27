@@ -22,9 +22,10 @@ public class MenuM : MonoBehaviour
     public Text VISUAL;
     public Text CONTROLS;
     public Text Back;
-
     //두번째 메뉴 인터페이스 이미지
     public GameObject OptionsWindow;
+    //컨트롤 인풋 페이지
+    public GameObject ControlWindow;
     //첫번째 메뉴 인터페이스 이미지
     public GameObject WindowboxBackground;
     public GameObject Windowbox1;
@@ -98,7 +99,15 @@ public class MenuM : MonoBehaviour
                 OptionsWindow.SetActive(false);
                 Now_Page = 0;
             }
+            if (Now_Page == 2 && Sellect_Options == 2)
+            {
+                Input_Change();
+            }
         }
+    }
+    void Input_Change()
+    {
+        ControlWindow.SetActive(true);
     }
     void OptionsMenu(int updown)
     {

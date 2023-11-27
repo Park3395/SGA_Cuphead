@@ -29,6 +29,7 @@ public class OverworldChar : MonoBehaviour
     public GameObject Item4;
     public GameObject Item5;
     public GameObject LeftDoorObj;
+    bool shop_Input = false;//상점 들어갔을 때 바로 입력 하는거 방지
     //Apple과 대화중
     int AppleNpc_Page = 0;
     bool AppleNpc_ZkeyStay = false;//z키 입력 가능 지역일때
@@ -132,9 +133,15 @@ public class OverworldChar : MonoBehaviour
                 anim.SetBool("isChange", false);
 
             if (h == -1)
+            {
+                Zkey.transform.localScale = new Vector3(-0.67f, 0.67f, 0.67f);
                 transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+            }
             if (h == 1)
+            {
+                Zkey.transform.localScale = new Vector3(0.67f, 0.67f, 0.67f);
                 transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            }
 
             if (v == 1)
                 dirVec = Vector3.up;
@@ -229,78 +236,82 @@ public class OverworldChar : MonoBehaviour
         }
         LeftDoorObj.GetComponent<LeftDoor>().P1();
         LeftDoorObj.GetComponent<LeftDoor>().Open();
+        shop_Input = true;
         Shop_obj.GetComponent<ShopAnimeM>().Shop_Idle();
     }
     void Shop_Control()
     {
-            if (Input.GetKeyDown(KeyCode.RightArrow)&&Shop_Num < 5)
+        if (shop_Input == true)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) && Shop_Num < 5)
             {
                 Shop_Num++;
                 if (Shop_Num == 1)
                 {
                     Item5.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P1();
+                    LeftDoorObj.GetComponent<LeftDoor>().P1();
                     Item1.GetComponent<ItemM>().Item_Sellect();
                 }
                 else if (Shop_Num == 2)
                 {
                     Item1.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P2();
-                Item2.GetComponent<ItemM>().Item_Sellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P2();
+                    Item2.GetComponent<ItemM>().Item_Sellect();
                 }
                 else if (Shop_Num == 3)
                 {
                     Item2.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P3();
-                Item3.GetComponent<ItemM>().Item_Sellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P3();
+                    Item3.GetComponent<ItemM>().Item_Sellect();
                 }
                 else if (Shop_Num == 4)
                 {
                     Item3.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P4();
-                Item4.GetComponent<ItemM>().Item_Sellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P4();
+                    Item4.GetComponent<ItemM>().Item_Sellect();
                 }
                 else if (Shop_Num == 5)
                 {
                     Item4.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P5();
-                Item5.GetComponent<ItemM>().Item_Sellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P5();
+                    Item5.GetComponent<ItemM>().Item_Sellect();
                 }
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow)&& Shop_Num > 1)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && Shop_Num > 1)
             {
                 Shop_Num--;
                 if (Shop_Num == 1)
                 {
                     Item2.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P1();
-                Item1.GetComponent<ItemM>().Item_Sellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P1();
+                    Item1.GetComponent<ItemM>().Item_Sellect();
                 }
                 else if (Shop_Num == 2)
                 {
                     Item3.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P2();
-                Item2.GetComponent<ItemM>().Item_Sellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P2();
+                    Item2.GetComponent<ItemM>().Item_Sellect();
                 }
                 else if (Shop_Num == 3)
                 {
                     Item4.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P3();
-                Item3.GetComponent<ItemM>().Item_Sellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P3();
+                    Item3.GetComponent<ItemM>().Item_Sellect();
                 }
                 else if (Shop_Num == 4)
                 {
                     Item5.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P4();
-                Item4.GetComponent<ItemM>().Item_Sellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P4();
+                    Item4.GetComponent<ItemM>().Item_Sellect();
                 }
                 else if (Shop_Num == 5)
                 {
                     Item1.GetComponent<ItemM>().Item_UnSellect();
-                LeftDoorObj.GetComponent<LeftDoor>().P5();
-                Item5.GetComponent<ItemM>().Item_Sellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P5();
+                    Item5.GetComponent<ItemM>().Item_Sellect();
                 }
             }
+        }
         
         //상점 나가기
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -308,6 +319,7 @@ public class OverworldChar : MonoBehaviour
             LeftDoorObj.GetComponent<LeftDoor>().Close();
             Tag_Num = 0;
             Shop_Num = 0;
+            shop_Input = false;
             Shop.SetActive(false);
         }
     }

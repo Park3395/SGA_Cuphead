@@ -16,12 +16,13 @@ public class MenuM : MonoBehaviour
     public Text NEW1;//SAVE1
     public Text NEW2;//SAVE2
     public Text NEW3;//SAVE3
-
     //옵션 메뉴 텍스트
     public Text AUDIO;
     public Text VISUAL;
     public Text CONTROLS;
     public Text Back;
+    //DLC 창
+    public GameObject DLC_Screen;
     //두번째 메뉴 인터페이스 이미지
     public GameObject OptionsWindow;
     //컨트롤 인풋 페이지
@@ -75,38 +76,109 @@ public class MenuM : MonoBehaviour
                 OptionsMenu(1);
         }
         //엔터 이벤트
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Z))
         {
+            //Start 들어감
             if (Now_Page == 0 && Sellect_Button == 0)
             {
+                Sellect_Start = -1;
                 Now_Page = 10;
             }
+            //옵션 들어감
             if (Now_Page == 0 && Sellect_Button == 1)
             {
+                Sellect_Options = -1;
                 Now_Page = 11;
             }
+            //DLC
+            if (Now_Page == 0 && Sellect_Button == 2)
+            {
+                Now_Page = 12;
+                DLC_Screen.SetActive(true);
+            }
+            //시작 로드
             if (Now_Page == 1 && Sellect_Start == 0)
             {
                 SceneManager.LoadScene("BookScene");
             }
+            if (Now_Page == 1 && Sellect_Start == 1)
+            {
+                SceneManager.LoadScene("BookScene");
+            }
+            if (Now_Page == 1 && Sellect_Start == 2)
+            {
+                SceneManager.LoadScene("BookScene");
+            }
+            //옵션에서 시작으로 되돌아가기
             if (Now_Page == 2 && Sellect_Options == 3)
             {
-                Sellect_Menu(0);
                 AUDIO.text = "";
                 VISUAL.text = "";
                 CONTROLS.text = "";
                 Back.text = "";
                 OptionsWindow.SetActive(false);
                 Now_Page = 0;
+                Sellect_Button = 0;
+                Sellect_Menu(0);
             }
+            //Controlls창 인터페이스 변경
             if (Now_Page == 2 && Sellect_Options == 2)
             {
                 Input_Change();
             }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Now_Page == 13)
+            {
+                Sellect_Options = -1;
+                ControlWindow.SetActive(false);
+                Now_Page = 11;
+            }
+            if(Now_Page==1)
+            {
+                NEW1.text = "";
+                NEW2.text = "";
+                NEW3.text = "";
+                START.text = "START";
+                OPTIONS.text = "OPTIONS";
+                DLC.text = "DLC";
+                EXIT.text = "EXIT";
+                WindowboxBackground.SetActive(false);
+                Windowboxtl1.SetActive(false);
+                Windowboxtl2.SetActive(false);
+                Windowboxtl3.SetActive(false);
+                Windowbox1.SetActive(false);
+                Windowbox2.SetActive(false);
+                Windowbox3.SetActive(false);
+                Now_Page = 0;
+                Sellect_Button = -1;
+                Sellect_Menu(0);
+            }
+            if (Now_Page == 2)
+            {
+                AUDIO.text = "";
+                VISUAL.text = "";
+                CONTROLS.text = "";
+                Back.text = "";
+                OptionsWindow.SetActive(false);
+                Now_Page = 0;
+                Sellect_Button = 0;
+                Sellect_Menu(0);
+            }
+            //DLC에서 시작창으로
+            if (Now_Page == 12)
+            {
+                DLC_Screen.SetActive(false);
+                Now_Page = 0;
+                Sellect_Button = 1;
+                Sellect_Menu(0);
+            }
+        }
     }
     void Input_Change()
     {
+        Now_Page = 13;
         ControlWindow.SetActive(true);
     }
     void OptionsMenu(int updown)
@@ -122,14 +194,16 @@ public class MenuM : MonoBehaviour
             VISUAL.text = "VISUAL";
             CONTROLS.text = "CONTROLS";
             Back.text = "Back";
-
+            Sellect_Start--;
             OptionsWindow.SetActive(true);
             Now_Page = 2;
         }
+        
         if (updown == 0)
             Sellect_Options++;
         else
             Sellect_Options--;
+        
 
         if (Sellect_Options > 3)
             Sellect_Options = 0;

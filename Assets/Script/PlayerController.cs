@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     float axisV = 0.0f;                
     public float speed = 4.0f;         //이동속도, 3.0f -> 4.0f로 변경
 
-    public float jump = 5.0f;          //점프력
+    public float jump = 7.0f;          //점프력
     public float dash = 50.0f;          //대쉬력
     public LayerMask groundLayer;       //착지 가능한 레이어
     bool goJump = false;               //점프키 입력상태
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public string dashAnime = "PlayerDash";
     public string dustAnime = "PlayerDust"; //대쉬할 때 사라지는 애니메이션
     public string hitAnime = "PlayerHit";   //맞았을 때 애니메이션
+    public string deadAnime = "PlayerDead"; //죽었을 때 애니메이션
 
     string nowAnime = "";
     string oldAnime = "";
@@ -57,6 +58,9 @@ public class PlayerController : MonoBehaviour
 
         //게임 상태(플레이 중)
         gameState = "playing";
+
+        //HP 불러오기
+        hp = PlayerPrefs.GetInt("PlayerHP");
         
     }
 
@@ -64,8 +68,11 @@ public class PlayerController : MonoBehaviour
     // GetKeyDown을 GetKey로 바꾸는게 맞을수도
     void Update()
     {
-        if (gameState != "playing")
+        if (gameState != "playing" || inDamage)
+        {
             return;
+        }
+            
 
         //수평 방향 입력 ->GetKeyDown으로 모두 바꾸는 게 나을수도
         if(isMoving == false)
@@ -81,7 +88,7 @@ public class PlayerController : MonoBehaviour
        
 
         //캐릭터 방향 조절
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow)&&onGround)
         {
             //오른쪽 이동
             Debug.Log("오른쪽 이동");
@@ -89,8 +96,14 @@ public class PlayerController : MonoBehaviour
             //나는 8방향 발사보단 8방향 애니메이션을 만들려고 했는데 왜 8방향 발사가 됨?
             
         }
+        if(Input.GetKeyUp(KeyCode.RightArrow)&&onGround)
+        {
+            Debug.Log("오른쪽 이동키 뗌");
+            nowAnime = stopAnime;
+            animator.Play(nowAnime);
+        }
         
-        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow) && onGround)
         {
             // 우대각 방향
             Debug.Log("우대각");
@@ -98,29 +111,45 @@ public class PlayerController : MonoBehaviour
             animator.Play(nowAnime);
         }
         
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow)&&onGround)
         {
             //왼쪽 이동
             Debug.Log("왼쪽 이동");
             transform.localScale = new Vector2(-1, 1); //좌우 반전
         }
 
-        if(Input.GetKey(KeyCode.LeftArrow)&&Input.GetKey(KeyCode.UpArrow))
+        if(Input.GetKeyUp(KeyCode.LeftArrow)&&onGround)
         {
-            //좌대각 방향
+            Debug.Log("왼쪽 이동키 뗌");
+            nowAnime = stopAnime;
+            animator.Play(nowAnime);
+                
+        }
+        
+        
+        if (Input.GetKeyUp(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && onGround)
+        {
+            Debug.Log("왼쪽 이동키 떼면서 오른쪽으로");
+            nowAnime = runAnime;
+            animator.Play(nowAnime);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow)&&Input.GetKey(KeyCode.UpArrow) && onGround)
+        {
+            //좌대각 방향 좌대각으로 바라보고 있을 때 점프가 안되는데 왜지?
             Debug.Log("좌대각");
             nowAnime = rundiagonlaupAnime;
             animator.Play(nowAnime);
         }
 
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.Z)&&onGround)
         {
             Debug.Log("서 있으면서 발사");
             nowAnime = shootstraightAnime;
             animator.Play(nowAnime);
           
         }
-        if(Input.GetKeyUp(KeyCode.Z))
+        if(Input.GetKeyUp(KeyCode.Z) && onGround)
         {
             Debug.Log("z키에서 손 땜");
             nowAnime = stopAnime;
@@ -128,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.Z) && axisV ==0)
+        if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.Z) && axisV ==0 &&onGround)
         {
             Debug.Log("오른쪽 이동하면서 발사");
             transform.localScale = new Vector2(1, 1);
@@ -136,19 +165,20 @@ public class PlayerController : MonoBehaviour
             animator.Play(nowAnime);
             
         }
-        else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.Z))
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.Z) && onGround)
         {
             nowAnime = runAnime;
             animator.Play(nowAnime);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Z) && axisV == 0)
+       
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Z) && axisV == 0 && onGround)
         {
             Debug.Log("왼쪽 이동하면서 발사");
             transform.localScale = new Vector2(-1, 1);
             nowAnime = runshootstraightAnime;
             animator.Play(nowAnime);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.Z))
+        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.Z) && onGround)
         {
             nowAnime = runAnime;
             animator.Play(nowAnime);
@@ -161,14 +191,14 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
         //윗 방향키를 눌렀을 때 위쪽을 보는 애니메이션 실행(애니메이션 수정 필수)
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && onGround)
         {
             Debug.Log("위쪽 방향");
             nowAnime = aimupAnime;
             animator.Play(nowAnime);
          }
         //윗 방향키에서 손을 뗐을 때 애니메이션 바꾸기
-        if(Input.GetKeyUp(KeyCode.UpArrow))
+        if(Input.GetKeyUp(KeyCode.UpArrow) && onGround)
         {
             Debug.Log("윗 방향키 손 땜");
             nowAnime = stopAnime;
@@ -178,7 +208,7 @@ public class PlayerController : MonoBehaviour
         //위를 보면서 동시에 z를 눌렀을 때
         //if문에 GetKeyDown을 두 개 쓰면 한 프레임에 키 두 개를 다 입력했는지 검사하기에 구현이 어렵다.
         //윗방향 발사
-        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Z) && axisH == 0)
+        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Z) && axisH == 0 && onGround)
         {
             nowAnime = shootupAnime;
             animator.Play(shootupAnime);
@@ -186,37 +216,51 @@ public class PlayerController : MonoBehaviour
             
         }
        //이렇게 if문이 수도 없이 늘어나는게 맞나????
-       if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z)  )
+       if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z) && onGround)
         {
             nowAnime = aimupAnime;
             animator.Play(nowAnime);
             Debug.Log("윗방향키, Z키 땜");       
         }
-        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Z) && onGround)
         {
             //우대각 발사
             Debug.Log("우대각 발사");
             nowAnime = rundiagonlaupAnime;
             animator.Play(nowAnime);
         }
+        //우대각으로 조준하며 움직이던 중 윗 방향키에서 손 때면
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.UpArrow) &&onGround)
+        {
+            Debug.Log("윗방향키 손 땜");
+            nowAnime = runAnime;
+            animator.Play(nowAnime);
+        }
+        //좌대각으로 조준하며 움직이던 중 윗 방향키에서 손 때면
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.UpArrow) && onGround)
+        {
+            Debug.Log("윗방향키 손 땜");
+            nowAnime = runAnime;
+            animator.Play(nowAnime);
+        }
 
         //아래방향키를 눌렀을 때 이 애니메이션에서 스프라이트 위치가 잘 안맞는 문제가 있으니 수정해야함
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && onGround)
         {
             nowAnime = duckidleAnime;
             animator.Play(nowAnime);
         }
-        else if(Input.GetKeyUp(KeyCode.DownArrow))
+        else if(Input.GetKeyUp(KeyCode.DownArrow) && onGround)
         {
             nowAnime = stopAnime;
             animator.Play(nowAnime);
         }
-        if(Input.GetKey(KeyCode.DownArrow)&&Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKey(KeyCode.DownArrow)&&Input.GetKeyDown(KeyCode.Z) && onGround)
         {
             nowAnime = duckshootAnime;
             animator.Play(nowAnime);
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyUp(KeyCode.Z))
+        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyUp(KeyCode.Z) && onGround)
         {
             nowAnime = duckidleAnime;
             animator.Play(nowAnime);
@@ -230,7 +274,7 @@ public class PlayerController : MonoBehaviour
             
         }
 
-
+       
 
         //z키를 눌렀을 때 발사하는 애니메이션, 인풋매니저 설정 안바꿔서 임시로 z
         /*
@@ -286,26 +330,30 @@ public class PlayerController : MonoBehaviour
 
 
         }
-
+        
         if(onGround)
         {
             //지면과 맞닿아있을 때
+            
             if (axisH == 0)
                 nowAnime = "PlayerIdle";
             
             else
                 nowAnime = "PlayerRun";
+            
         }
         else
         {
             //공중에 있을 때 점프 애니메이션
             nowAnime = jumpAnime; 
         }
+        
         if(nowAnime !=oldAnime)
         {
             oldAnime = nowAnime;
             animator.Play(nowAnime); //애니메이션 재생 
         }
+
         
     }
 
@@ -348,5 +396,64 @@ public class PlayerController : MonoBehaviour
             angle = angleZ;
         }
         return angle;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("적과 충돌");
+            //데미지를 받는다
+            GetDamage(collision.gameObject);
+        }
+    }
+    //충돌했을 때 hp가 순식간에 깎이는게 문제
+    void GetDamage(GameObject enemy)
+    {
+        if(gameState=="playing")
+        {
+            Debug.Log("겟 데미지 함수 발동");
+            hp--;
+            PlayerPrefs.SetInt("PlayerHP", hp); //현재 hp 갱신
+            if(hp>0)
+            {
+                Debug.Log("체력이 0보다 클 때 겟 데미지 함수 발동");
+                //이동 중지
+                rbody.velocity = new Vector2(0, 0);
+                animator.Play(hitAnime);
+                inDamage = true;
+                Invoke("DamageEnd", 1f);
+            }
+            else
+            {
+                Debug.Log("게임오버 함수 호출");
+                GameOver();
+            }
+        }
+    }
+    
+    void DamageEnd()
+    {
+        inDamage = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    //함수 호출은 되는데 왜 함수 적용이 안됨?
+    void GameOver()
+    {
+        Debug.Log("게임오버");
+        //게임오버로 만들고
+        //gameState = "gameover";
+        //충돌판정 비활성화도 안되고
+        GetComponent<CapsuleCollider2D>().enabled = false; //캡슐 콜라이더를 서클 콜라이더로 적용해놓고 안된다고 하고 있었네 ㅋㅋ
+        //움직이는 것도 못 막는데
+        rbody.velocity = new Vector2(0, 0);
+        //왜 안 뜸?
+        rbody.gravityScale = 1;
+        rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
+        //왜 애니메이션 재생 안됨?
+        GetComponent<Animator>().Play(deadAnime);
+        //왜 없어지지도 않음?????
+        Destroy(gameObject, 1.0f);
     }
 }

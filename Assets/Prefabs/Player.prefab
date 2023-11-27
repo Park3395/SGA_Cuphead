@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3709766494283720901}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6320982166844030740}
   - component: {fileID: 7959153420069264762}
   - component: {fileID: 3360846136954469534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -203,6 +203,7 @@ MonoBehaviour:
   dashAnime: PlayerDash
   dustAnime: PlayerDust
   hitAnime: PlayerHit
+  deadAnime: PlayerDead
   angleZ: -90
 --- !u!70 &6320982166844030740
 CapsuleCollider2D:
@@ -253,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootspeed: 10
   shootdelay: 0.1
-  peashooterPrefab: {fileID: 1007188051152378936, guid: aa5eec6803b3d1d49947107bcbd62cba, type: 3}
+  peashooterPrefab: {fileID: 6620933106818605848, guid: 47219e3f909037548b5c0751e2dad89a, type: 3}
 --- !u!114 &3360846136954469534
 MonoBehaviour:
   m_ObjectHideFlags: 0

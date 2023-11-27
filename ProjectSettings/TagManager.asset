@@ -3,6 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - Ground
   - OutLine
@@ -14,6 +15,9 @@ TagManager:
   - Dead
   - Wall
   - Turnwall
+=======
+  tags: []
+>>>>>>> 6ec166ccc8dd9ebe97efda133069c62ae3adebba
   layers:
   - Default
   - TransparentFX
@@ -21,10 +25,10 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - Platform
-  - Enemy
-  - EnemyBullet
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

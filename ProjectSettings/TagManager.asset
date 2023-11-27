@@ -3,16 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - OutLine
-  - Descend
-  - Parry
-  - Door
-  - Enemy
-  - Object
-  - Dead
-  - Wall
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -20,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - Platform
-  - Enemy
-  - EnemyBullet
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

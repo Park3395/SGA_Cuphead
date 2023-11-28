@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         UpdateHp();
-        resetButton.SetActive(false);
+        resetButton.SetActive(true);
     }
 
     // Update is called once per frame

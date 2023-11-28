@@ -16,7 +16,6 @@ public class FlowergruntController : MonoBehaviour
     {
         pos = transform.position;
         createFlowergrunt();
-        //Invoke("createFlowergrunt", spawnDelay);
     }
 
     // Update is called once per frame

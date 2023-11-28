@@ -70,7 +70,7 @@ public class OverworldChar : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 if (Tag_Num == 1)
-                    SceneManager.LoadScene("TestScene");//집
+                    SceneManager.LoadScene("SampleSceneY");//집
                 else if (Tag_Num == 2)
                     SceneManager.LoadScene("TestScene");//던전
                 else if (Tag_Num == 3)

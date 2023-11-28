@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
             animator.Play(nowAnime);
         }
 
-        if(Input.GetKeyDown(KeyCode.Z)&&onGround)
+        if(Input.GetKeyDown((KeySetting.keys[KeyAction.Shot]))&&onGround)
         {
             Debug.Log("서 있으면서 발사");
             nowAnime = shootstraightAnime;
@@ -444,16 +444,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log("게임오버");
         //게임오버로 만들고
         //gameState = "gameover";
-        //충돌판정 비활성화도 안되고
         GetComponent<CapsuleCollider2D>().enabled = false; //캡슐 콜라이더를 서클 콜라이더로 적용해놓고 안된다고 하고 있었네 ㅋㅋ
-        //움직이는 것도 못 막는데
         rbody.velocity = new Vector2(0, 0);
-        //왜 안 뜸?
         rbody.gravityScale = 1;
         rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
-        //왜 애니메이션 재생 안됨?
         GetComponent<Animator>().Play(deadAnime);
-        //왜 없어지지도 않음?????
+        //플레이어 캐릭터가 굳이 없어질 이유는 없긴하다
         Destroy(gameObject, 1.0f);
     }
 }

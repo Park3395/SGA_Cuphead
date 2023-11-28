@@ -61,8 +61,14 @@ public class Blobmelt : EnemyController
     {
         if (collision.tag == "Turnwall")
         {
-            // 접촉했을 때 방향 바꾸기
-            FlipX();
+            if (direction1 == "right")
+            {
+                direction1 = "left";
+            }
+            else if (direction1 == "left")
+            {
+                direction1 = "right";
+            }
         }        
     }
 

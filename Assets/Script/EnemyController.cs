@@ -52,14 +52,6 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("isGround", true);     // Run애니메이션 실행
         }
-        // 플레이어와 닿았을 때
-        else if (collision.gameObject.tag == "Player")
-        {
-            speed = 0.0f;
-            hp = 0;
-
-            Dead();
-        }
         else if (collision.gameObject.tag == "Bullet")
         {
             hp--;

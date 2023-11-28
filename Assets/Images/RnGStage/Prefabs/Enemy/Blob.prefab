@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4001622041331718896}
   - component: {fileID: 6779356193808441389}
   - component: {fileID: -5407443792027083060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blob
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -183,9 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e0e29c94497154187e66e71d39b29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
-  speed: 0
+  hp: 1
+  speed: 3
   jump: 0
-  reactionDistance: 0
-  range: 0
-  reviveDelay: 0
+  reactionDistance: 3
+  reviveDelay: 6

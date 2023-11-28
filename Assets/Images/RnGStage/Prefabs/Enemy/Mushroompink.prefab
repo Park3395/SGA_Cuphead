@@ -218,9 +218,11 @@ MonoBehaviour:
   hp: 2
   speed: 0
   jump: 0
-  reactionDistance: 8
+  reactionDistance: 0
   shootDelay: 4
   mushroomshooter: {fileID: 1351900806626103928}
   poisonPrefab: {fileID: 3967158843787358828, guid: 763b59c4f8ac3854c8e36bf0364b0583, type: 3}
   parringpoisonPrefab: {fileID: 6155808357301980650, guid: 506f1d426140b654c9de88bfa047cd38, type: 3}
+  Distance: 6
+  shootDistance: 4
   shootForce: 2

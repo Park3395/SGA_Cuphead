@@ -60,6 +60,14 @@ public class EnemyController : MonoBehaviour
 
             Dead();
         }
+        else if (collision.gameObject.tag == "Bullet")
+        {
+            hp--;
+            if (hp <= 0)
+            {
+                Dead();
+            }
+        }
     }
 
     // »ç¸Á

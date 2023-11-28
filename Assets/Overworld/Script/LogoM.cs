@@ -12,6 +12,8 @@ public class LogoM : MonoBehaviour
     public GameObject Title_Background;
     public GameObject IrisA_;
     public GameObject Title_Text;
+
+    bool CanKey = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,16 +22,17 @@ public class LogoM : MonoBehaviour
     void Update()
     {
         Invoke("LogoDelete", 12.0f);
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown&& CanKey==true)
         {
             IrisA_.SetActive(true);
-            Invoke("StartScene",1.3f);
+            Invoke("StartScene",1.7f);
         }
     }
     void LogoDelete()
     {
         SetTitle();
         Destroy(Logo, .5f);
+        CanKey = true;
     }
     void SetTitle()
     {

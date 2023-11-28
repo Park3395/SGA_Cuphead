@@ -9,6 +9,9 @@ public class Mushroom : EnemyController
     public GameObject poisonPrefab;           // 독구름
     public GameObject parringpoisonPrefab;      // 패링가능 독구름
 
+    public float Distance = 0.0f;       // 플레이어 발견 거리
+    public float shootDistance = 0.0f;   // 발사 인식 거리
+
     bool hasAttacked = false;
 
     public float shootForce = 5.0f; // 위로 발사할 힘
@@ -21,7 +24,9 @@ public class Mushroom : EnemyController
     }
 
     protected override void Update()
-    {        
+    {
+        base.Update();
+
         // 플레이어 위치에 따른 이동 방향 변경
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -29,28 +34,26 @@ public class Mushroom : EnemyController
             float dx = player.transform.position.x - transform.position.x;
             if (dx < reactionDistance)
             {
-                direction1 = "left";        // 플레이어가 몬스터보다 왼쪽에 있을 시 왼쪽으로 이동
                 direction2 = "left";
                 spriteRenderer.flipX = false;
             }
             else if (dx > reactionDistance)
             {
-                direction1 = "right";       // 플레이어가 몬스터보다 오른쪽에 있을 시 오른쪽으로 이동
                 direction2 = "right";
                 spriteRenderer.flipX = true;
             }
-        }
 
-        if (player != null)
-        {
             float dist = Vector2.Distance(transform.position, player.transform.position);   //몬스터와 플레이어 거리 계산
-            if (dist < reactionDistance)
+            if (dist < shootDistance)
             {
-                animator.SetBool("discover", true);
                 if (hasAttacked)
                 {
                     Attackanime();
                 }
+            }
+            else if (dist < Distance)
+            {
+                animator.SetBool("discover", true);
             }
         }
     }

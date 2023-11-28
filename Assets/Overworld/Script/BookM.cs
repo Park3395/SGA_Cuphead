@@ -30,31 +30,39 @@ public class BookM : MonoBehaviour
     public GameObject page8_;
     public GameObject page9_;
     public GameObject page10_;
-
+    bool CanKey = false;
     int Bookmark = 0;//현재 페이지
     // Start is called before the first frame update
     void Start()
     {
         Intro.SetActive(true);
-        Invoke("IntroOff", 8.4f);
+        Invoke("IntroOff", 10.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (CanKey)
         {
-            Bookmark++;
-            PageRight(Bookmark);
+            if (Input.GetKeyDown(KeySetting.keys[KeyAction.Right]))
+            {
+                Bookmark++;
+                PageRight(Bookmark);
+                CanKey = false;
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                Bookmark++;
+                PageRight(Bookmark);
+                CanKey = false;
+            }
         }
-        
     }
     void IntroOff()
     {
-        Debug.Log("Off");
         Intro_.SetActive(true);
         Intro.SetActive(false);
+        CanKey = true;
     }
     void PageRight(int Page)
     {
@@ -127,51 +135,61 @@ public class BookM : MonoBehaviour
     {
         page1_.SetActive(true);
         page1.SetActive(false);
+        CanKey = true;
     }
     void Page2()
     {
         page2_.SetActive(true);
         page2.SetActive(false);
+        CanKey = true;
     }
     void Page3()
     {
         page3_.SetActive(true);
         page3.SetActive(false);
+        CanKey = true;
     }
     void Page4()
     {
         page4_.SetActive(true);
         page4.SetActive(false);
+        CanKey = true;
     }
     void Page5()
     {
         page5_.SetActive(true);
         page5.SetActive(false);
+        CanKey = true;
     }
     void Page6()
     {
         page6_.SetActive(true);
         page6.SetActive(false);
+        CanKey = true;
     }
     void Page7()
     {
         page7_.SetActive(true);
         page7.SetActive(false);
+        CanKey = true;
     }
     void Page8()
     {
         page8_.SetActive(true);
         page8.SetActive(false);
+        CanKey = true;
     }
     void Page9()
     {
         page9_.SetActive(true);
         page9.SetActive(false);
+        CanKey = true;
     }
     void Page10()
     {
         page10_.SetActive(true);
         page10.SetActive(false);
+        CanKey = true;
     }
 
 }

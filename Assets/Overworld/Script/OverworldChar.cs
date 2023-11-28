@@ -9,9 +9,6 @@ public class OverworldChar : MonoBehaviour
     public GameObject TitleCard;
     public GameObject WindowBlack;
 
-    //상점 스크립트 불러오기
-    public GameObject Shop_obj;
-
     int Title_flag = 0;
     //이동 관련
     Animator anim;
@@ -19,9 +16,20 @@ public class OverworldChar : MonoBehaviour
     Rigidbody2D rigid;
     float h;
     float v;
-    //1. Home 2. Dungeon 3. Tree 4. Shop 5. Botanic
+    //1. Home 2. Dungeon 3. Tree 4. Shop 5. Botanic 12.상점 컨트롤 상태
     int Tag_Num = 0;//무엇과 상호 작용 중인가.
+    //상점 스크립트 불러오기
+    public GameObject Shop_obj;
+    //상점 관련
+    int Shop_Num = -1;
     public GameObject Shop;
+    public GameObject Item1;
+    public GameObject Item2;
+    public GameObject Item3;
+    public GameObject Item4;
+    public GameObject Item5;
+    public GameObject LeftDoorObj;
+    bool shop_Input = false;//상점 들어갔을 때 바로 입력 하는거 방지
     //Apple과 대화중
     int AppleNpc_Page = 0;
     bool AppleNpc_ZkeyStay = false;//z키 입력 가능 지역일때
@@ -51,6 +59,11 @@ public class OverworldChar : MonoBehaviour
         {
             Ask_Title();//입장 여부확인
         }
+        if(Tag_Num==12)
+        {
+            //상점 컨트롤러
+            Shop_Control();
+        }
         //씬 전환을 물어보는 상태
         if(Title_flag==10)
         {
@@ -64,11 +77,7 @@ public class OverworldChar : MonoBehaviour
                     SceneManager.LoadScene("TestScene");//트리
                 else if (Tag_Num == 4)
                 {
-                    Shop.SetActive(true);
-                    TitleCard.SetActive(false);
-                    Tag_Num = 0;
-                    anim.SetBool("Shop_Idle", true);
-                    Invoke("Shop_Idle_Control",1.5f);
+                    Shop_Event();
                 }
                 else if (Tag_Num == 5)
                     SceneManager.LoadScene("TestScene");//농장
@@ -124,9 +133,15 @@ public class OverworldChar : MonoBehaviour
                 anim.SetBool("isChange", false);
 
             if (h == -1)
-                transform.localScale = new Vector3(-1.6f, 1.6f, 1.6f);
+            {
+                Zkey.transform.localScale = new Vector3(-0.67f, 0.67f, 0.67f);
+                transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+            }
             if (h == 1)
-                transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
+            {
+                Zkey.transform.localScale = new Vector3(0.67f, 0.67f, 0.67f);
+                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            }
 
             if (v == 1)
                 dirVec = Vector3.up;
@@ -137,30 +152,10 @@ public class OverworldChar : MonoBehaviour
             else if (h == 1)
                 dirVec = Vector3.right;
         }
-        /*
-        //Scan Object
-        if (Input.GetButtonDown("Jump")&&scanObject != null)
-            Debug.Log("This is:" + scanObject.name);
-        */
-
     }
     void FixedUpdate()
     {
-
         rigid.velocity = new Vector2(h, v) * Speed;
-
-        /*
-        //앞물체 감지
-        Debug.DrawRay(rigid.position, dirVec, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.7f,LayerMask.GetMask("NPC"));
-        if (rayHit.collider != null)
-        {
-            Debug.Log("11");
-            scanObject = rayHit.collider.gameObject;
-        }
-        else
-            scanObject = null;
-        */
     }
     //Apple Npc
     private void OnTriggerEnter2D(Collider2D collision)
@@ -224,9 +219,108 @@ public class OverworldChar : MonoBehaviour
         isHorizonMove = false;
         Title_flag = 10;
     }
+    void Shop_Event()
+    {
+        Shop.SetActive(true);
+        TitleCard.SetActive(false);
+        Tag_Num = 12;
+        Invoke("Shop_Idle_Control", 1.3f);
+    }
     void Shop_Idle_Control()
     {
-        
+        Item1.GetComponent<ItemM>().Item_Sellect();
+
+        if (Shop_Num == -1)
+        {
+            Shop_Num = 1;
+        }
+        LeftDoorObj.GetComponent<LeftDoor>().P1();
+        LeftDoorObj.GetComponent<LeftDoor>().Open();
+        shop_Input = true;
         Shop_obj.GetComponent<ShopAnimeM>().Shop_Idle();
+    }
+    void Shop_Control()
+    {
+        if (shop_Input == true)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) && Shop_Num < 5)
+            {
+                Shop_Num++;
+                if (Shop_Num == 1)
+                {
+                    Item5.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P1();
+                    Item1.GetComponent<ItemM>().Item_Sellect();
+                }
+                else if (Shop_Num == 2)
+                {
+                    Item1.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P2();
+                    Item2.GetComponent<ItemM>().Item_Sellect();
+                }
+                else if (Shop_Num == 3)
+                {
+                    Item2.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P3();
+                    Item3.GetComponent<ItemM>().Item_Sellect();
+                }
+                else if (Shop_Num == 4)
+                {
+                    Item3.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P4();
+                    Item4.GetComponent<ItemM>().Item_Sellect();
+                }
+                else if (Shop_Num == 5)
+                {
+                    Item4.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P5();
+                    Item5.GetComponent<ItemM>().Item_Sellect();
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && Shop_Num > 1)
+            {
+                Shop_Num--;
+                if (Shop_Num == 1)
+                {
+                    Item2.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P1();
+                    Item1.GetComponent<ItemM>().Item_Sellect();
+                }
+                else if (Shop_Num == 2)
+                {
+                    Item3.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P2();
+                    Item2.GetComponent<ItemM>().Item_Sellect();
+                }
+                else if (Shop_Num == 3)
+                {
+                    Item4.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P3();
+                    Item3.GetComponent<ItemM>().Item_Sellect();
+                }
+                else if (Shop_Num == 4)
+                {
+                    Item5.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P4();
+                    Item4.GetComponent<ItemM>().Item_Sellect();
+                }
+                else if (Shop_Num == 5)
+                {
+                    Item1.GetComponent<ItemM>().Item_UnSellect();
+                    LeftDoorObj.GetComponent<LeftDoor>().P5();
+                    Item5.GetComponent<ItemM>().Item_Sellect();
+                }
+            }
+        }
+        
+        //상점 나가기
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LeftDoorObj.GetComponent<LeftDoor>().Close();
+            Tag_Num = 0;
+            Shop_Num = 0;
+            shop_Input = false;
+            Shop.SetActive(false);
+        }
     }
 }

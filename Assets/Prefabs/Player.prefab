@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3709766494283720901}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: SpawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6320982166844030740}
   - component: {fileID: 7959153420069264762}
   - component: {fileID: 3360846136954469534}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ MonoBehaviour:
   dash: 50
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   stopAnime: PlayerIdle
   jumpAnime: PlayerJump
   runAnime: PlayerRun

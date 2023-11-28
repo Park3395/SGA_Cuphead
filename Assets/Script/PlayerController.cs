@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         Vector2 toPt = new Vector2(fromPt.x + axisH, fromPt.y + axisV);
         angleZ = GetAngle(fromPt, toPt);
 
-       
+       //Input.GetKeyDown(KeySetting.Keys(KeyAction. ......)
 
         //캐릭터 방향 조절
         if (Input.GetKeyDown(KeyCode.RightArrow)&&onGround)

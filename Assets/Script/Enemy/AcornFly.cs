@@ -42,27 +42,27 @@ public class AcornFly : EnemyController
         if (isUp)
         {
             rbody.velocity = new Vector2(rbody.velocity.x, UpPos);
-            isUp = false;
+            if (direction1 == "right")
+            {
+                rbody.velocity = new Vector2(speed, rbody.velocity.y);
+                if (direction2 == "left")
+                {
+                    spriteRenderer.flipX = true;
+                    direction2 = "right";
+                }
+            }
+            else
+            {
+                rbody.velocity = new Vector2(-speed, rbody.velocity.y);
+                if (direction2 == "right")
+                {
+                    spriteRenderer.flipX = false;
+                    direction2 = "left";
+                }
+            }
             if (!isUp)
             {
-                if (direction1 == "right")
-                {
-                    rbody.velocity = new Vector2(speed, rbody.velocity.y);
-                    if (direction2 == "left")
-                    {
-                        spriteRenderer.flipX = true;
-                        direction2 = "right";
-                    }
-                }
-                else
-                {
-                    rbody.velocity = new Vector2(-speed, rbody.velocity.y);
-                    if (direction2 == "right")
-                    {
-                        spriteRenderer.flipX = false;
-                        direction2 = "left";
-                    }
-                }
+                
             }
         }
     }

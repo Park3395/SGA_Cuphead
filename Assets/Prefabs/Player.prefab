@@ -187,7 +187,8 @@ MonoBehaviour:
   dash: 50
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  downJump: 0
   stopAnime: PlayerIdle
   jumpAnime: PlayerJump
   runAnime: PlayerRun
@@ -255,6 +256,7 @@ MonoBehaviour:
   shootspeed: 10
   shootdelay: 0.1
   peashooterPrefab: {fileID: 6620933106818605848, guid: 47219e3f909037548b5c0751e2dad89a, type: 3}
+  Spread: {fileID: 0}
 --- !u!114 &3360846136954469534
 MonoBehaviour:
   m_ObjectHideFlags: 0

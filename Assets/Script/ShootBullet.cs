@@ -8,6 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
     public float shootdelay = 0.1f; //shootdelay∏¶ ¥√∑¡∫∏¿⁄
 
     public GameObject peashooterPrefab; //¿Â≥≠∞® √—(±‚∫ª √—)
+    public GameObject Spread;           //»ÆªÍ≈∫
     bool isAttack = false;
     GameObject spawnBullet;
 

@@ -284,7 +284,7 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if(Input.GetKey(KeyCode.DownArrow)&&Input.GetKeyDown(KeyCode.Space)&&onGround)
+        if(Input.GetKey(KeyCode.DownArrow)&&Input.GetKey(KeyCode.Space)&&onGround)
         {
             DownJump();
 

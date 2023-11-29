@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6362605589525498066}
   - component: {fileID: 8485253062884354721}
   - component: {fileID: 1068502063204687463}
+  - component: {fileID: -2930035073812442477}
   m_Layer: 0
   m_Name: AcornFly
   m_TagString: Enemy
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 14
   m_Sprite: {fileID: 21300000, guid: 35ae9dd8ff386e843931c2774ac64b3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -142,3 +143,21 @@ CapsuleCollider2D:
   m_Offset: {x: -0.012699127, y: 0.047620058}
   m_Size: {x: 0.98443604, y: 1.3339648}
   m_Direction: 0
+--- !u!114 &-2930035073812442477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502726799873478518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e32151b14af4a4da97ef00ca5a6d6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 2
+  speed: 3
+  jump: 0
+  reactionDistance: 0
+  acornDrop: {fileID: 0}
+  UpPos: 0

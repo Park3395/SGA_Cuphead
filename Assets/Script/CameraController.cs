@@ -8,14 +8,13 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     GameObject player;          // 플레이어
 
-    public bool move;           // 좌우 이동
+    public bool move = false;           // 좌우 이동
     public bool ispoint;
     public float yScale;        // 위쪽 이동
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
-        move = false;
     }
 
     // Update is called once per frame

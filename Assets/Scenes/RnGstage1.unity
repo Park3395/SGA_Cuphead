@@ -8943,6 +8943,7 @@ GameObject:
   - component: {fileID: 1385667350}
   - component: {fileID: 1385667349}
   - component: {fileID: 1385667351}
+  - component: {fileID: 1385667352}
   m_Layer: 7
   m_Name: lv1-1_mg_ground-ledge_0003
   m_TagString: Ground
@@ -9046,8 +9047,8 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.20708466, y: 0.59926105}
   m_SpriteTilingProperty:
@@ -9062,6 +9063,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.412922, y: 0.16383839}
   m_EdgeRadius: 0
+--- !u!251 &1385667352
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385667348}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1406731771
 GameObject:
   m_ObjectHideFlags: 0
@@ -11341,6 +11361,7 @@ GameObject:
   - component: {fileID: 1682856047}
   - component: {fileID: 1682856046}
   - component: {fileID: 1682856048}
+  - component: {fileID: 1682856049}
   m_Layer: 7
   m_Name: lv1-1_mg_ground-ledge_0002
   m_TagString: Ground
@@ -11445,7 +11466,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: -0.26468468, y: 0.62438226}
   m_SpriteTilingProperty:
@@ -11460,6 +11481,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.8804207, y: 0.12970614}
   m_EdgeRadius: 0
+--- !u!251 &1682856049
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682856045}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1693871568
 GameObject:
   m_ObjectHideFlags: 0
@@ -14787,13 +14827,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3661935945392141110, guid: 985a08c1371c37e4aa12ae3c35e36b80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3661935945392141110, guid: 985a08c1371c37e4aa12ae3c35e36b80, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.17
+      objectReference: {fileID: 0}
     - target: {fileID: 5063848701198111651, guid: 985a08c1371c37e4aa12ae3c35e36b80, type: 3}
       propertyPath: m_Name
       value: Acornmachine
       objectReference: {fileID: 0}
+    - target: {fileID: 7067868813333716343, guid: 985a08c1371c37e4aa12ae3c35e36b80, type: 3}
+      propertyPath: AcornPrefab
+      value: 
+      objectReference: {fileID: 7502726799873478518, guid: 86d6be032511e4d4fbeb6287e8d3e11a, type: 3}
+    - target: {fileID: 7067868813333716343, guid: 985a08c1371c37e4aa12ae3c35e36b80, type: 3}
+      propertyPath: reactionDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7373051908595302196, guid: 985a08c1371c37e4aa12ae3c35e36b80, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 167.5
+      value: 169.7
       objectReference: {fileID: 0}
     - target: {fileID: 7373051908595302196, guid: 985a08c1371c37e4aa12ae3c35e36b80, type: 3}
       propertyPath: m_LocalPosition.y

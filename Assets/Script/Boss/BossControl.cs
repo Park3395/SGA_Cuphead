@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotatoControl : MonoBehaviour
+public class BossControl : MonoBehaviour
 {
     public GameObject Boss;
     public GameObject Sub;

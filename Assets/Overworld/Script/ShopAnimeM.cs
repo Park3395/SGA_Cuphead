@@ -15,7 +15,12 @@ public class ShopAnimeM : MonoBehaviour
 
     public void Shop_Idle()
     {
-        transform.localPosition = new Vector3(6.0f, 100.0f, 1.0f);
         Shop_anim.SetInteger("Shop_Idle", 1);
+        transform.localPosition = new Vector3(37.0f, 256.0f, 1.0f);
+    }
+    public void Shop_Exit()
+    {
+        Shop_anim.SetBool("Shop_Exit", true);
+        //transform.localPosition = new Vector3(37.0f, 256.0f, 1.0f);
     }
 }

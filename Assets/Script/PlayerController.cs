@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     bool goJump = false;               //점프키 입력상태
     bool onGround = false;             //지면과 접촉상태
     bool goDash = false;               //대쉬 입력 상태
+    public bool downJump = false;             //아래 점프
     
     //애니메이터
     Animator animator;
@@ -44,7 +45,16 @@ public class PlayerController : MonoBehaviour
     public float angleZ = -90.0f; //회전
     public static int hp = 3;
     bool inDamage = false;
- 
+    public static PlayerController instance; //싱글톤 패턴에 쓴다?
+    
+    //근데 싱글톤 패턴이 뭐였냐
+    private void Awake()
+    {
+        if(PlayerController.instance == null)
+        {
+            PlayerController.instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -141,8 +151,8 @@ public class PlayerController : MonoBehaviour
             nowAnime = rundiagonlaupAnime;
             animator.Play(nowAnime);
         }
-
-        if(Input.GetKeyDown((KeySetting.keys[KeyAction.Shot]))&&onGround)
+        //(KeySetting.keys[KeyAction.Shot])
+        if (Input.GetKeyDown(KeyCode.Z)&&onGround)
         {
             Debug.Log("서 있으면서 발사");
             nowAnime = shootstraightAnime;
@@ -274,6 +284,12 @@ public class PlayerController : MonoBehaviour
             
         }
 
+        if(Input.GetKey(KeyCode.DownArrow)&&Input.GetKeyDown(KeyCode.Space)&&onGround)
+        {
+            DownJump();
+
+        }
+
        
 
         //z키를 눌렀을 때 발사하는 애니메이션, 인풋매니저 설정 안바꿔서 임시로 z
@@ -317,6 +333,13 @@ public class PlayerController : MonoBehaviour
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);      //순간적인 힘을 가한다
             goJump = false;  //점프 플래그 off
                                                                               
+        }
+        if(onGround && downJump)
+        {
+            Debug.Log("다운 점프!");
+            Vector2 jumpPw = new Vector2(0, -jump);
+            rbody.AddForce(jumpPw, ForceMode2D.Impulse);
+            downJump = false;
         }
         //이 if문을 넣었을 때 대쉬 함수와 이 if문이 활성화 되긴 하나 대쉬가 되진 않았다 대쉬의 기본값을 크게 늘려주자 대쉬를 했다..
         //대쉬를 연속적으로 못하게 하고 싶긴하지만 나중에 시간 날때 구현하자.
@@ -452,4 +475,12 @@ public class PlayerController : MonoBehaviour
         //플레이어 캐릭터가 굳이 없어질 이유는 없긴하다
         Destroy(gameObject, 1.0f);
     }
+
+    public void DownJump()
+    {
+        downJump = true;
+        Debug.Log("다운 점프");
+
+    }
+     
 }

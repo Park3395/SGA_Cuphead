@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2977067935535888683}
   - component: {fileID: 3311912938502466005}
   - component: {fileID: 2221700320704870779}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: PeaShooter
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 19
   m_Sprite: {fileID: 21300000, guid: d66fddd6364dc6644a52ecf6a86ccad2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

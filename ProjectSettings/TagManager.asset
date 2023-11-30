@@ -4,9 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Enemy
   - Bullet
+  - Damage
+  - Enemy
+  - Pink
+  - Ground
+  - Object
+  - Wall
+  - Turnwall
+  - Dead
+  - Goal
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -18,7 +26,7 @@ TagManager:
   - Ground
   - Enemy
   - Bullet
-  - nothing10
+  - 
   - 
   - 
   - 

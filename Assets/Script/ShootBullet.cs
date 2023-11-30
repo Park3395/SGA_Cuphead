@@ -22,9 +22,15 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKey(KeyCode.Z))
         {
             Attack();
+        }*/
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            SpreadAttack();
         }
     }
 
@@ -42,7 +48,7 @@ public class NewBehaviourScript : MonoBehaviour
             //총알 생성
             GameObject peashooter = Instantiate(peashooterPrefab, transform.position, r);
 
-            //화살을 발사하기 위한 벡터 생성
+            //총알을 발사하기 위한 벡터 생성
             float x = Mathf.Cos(angleZ * Mathf.Deg2Rad);
             float y = Mathf.Sin(angleZ * Mathf.Deg2Rad);
             Vector3 v = new Vector3(x, y) * shootspeed;
@@ -65,6 +71,47 @@ public class NewBehaviourScript : MonoBehaviour
             
         }
         
+    }
+    public void SpreadAttack()
+    {
+        if (isAttack == false)
+        {
+            isAttack = true;
+            PlayerController playerCnt = GetComponent<PlayerController>();
+            float angleZ = playerCnt.angleZ;
+            Quaternion r = Quaternion.Euler(0, 0, angleZ);
+            for(int i = 1; i<5; i++)
+            {
+                GameObject spread = Instantiate(Spread, transform.position, r);
+                float x = Mathf.Cos(angleZ * Mathf.Deg2Rad);
+                float y = Mathf.Sin(angleZ * Mathf.Deg2Rad);
+
+                //밑에 3줄에 뭘 넣어야하나
+                
+
+              
+                    Vector3 bulletDir = new Vector3(Mathf.Cos((angleZ-15+15*i) * Mathf.Deg2Rad), Mathf.Sin((angleZ-15+15*i) * Mathf.Deg2Rad)) * shootspeed;
+                    Rigidbody2D body = spread.GetComponent<Rigidbody2D>();
+
+                    body.AddForce(bulletDir, ForceMode2D.Impulse);
+               
+
+
+                //bulletDir.x -= 0.3f;
+                //bulletDir.x += 0.3f * i;
+                //Vector3 v = new Vector3(x, y) * shootspeed;
+               
+                Invoke("StopAttack", shootdelay);
+                Destroy(spread, 1.0f);
+
+            }
+           
+
+
+
+
+        }
+            
     }
     public void StopAttack()
     {

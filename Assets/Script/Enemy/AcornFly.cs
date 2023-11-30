@@ -6,9 +6,8 @@ public class AcornFly : EnemyController
 {
     public GameObject acornDrop;
 
-    public float UpPos;
-
-    bool isUp = false;
+    bool ismoveX = false;
+    bool ismoveY = true;
 
     Vector3 defpos;
 
@@ -18,8 +17,6 @@ public class AcornFly : EnemyController
 
         AcornGenManager acornGen = GetComponent<AcornGenManager>();
         defpos = acornGen.transform.position;
-
-        isUp = true;
     }
 
     protected override void Update()
@@ -29,19 +26,42 @@ public class AcornFly : EnemyController
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            float dx = player.transform.position.x - transform.position.x;
-            if (dx == 0.0f)
+            float dx = transform.position.x - player.transform.position.x;
+            if (dx <= 0.1f)
             {
-                createAcorndrop();
+                rbody.velocity = new Vector2(0, 0);
+                ismoveX = false;
+                if (!ismoveY && !ismoveX)
+                {
+                    createAcorndrop();
+                    Destroy(gameObject);
+                }                
             }
         }
     }
 
     private void FixedUpdate()
     {
-        if (isUp)
+        if (ismoveY && !ismoveX)
         {
-            rbody.velocity = new Vector2(rbody.velocity.x, UpPos);
+            rbody.velocity = new Vector2(rbody.velocity.x, speed);
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            float dy = transform.position.y - player.transform.position.y;
+            if (dy >= 5) 
+            {
+                rbody.velocity = new Vector2(rbody.velocity.x, 0);
+                ismoveX = true;
+                ismoveY = false;
+                if (dy >= 7)
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+
+        if (!ismoveY && ismoveX)
+        {
             if (direction1 == "right")
             {
                 rbody.velocity = new Vector2(speed, rbody.velocity.y);
@@ -59,10 +79,6 @@ public class AcornFly : EnemyController
                     spriteRenderer.flipX = false;
                     direction2 = "left";
                 }
-            }
-            if (!isUp)
-            {
-                
             }
         }
     }

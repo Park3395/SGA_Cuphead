@@ -6,6 +6,7 @@ public class FlowergruntController : MonoBehaviour
 {
     public GameObject flowerGrunt;
 
+    public int spawnCount = 0;
     public float spawnDelay = 5.0f;
     float currTime = 0.0f;
 
@@ -21,18 +22,26 @@ public class FlowergruntController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currTime += Time.deltaTime;
-
-        if (currTime > spawnDelay)
+        if (spawnCount > 0)
         {
-            createFlowergrunt();
-            currTime = 0.0f;
-            spawnDelay += 0.5f;
+            currTime += Time.deltaTime;
+
+            if (currTime > spawnDelay)
+            {
+                createFlowergrunt();
+                currTime = 0.0f;
+                spawnDelay += 0.5f;
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
     public void createFlowergrunt()
     {
         Instantiate(flowerGrunt, pos, Quaternion.identity);
+        spawnCount--;
     }
 }

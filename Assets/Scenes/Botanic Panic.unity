@@ -1451,6 +1451,7 @@ GameObject:
   - component: {fileID: 1389154521}
   - component: {fileID: 1389154520}
   - component: {fileID: 1389154523}
+  - component: {fileID: 1389154524}
   m_Layer: 8
   m_Name: Veggie_Potato
   m_TagString: Enemy
@@ -1582,6 +1583,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0.19246334, y: -0.07128253}
   m_Size: {x: 2.4843113, y: 3.7531338}
   m_Direction: 0
+--- !u!114 &1389154524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389154519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85c5fb504ff4474b962f783e4ef847a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NowHP: 50
+  MaxHP: 50
 --- !u!1 &1397929668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,6 +2549,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2910759137597628808, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3360846136954469534, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
       propertyPath: SpawnBulletPrefab
       value: 

@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    Camera cam;                 // 메인 카메라
+    Camera cam;                     // 메인 카메라
     [SerializeField]
-    GameObject player;          // 플레이어
+    GameObject player;              // 플레이어
 
-    public bool move = false;           // 좌우 이동
+    public bool move = false;       // 좌우 이동
     public bool ispoint;
-    public float yScale;        // 위쪽 이동
+
+    public float startY;
+    private float yScale;
+    public float pointx;
+    public float length;
+    public float height;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
+        startY = cam.transform.position.y;
     }
 
     // Update is called once per frame
@@ -29,8 +36,9 @@ public class CameraController : MonoBehaviour
             
             if(ispoint)
             {
-            //    if (!Mathf.Approximately(player.transform.position.x, cam.transform.position.x))
-                    cam.transform.Translate(0, yScale, 0);
+                    yScale = startY + height * (Mathf.Abs(player.transform.position.x - pointx) / length);
+                Debug.Log(yScale);
+                cam.transform.position = Vector3.Lerp(cam.transform.position,new Vector3(player.transform.position.x, yScale, -10), 3f);
             }
         }
     }

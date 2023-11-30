@@ -3612,55 +3612,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1242597279
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1242597281}
-  - component: {fileID: 1242597280}
-  m_Layer: 0
-  m_Name: test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1242597280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242597279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fca8e8489e44ab45bc91add69b741ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTwoPoint: 1
-  pcase: 0
-  player: {fileID: 1916511971}
-  cameraMaster: {fileID: 2125557851}
-  togoPoint: {fileID: 1402457325}
---- !u!4 &1242597281
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242597279}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8, y: 0, z: -8.3736725}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1298862522
 GameObject:
   m_ObjectHideFlags: 0
@@ -4030,55 +3981,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397430339}
   m_CullTransparentMesh: 1
---- !u!1 &1402457325
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1402457327}
-  - component: {fileID: 1402457326}
-  m_Layer: 0
-  m_Name: test (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1402457326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402457325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fca8e8489e44ab45bc91add69b741ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTwoPoint: 1
-  pcase: 1
-  player: {fileID: 1916511971}
-  cameraMaster: {fileID: 2125557851}
-  togoPoint: {fileID: 1242597279}
---- !u!4 &1402457327
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402457325}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.2, y: 1, z: -8.3736725}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1443076423
 GameObject:
   m_ObjectHideFlags: 0
@@ -5120,11 +5022,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9044761782774636377, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.25
+      value: -6.14
       objectReference: {fileID: 0}
     - target: {fileID: 9044761782774636377, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.88
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 9044761782774636377, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5374,7 +5276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2016201262}
   - component: {fileID: 2016201261}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -5652,7 +5554,10 @@ MonoBehaviour:
   player: {fileID: 1916511971}
   move: 0
   ispoint: 0
-  yScale: 0
+  startY: 0
+  pointx: 0
+  length: 0
+  height: 0
 --- !u!4 &2125557853
 Transform:
   m_ObjectHideFlags: 0
@@ -5996,5 +5901,3 @@ SceneRoots:
   - {fileID: 2104410209}
   - {fileID: 1916511970}
   - {fileID: 2125557853}
-  - {fileID: 1242597281}
-  - {fileID: 1402457327}

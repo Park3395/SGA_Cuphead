@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2981748552950723854}
   - component: {fileID: 7130824176973627631}
   - component: {fileID: 8548517010831755947}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: veggie_potato_shot_bullet
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -7,6 +7,16 @@ TagManager:
   - Ground
   - Enemy
   - Bullet
+  - Shop
+  - Home
+  - Botanic
+  - Dungeon
+  - Apple_Npc
+  - Tree
+  - Npc
+  - Zkey
+  - Pink
+  - Damage
   layers:
   - Default
   - TransparentFX

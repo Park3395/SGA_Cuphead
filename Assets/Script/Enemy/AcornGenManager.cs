@@ -26,8 +26,8 @@ public class AcornGenManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            float dx = player.transform.position.x - transform.position.x;
-            if (dx <= reactionDistance)
+            float dist = Vector2.Distance(transform.position, player.transform.position);   //몬스터와 플레이어 거리 계산
+            if (dist <= reactionDistance)
             {
                 currTime += Time.deltaTime;
                 CreateAcorn();

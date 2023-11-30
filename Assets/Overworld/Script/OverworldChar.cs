@@ -1,14 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class OverworldChar : MonoBehaviour
 {
     //씬 변경 여부확인
     public GameObject TitleCard;
+    public GameObject TitleCard2;
     public GameObject WindowBlack;
-
+    //클리어 여부 확인 10= 클리어
+    public GameObject Flag_Dungeon;
+    public GameObject Flag_Tree;
+    public GameObject Flag_Botanic;
+    int Clear_Dungeon = 0;
+    int Clear_Tree = 0;
+    int Clear_Botanic = 0;
+    int Clear_Score = 0;
+    //Esc메뉴
+    public GameObject EscMenu;
+    public Text RETURN;
+    public Text OPTIONS;
+    public Text EXIT;
+    int Sellect_Esc=0;
+    bool EscFlag = false;
+    //Iris On Off
+    public GameObject IrisOn;
+    public GameObject IrisOff;
     int Title_flag = 0;
     //이동 관련
     Animator anim;
@@ -16,7 +35,7 @@ public class OverworldChar : MonoBehaviour
     Rigidbody2D rigid;
     float h;
     float v;
-    //1. Home 2. Dungeon 3. Tree 4. Shop 5. Botanic 12.상점 컨트롤 상태
+    //1. Home 2. Dungeon 3. Tree 4. Shop 5. Botanic 12.상점 컨트롤 상태 13.esc상태
     int Tag_Num = 0;//무엇과 상호 작용 중인가.
     //상점 스크립트 불러오기
     public GameObject Shop_obj;
@@ -38,6 +57,8 @@ public class OverworldChar : MonoBehaviour
     //z키 이벤트
     public GameObject Zkey;
     Vector3 dirVec;//캐릭터가 보는방향
+    //카메라
+    public GameObject CameraObj;
 
     //임시 텍스트 구현
     public GameObject Text1_1;
@@ -49,25 +70,98 @@ public class OverworldChar : MonoBehaviour
 
     private void Awake()
     {
+        PlayerPrefs.SetInt("OpenTitle", 1);//타이틀을 한번이라도 열었는지 체크
+        PlayerPrefs.Save();
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
+        load();
     }
     void Update()
     {
         //입장 씬 전환
         if (Input.GetKeyUp(KeyCode.Z)&&Tag_Num!=0&&Title_flag==0)
         {
-            Ask_Title();//입장 여부확인
+             Ask_Title();//입장 여부확인
         }
         if(Tag_Num==12)
         {
             //상점 컨트롤러
             Shop_Control();
         }
-        //씬 전환을 물어보는 상태
-        if(Title_flag==10)
+        //ESC메뉴
+        if(isHorizonMove==true&& Input.GetKeyDown(KeyCode.Escape)&& EscFlag==false)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            Invoke("Esc_Flag", 0.3f);
+            isHorizonMove = false;
+            EscMenu.SetActive(true);
+            Tag_Num = 13;
+        }
+        if(Tag_Num==13)
+        {
+            if (Sellect_Esc == 0)
+            {
+                RETURN.text = "<color=\"red\">계속하기</color>";
+                OPTIONS.text = "타이틀로 가기";
+                EXIT.text = "끝내기";
+            }
+            else if (Sellect_Esc == 1)
+            {
+                RETURN.text = "계속하기";
+                OPTIONS.text = "<color=\"red\">타이틀로 가기</color>";
+                EXIT.text = "끝내기";
+            }
+            else if (Sellect_Esc == 2)
+            {
+                RETURN.text = "계속하기";
+                OPTIONS.text = "타이틀로 가기";
+                EXIT.text = "<color=\"red\">끝내기</color>";
+            }
+        }
+        if(Tag_Num==13&&Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Sellect_Esc--;
+        }
+        else if (Tag_Num == 13 && Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Sellect_Esc++;
+        }
+        if (Sellect_Esc > 2)
+            Sellect_Esc = 0;
+        else if (Sellect_Esc < 0)
+            Sellect_Esc = 2;
+        //ESC-ENTER 이벤트
+        if(Tag_Num==13&&(Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Z))&&Sellect_Esc==0)
+        {
+            Sellect_Esc = 0;
+            isHorizonMove = true;
+            EscMenu.SetActive(false);
+            Tag_Num = 0;
+            EscFlag = false;
+        }
+        else if (Tag_Num == 13 && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z)) && Sellect_Esc == 1)
+        {
+            Save();
+            SceneManager.LoadScene("StartScene");//타이틀로
+        }
+        else if (Tag_Num == 13 && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z)) && Sellect_Esc == 2)
+        {
+            Save();
+            Application.Quit();
+        }
+        //ESC-ESC 이벤트
+        if (Tag_Num==13&&Input.GetKeyDown(KeyCode.Escape)&& EscFlag==true)
+        {
+            Sellect_Esc = 0;
+            isHorizonMove = true;
+            EscMenu.SetActive(false);
+            Tag_Num = 0;
+            EscFlag = false;
+        }
+        //씬 전환을 물어보는 상태
+        if (Title_flag==10)
+        {
+
+            if (Input.GetKeyDown(KeyCode.Z)||Input.GetKeyDown(KeyCode.Return))
             {
                 if (Tag_Num == 1)
                     SceneManager.LoadScene("SampleSceneY");//집
@@ -81,11 +175,34 @@ public class OverworldChar : MonoBehaviour
                 }
                 else if (Tag_Num == 5)
                     SceneManager.LoadScene("TestScene");//농장
-                
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (Tag_Num == 2)
+                {
+                    Flag_Dungeon.SetActive(true);
+                    Clear_Dungeon = 5;
+                }
+                else if (Tag_Num == 3)
+                {
+                    
+                    Flag_Tree.SetActive(true);
+                    Clear_Tree = 6;
+                }
+                else if (Tag_Num == 5)
+                {
+                    Flag_Botanic.SetActive(true);
+                    Clear_Botanic = 7;
+                }
+                TitleCard2.SetActive(false);
+                WindowBlack.SetActive(false);
+                isHorizonMove = true;
+                Title_flag = 1;
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 TitleCard.SetActive(false);
+                TitleCard2.SetActive(false);
                 WindowBlack.SetActive(false);
                 isHorizonMove = true;
                 Title_flag = 1;
@@ -135,12 +252,16 @@ public class OverworldChar : MonoBehaviour
             if (h == -1)
             {
                 Zkey.transform.localScale = new Vector3(-0.67f, 0.67f, 0.67f);
-                transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+                transform.localScale = new Vector3(-1.35f, 1.35f, 1.35f);
+                CameraObj.transform.localScale = new Vector3(-0.62f, 0.62f, 0.62f);
+                EscMenu.transform.localScale = new Vector3(-1.0f, 0.7f, 0.74f);
             }
             if (h == 1)
             {
                 Zkey.transform.localScale = new Vector3(0.67f, 0.67f, 0.67f);
-                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                transform.localScale = new Vector3(1.35f, 1.35f, 1.35f);
+                CameraObj.transform.localScale = new Vector3(0.62f, 0.62f, 0.62f);
+                EscMenu.transform.localScale = new Vector3(1.0f, 0.7f, 0.74f);
             }
 
             if (v == 1)
@@ -152,6 +273,10 @@ public class OverworldChar : MonoBehaviour
             else if (h == 1)
                 dirVec = Vector3.right;
         }
+    }
+    void Esc_Flag()
+    {
+        EscFlag = true;
     }
     void FixedUpdate()
     {
@@ -191,7 +316,6 @@ public class OverworldChar : MonoBehaviour
             Zkey.SetActive(true);
             Tag_Num = 5;
         }
-        Debug.Log(Tag_Num);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -214,17 +338,33 @@ public class OverworldChar : MonoBehaviour
     }
     void Ask_Title()//입장 여부확인
     {
-        TitleCard.SetActive(true);
+        if (Tag_Num == 1 || Tag_Num == 4)
+            TitleCard.SetActive(true);
+        else
+            TitleCard2.SetActive(true);
         WindowBlack.SetActive(true);
         isHorizonMove = false;
         Title_flag = 10;
     }
     void Shop_Event()
     {
-        Shop.SetActive(true);
         TitleCard.SetActive(false);
+        IrisOff.SetActive(true);
+        Invoke("Shop_Event1", 2.0f);
+    }
+    void Shop_Event1()
+    {
+        IrisOn.SetActive(true);
+        IrisOff.SetActive(false);
+        Shop.SetActive(true);
+        Invoke("Shop_Event2", 2.0f);
+    }
+    void Shop_Event2()
+    {
+        IrisOn.SetActive(false);
         Tag_Num = 12;
-        Invoke("Shop_Idle_Control", 1.3f);
+        Shop_obj.GetComponent<ShopAnimeM>().Shop_Idle();
+        Invoke("Shop_Idle_Control", 1.98f);
     }
     void Shop_Idle_Control()
     {
@@ -237,7 +377,6 @@ public class OverworldChar : MonoBehaviour
         LeftDoorObj.GetComponent<LeftDoor>().P1();
         LeftDoorObj.GetComponent<LeftDoor>().Open();
         shop_Input = true;
-        Shop_obj.GetComponent<ShopAnimeM>().Shop_Idle();
     }
     void Shop_Control()
     {
@@ -316,11 +455,123 @@ public class OverworldChar : MonoBehaviour
         //상점 나가기
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Shop_obj.GetComponent<ShopAnimeM>().Shop_Exit();
             LeftDoorObj.GetComponent<LeftDoor>().Close();
-            Tag_Num = 0;
-            Shop_Num = 0;
-            shop_Input = false;
-            Shop.SetActive(false);
+            Invoke("Shop_Exit_Event_Delay", 2.0f);
+        }
+    }
+    void Shop_Exit_Event_Delay()
+    {
+        Item1.GetComponent<ItemM>().Item_UnSellect();
+        Item2.GetComponent<ItemM>().Item_UnSellect();
+        Item3.GetComponent<ItemM>().Item_UnSellect();
+        Item4.GetComponent<ItemM>().Item_UnSellect();
+        Item5.GetComponent<ItemM>().Item_UnSellect();
+        IrisOff.SetActive(true);
+        Invoke("Shop_Exit_Event", 2.0f);
+    }
+    void Shop_Exit_Event()
+    {
+        IrisOn.SetActive(true);
+        IrisOff.SetActive(false);
+        Tag_Num = 0;
+        Shop_Num = 0;
+        shop_Input = false;
+        Shop.SetActive(false);
+        Invoke("Shop_Exit_Event2", 1.5f);
+    }
+    void Shop_Exit_Event2()
+    {
+        IrisOn.SetActive(false);
+    }
+    void Save()
+    {
+        Clear_Score = Clear_Dungeon + Clear_Tree + Clear_Botanic;
+        if (PlayerPrefs.GetInt("SaveFileNum") == 1)
+        {
+            PlayerPrefs.SetInt("Clear_Dungeon1", Clear_Dungeon);
+            PlayerPrefs.SetInt("Clear_Tree1", Clear_Tree);
+            PlayerPrefs.SetInt("Clear_Botanic1", Clear_Botanic);
+            PlayerPrefs.SetInt("Clear_Score1", Clear_Score);
+        }
+        else if (PlayerPrefs.GetInt("SaveFileNum") == 2)
+        {
+            PlayerPrefs.SetInt("Clear_Dungeon2", Clear_Dungeon);
+            PlayerPrefs.SetInt("Clear_Tree2", Clear_Tree);
+            PlayerPrefs.SetInt("Clear_Botanic2", Clear_Botanic);
+            PlayerPrefs.SetInt("Clear_Score2", Clear_Score);
+        }
+        else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
+        {
+            PlayerPrefs.SetInt("Clear_Dungeon3", Clear_Dungeon);
+            PlayerPrefs.SetInt("Clear_Tree3", Clear_Tree);
+            PlayerPrefs.SetInt("Clear_Botanic3", Clear_Botanic);
+            PlayerPrefs.SetInt("Clear_Score3", Clear_Score);
+        }
+        PlayerPrefs.Save();
+    }
+    void load()
+    {
+        if (PlayerPrefs.GetInt("SaveFileNum")==1)
+        {
+            if (!PlayerPrefs.HasKey("Clear_Dungeon1"))
+                return;
+            if (PlayerPrefs.GetInt("Clear_Dungeon1")==5)
+            {
+                Flag_Dungeon.SetActive(true);
+                Clear_Dungeon = 5;
+            }
+            if (PlayerPrefs.GetInt("Clear_Tree1") == 6)
+            {
+                Flag_Tree.SetActive(true);
+                Clear_Tree = 6;
+            }
+            if (PlayerPrefs.GetInt("Clear_Botanic1") == 7)
+            {
+                Flag_Botanic.SetActive(true);
+                Clear_Botanic = 7;
+            }
+        }
+        else if (PlayerPrefs.GetInt("SaveFileNum") == 2)
+        {
+            if (!PlayerPrefs.HasKey("Clear_Dungeon2"))
+                return;
+            if (PlayerPrefs.GetInt("Clear_Dungeon2") == 5)
+            {
+                Flag_Dungeon.SetActive(true);
+                Clear_Dungeon = 5;
+            }
+            if (PlayerPrefs.GetInt("Clear_Tree2") == 6)
+            {
+                Flag_Tree.SetActive(true);
+                Clear_Tree = 6;
+            }
+            if (PlayerPrefs.GetInt("Clear_Botanic2") == 7)
+            {
+                Flag_Botanic.SetActive(true);
+                Clear_Botanic = 7;
+            }
+        }
+        else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
+        {
+            if (!PlayerPrefs.HasKey("Clear_Dungeon3"))
+                return;
+            if (PlayerPrefs.GetInt("Clear_Dungeon3") == 5)
+            {
+                Flag_Dungeon.SetActive(true);
+                Clear_Dungeon = 5;
+            }
+            if (PlayerPrefs.GetInt("Clear_Tree3") == 6)
+            {
+                Flag_Tree.SetActive(true);
+                Clear_Tree = 6;
+            }
+            if (PlayerPrefs.GetInt("Clear_Botanic3") == 7)
+            {
+                Flag_Botanic.SetActive(true);
+                Clear_Botanic = 7;
+            }
         }
     }
 }
+

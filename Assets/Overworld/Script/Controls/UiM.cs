@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UiM : MonoBehaviour
 {
     public Text[] txt;
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < txt.Length; i++)
         {

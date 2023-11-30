@@ -6,22 +6,23 @@ public class Acorndrop : EnemyController
 {
     public GameObject acornProp;
 
+    Rigidbody2D Propbody;
+
+    protected override void Start()
+    {
+        Propbody = acornProp.GetComponent<Rigidbody2D>();
+    }
+
     private void FixedUpdate()
     {
-        if (acornProp)
-        {
-            rbody.velocity = new Vector2(rbody.velocity.x, speed);
-        }
+        Propbody.velocity = new Vector2(Propbody.velocity.x, speed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Dead")
         {
-            speed = 0.0f;
-            hp = 0;
-
-            Dead();
+            Destroy(gameObject);
         }
     }
 }

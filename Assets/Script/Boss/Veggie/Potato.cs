@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Potato : MonoBehaviour
+public class Potato : BossBase
 {
     private Animator anim;
 
+    protected override void runDead()
+    {
+        this.anim.Play("");
+    }
     // Start is called before the first frame update
     void Start()
     {

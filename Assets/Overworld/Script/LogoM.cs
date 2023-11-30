@@ -25,13 +25,14 @@ public class LogoM : MonoBehaviour
         if (Input.anyKeyDown&& CanKey==true)
         {
             IrisA_.SetActive(true);
-            Invoke("StartScene",1.7f);
+            Title_Text.SetActive(false);
+            Invoke("StartScene",3.1f);
         }
     }
     void LogoDelete()
     {
         SetTitle();
-        Destroy(Logo, .5f);
+        Destroy(Logo,0.5f);
         CanKey = true;
     }
     void SetTitle()

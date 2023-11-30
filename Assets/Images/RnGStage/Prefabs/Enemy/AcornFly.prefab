@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8485253062884354721}
   - component: {fileID: 1068502063204687463}
   - component: {fileID: -2930035073812442477}
-  m_Layer: 0
+  - component: {fileID: 1006666178917632213}
+  m_Layer: 8
   m_Name: AcornFly
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -137,7 +138,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.012699127, y: 0.047620058}
@@ -156,8 +157,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 2
-  speed: 3
+  speed: 5
   jump: 0
   reactionDistance: 0
-  acornDrop: {fileID: 0}
-  UpPos: 0
+  acornDrop: {fileID: 7658106191903852763, guid: 9bf3bfb6e5151c2418ee76cf35bc8bdc, type: 3}
+--- !u!50 &1006666178917632213
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502726799873478518}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

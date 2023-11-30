@@ -33,26 +33,28 @@ public class BookM : MonoBehaviour
     bool CanKey = false;
     int Bookmark = 0;//현재 페이지
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Intro.SetActive(true);
-        Invoke("IntroOff", 10.0f);
+        Invoke("IntroOff", 9.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene("OverWorld");
         if (CanKey)
         {
-            if (Input.GetKeyDown(KeySetting.keys[KeyAction.Right]))
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 Bookmark++;
                 PageRight(Bookmark);
                 CanKey = false;
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKeyDown(KeySetting.keys[KeyAction.Right]))
             {
-                Bookmark++;
+                Bookmark++; 
                 PageRight(Bookmark);
                 CanKey = false;
             }

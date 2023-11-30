@@ -7,10 +7,9 @@ public static class KeySetting { public static Dictionary<KeyAction, KeyCode> ke
 public class KeyM : MonoBehaviour
 {
     KeyCode[] defaultKeys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.Tab, KeyCode.LeftAlt,
-        KeyCode.Space, KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow,KeyCode.RightArrow };
-
+        KeyCode.Space, KeyCode.W, KeyCode.A, KeyCode.S,KeyCode.D };
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
         {

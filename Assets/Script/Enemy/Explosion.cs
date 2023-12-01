@@ -17,4 +17,9 @@ public class Explosion : MonoBehaviour
     {
         
     }
+
+    public void OnDestroy()
+    {
+        Destroy(gameObject);
+    }
 }

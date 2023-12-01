@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class MenuM : MonoBehaviour
 {
+    
+    public GameObject IrisOn;
     //데이터 삭제창
     public Text Yes;
     public Text No;
@@ -74,10 +76,14 @@ public class MenuM : MonoBehaviour
     }
     private void Start()
     {
+        Invoke("IrisOpenFun", 1.2f);
         ControlWindow.SetActive(false);
     }
+   
+
     void Update()
     {
+        
         //시작 준비에서 나감
         if (WindowStart == 1 && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -287,7 +293,10 @@ public class MenuM : MonoBehaviour
                     Now_Page = 12;
                     DLC_Screen.SetActive(true);
                 }
-                
+            if (Now_Page == 0 && Sellect_Button == 3)
+            {
+                Application.Quit();
+            }
             //옵션에서 시작으로 되돌아가기
             if (Now_Page == 2 && Sellect_Options == 3)
                 {
@@ -523,7 +532,10 @@ public class MenuM : MonoBehaviour
         }
 
     }
-
+    void IrisOpenFun()
+    {
+        IrisOn.SetActive(false);
+    }
     void DelayFlag_()
     {
         DelayFlag = 1;

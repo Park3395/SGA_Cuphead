@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Flowergrunt : EnemyController
 {
+    public AudioClip[] Adfloating;
+    public AudioClip[] Adfloatland;
+    public AudioClip[] Addeath;
+    public AudioClip[] Adrun;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+
+        // 떨어지는 오디오 재생
+        int random = Random.Range(0, Adfloating.Length);
+        audiosource.PlayOneShot(Adfloating[random]);
     }
 
     // Update is called once per frame
@@ -43,6 +52,13 @@ public class Flowergrunt : EnemyController
         if (collision.gameObject.tag == "Wall")
         {
             CsCollider.isTrigger = true;    // 트리거를 true로 바꿔 벽을 통과하게 함
+        }
+
+        if (collision.gameObject.tag == "Ground")
+        {
+            animator.SetBool("isGround", true);     // Run 애니메이션 실행
+            int random = Random.Range(0, Adrun.Length);
+            audiosource.PlayOneShot(Adrun[random]);
         }
     }
 
@@ -85,6 +101,17 @@ public class Flowergrunt : EnemyController
         animator.SetBool("jumpA", false);
         animator.SetBool("jumpB", false);
         animator.SetBool("jumpC", false);
+
+        int random = Random.Range(0, Adfloatland.Length);
+        audiosource.PlayOneShot(Adfloatland[random]);
+    }
+
+    public override void Dead()
+    {
+        base.Dead();
+
+        int random = Random.Range(0, Addeath.Length);
+        audiosource.PlayOneShot(Addeath[random]);
     }
 
     // 움직임

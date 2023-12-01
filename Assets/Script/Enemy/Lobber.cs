@@ -45,7 +45,7 @@ public class Lobber : EnemyController
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         float dx = player.transform.position.x - lobberUpPrefab.transform.position.x;
 
-        Vector2 shootPw = new Vector2(dx, shootForce);          // 점프를 위한 벡터
+        Vector2 shootPw = new Vector2(dx / 2, shootForce);          // 점프를 위한 벡터
 
         Rigidbody2D body = seedObj.GetComponent<Rigidbody2D>();
         body.AddForce(shootPw, ForceMode2D.Impulse);

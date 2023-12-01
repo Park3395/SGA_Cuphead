@@ -3,29 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - Enemy
-  - Bullet
-<<<<<<< HEAD
-  - Shop
-  - Home
-  - Botanic
-  - Dungeon
-  - Apple_Npc
-  - Tree
-  - Npc
-  - Zkey
-  - Pink
-  - Damage
-=======
-  - Object
-  - Wall
-  - Turnwall
-  - Dead
-  - Goal
-  - Stageclear
->>>>>>> 37ae967ccfbc624de1fe01fa33d05d780aaee289
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -33,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Ground
-  - Enemy
-  - Bullet
-  - nothing10
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

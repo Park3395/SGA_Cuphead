@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float dash = 50.0f;          //대쉬력
     public LayerMask groundLayer;       //착지 가능한 레이어
     bool goJump = false;               //점프키 입력상태
-    bool onGround = false;             //지면과 접촉상태
+    public bool onGround = false;             //지면과 접촉상태
     bool goDash = false;               //대쉬 입력 상태
     public bool downJump = false;             //아래 점프
     
@@ -435,6 +435,7 @@ public class PlayerController : MonoBehaviour
     {
         if(gameState=="playing")
         {
+            gameObject.layer = 11; //PlayerDamaged 레이어로 바꿔서 피격판정 없앤다.
             Debug.Log("겟 데미지 함수 발동");
             hp--;
             PlayerPrefs.SetInt("PlayerHP", hp); //현재 hp 갱신
@@ -458,6 +459,7 @@ public class PlayerController : MonoBehaviour
     void DamageEnd()
     {
         inDamage = false;
+        gameObject.layer = 6; //플레이어 레이어로 변환
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 

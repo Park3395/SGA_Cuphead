@@ -18,6 +18,11 @@ public class Acornmachine : EnemyController
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
+
+        if (collision.gameObject.tag == "Bullet")
+        {
+            this.GetComponent<Animator>().Play("onHit");
+        }
     }
 
     public override void Dead()

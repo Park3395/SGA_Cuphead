@@ -48,12 +48,12 @@ public class AcornFly : EnemyController
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             float dy = transform.position.y - player.transform.position.y;
-            if (dy >= 5) 
+            if (dy >= 3.0f) 
             {
                 rbody.velocity = new Vector2(rbody.velocity.x, 0);
                 ismoveX = true;
                 ismoveY = false;
-                if (dy >= 7)
+                if (dy >= 7.0f)
                 {
                     Destroy(gameObject);
                 }

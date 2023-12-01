@@ -73,7 +73,7 @@ public class Blobmelt : EnemyController
     }
 
     // 사망
-    public void dead()
+    public override void Dead()
     {
         animator.SetBool("dead", true);
         Invoke("SetDeadFalse", reviveDelay);    // 부활 대기

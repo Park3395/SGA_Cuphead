@@ -53,7 +53,6 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        // 지면과 닿았을 때        
         if (collision.gameObject.tag == "Bullet")
         {
             hp--;
@@ -62,11 +61,17 @@ public class EnemyController : MonoBehaviour
                 Dead();
             }
         }
+        if (collision.gameObject.tag == "Dead")
+        {
+            Dead();
+        }
     }
 
     // 사망
     public virtual void Dead()
     {
+        speed = 0.0f;
+
         Vector3 pos = transform.position;   // 현재 위치
 
         transform.position = new Vector3(pos.x, pos.y + 1, pos.z);  // 피벗위치를 bottom으로 변경했기에 y좌표 변경

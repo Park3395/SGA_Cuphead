@@ -10,6 +10,8 @@ public class RnGCamera : MonoBehaviour
     public float topLimit = 0.0f;
     public float bottomLimit = 0.0f;
 
+    public float movespeed = 0.01f;
+
     public GameObject cameraPoint1;
     public GameObject cameraPoint2;
     public GameObject cameraPoint3;
@@ -56,74 +58,88 @@ public class RnGCamera : MonoBehaviour
             if (transform.position.x >= cameraPoint1.transform.position.x && transform.position.x < cameraPoint2.transform.position.x)
             {
                 if (topLimit <= 1.3f)
-                    topLimit += 0.01f;
+                    topLimit += movespeed;
                 if (bottomLimit <= 1.3f)
-                    bottomLimit += 0.01f;
+                    bottomLimit += movespeed;
             }
             else if (transform.position.x >= cameraPoint2.transform.position.x && transform.position.x < cameraPoint3.transform.position.x)
             {
                 if (topLimit > 0.1f)
-                    topLimit -= 0.01f;
+                    topLimit -= movespeed;
                 else if (topLimit < 0.1f)
-                    topLimit += 0.01f;
+                    topLimit += movespeed;
 
                 if (bottomLimit > -0.1f)
-                    bottomLimit -= 0.01f;
+                    bottomLimit -= movespeed;
                 else if (bottomLimit < -0.1f)
-                    bottomLimit += 0.01f;
+                    bottomLimit += movespeed;
             }
             else if (transform.position.x >= cameraPoint3.transform.position.x && transform.position.x < cameraPoint4.transform.position.x)
             {
                 if (topLimit > 0.6f)
-                    topLimit -= 0.01f;
+                    topLimit -= movespeed;
                 else if (topLimit < 0.6f)
-                    topLimit += 0.01f;
+                    topLimit += movespeed;
 
                 if (bottomLimit > 0.6f)
-                    bottomLimit -= 0.01f;
+                    bottomLimit -= movespeed;
                 else if (bottomLimit < 0.6f)
-                    bottomLimit += 0.01f;
+                    bottomLimit += movespeed;
             }
             else if (transform.position.x >= cameraPoint4.transform.position.x && transform.position.x < cameraPoint5.transform.position.x)
             {
                 if (topLimit > -1.2f)
-                    topLimit -= 0.01f;
+                    topLimit -= movespeed;
                 else if (topLimit < -1.2f)
-                    topLimit += 0.01f;
+                    topLimit += movespeed;
 
                 if (bottomLimit > -1.2f)
-                    bottomLimit -= 0.01f;
+                    bottomLimit -= movespeed;
                 else if (bottomLimit < -1.2f)
-                    bottomLimit += 0.01f;
+                    bottomLimit += movespeed;
             }
             else if (transform.position.x >= cameraPoint5.transform.position.x && transform.position.x < cameraPoint6.transform.position.x)
             {
                 if (topLimit > -1.7f)
-                    topLimit -= 0.01f;
+                    topLimit -= movespeed;
                 else if (topLimit < -1.7f)
-                    topLimit += 0.01f;
+                    topLimit += movespeed;
 
                 if (bottomLimit > -1.7f)
-                    bottomLimit -= 0.01f;
+                    bottomLimit -= movespeed;
                 else if (bottomLimit < -1.7f)
-                    bottomLimit += 0.01f;
+                    bottomLimit += movespeed;
             }
             else if (transform.position.x >= cameraPoint6.transform.position.x)
             {
                 if (topLimit > -2.5f)
-                    topLimit -= 0.01f;
+                    topLimit -= movespeed;
                 else if (topLimit < -2.5f)
-                    topLimit += 0.01f;
+                    topLimit += movespeed;
 
                 if (bottomLimit > -2.5f)
-                    bottomLimit -= 0.01f;
+                    bottomLimit -= movespeed;
                 else if (bottomLimit < -2.5f)
-                    bottomLimit += 0.01f;
+                    bottomLimit += movespeed;
             }
             else
             {
                 topLimit = 0.0f;
                 bottomLimit = 0.0f;
+                if (topLimit != 0.0f)
+                {
+                    if (topLimit > 0.0f)
+                        topLimit -= movespeed;
+                    else if (topLimit < 0.0f)
+                        topLimit += movespeed;
+                }
+                if (bottomLimit != 0.0f)
+                {
+                    if (bottomLimit > 0.0f)
+                        bottomLimit -= movespeed;
+                    else if (bottomLimit < 0.0f)
+                        bottomLimit += movespeed;
+                }
             }
         }
     }

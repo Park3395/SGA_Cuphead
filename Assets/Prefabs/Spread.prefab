@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2194212111177153873}
   - component: {fileID: 3309431024013352441}
   - component: {fileID: 8596556762772539673}
-  - component: {fileID: 1013010154093952435}
+  - component: {fileID: 7633307832015643175}
   m_Layer: 9
   m_Name: Spread
   m_TagString: Bullet
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: f52734f77bce00f4fa2c993d253a2e3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -153,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.43946552, y: 0.37290978}
   m_EdgeRadius: 0
---- !u!50 &1013010154093952435
+--- !u!50 &7633307832015643175
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

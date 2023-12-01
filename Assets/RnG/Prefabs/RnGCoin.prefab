@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5068183920558122010}
   - component: {fileID: 6009344044072978831}
   - component: {fileID: 5790175905806069290}
+  - component: {fileID: 6778639700500133707}
   m_Layer: 0
   m_Name: RnGCoin
   m_TagString: Coin
@@ -142,3 +143,15 @@ CapsuleCollider2D:
   m_Offset: {x: -0.010422707, y: -0.01042223}
   m_Size: {x: 0.26068687, y: 0.42068577}
   m_Direction: 0
+--- !u!114 &6778639700500133707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095608035095930378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5531fa6fa4cd5ae49ae37654ee464718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

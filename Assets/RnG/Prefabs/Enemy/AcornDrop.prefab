@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8082952319110431361}
   - component: {fileID: 5287466320553922425}
   - component: {fileID: 4882572572701759096}
-  - component: {fileID: 2350964929597702141}
   m_Layer: 8
   m_Name: AcornProp
   m_TagString: Enemy
@@ -107,33 +106,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!50 &2350964929597702141
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4755607950456858505}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &7658106191903852763
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +118,6 @@ GameObject:
   - component: {fileID: 7618826220956573953}
   - component: {fileID: 4826311317857131250}
   - component: {fileID: 5734934204436430581}
-  - component: {fileID: 5879731109476010856}
   - component: {fileID: -7305455601420173686}
   - component: {fileID: 1126280768243226850}
   m_Layer: 8
@@ -274,39 +245,12 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0000009536743, y: -0.088670135}
   m_Size: {x: 0.9939976, y: 1.0799854}
   m_Direction: 0
---- !u!50 &5879731109476010856
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658106191903852763}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &-7305455601420173686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 2
-  speed: 0
+  speed: 6
   jump: 0
   reactionDistance: 0
   acornProp: {fileID: 4755607950456858505}

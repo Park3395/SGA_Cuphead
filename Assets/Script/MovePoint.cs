@@ -37,20 +37,24 @@ public class MovePoint : MonoBehaviour
                 case point.LEFT:
                     if (player.transform.position.x < this.transform.position.x)
                     {
-                        camControl.move = false;
-                        if (camControl.ispoint)
+                        if (!isTwoPoint)
+                            camControl.move = false;
+                        else
                         {
-                            camControl.move = true;
                             camControl.ispoint = false;
+                            camControl.move = true;
                         }
                     }
                     else
                     {
                         camControl.move = true;
 
-                        if (isTwoPoint)
+                        if (isTwoPoint && !camControl.ispoint)
                         {
-                            camControl.yScale = (togoPoint.transform.position.y - this.transform.position.y) / Vector3.Distance(this.transform.position, togoPoint.transform.position);
+                            camControl.height = (togoPoint.transform.position.y - this.transform.position.y);
+                            camControl.pointx = this.transform.position.x;
+                            camControl.length = togoPoint.transform.position.x - this.transform.position.x;
+                            camControl.startY = Camera.main.transform.position.y;
                             camControl.ispoint = true;
                         }
                     }
@@ -60,19 +64,24 @@ public class MovePoint : MonoBehaviour
                     {
                         camControl.move = true;
 
-                        if (isTwoPoint)
+                        if (isTwoPoint && !camControl.ispoint)
                         {
-                            camControl.yScale = (togoPoint.transform.position.y - this.transform.position.y) / Vector3.Distance(this.transform.position, togoPoint.transform.position);
+                            camControl.height = (togoPoint.transform.position.y - this.transform.position.y);
+                            camControl.pointx = this.transform.position.x;
+                            camControl.length = this.transform.position.x - togoPoint.transform.position.x;
+                            camControl.startY = Camera.main.transform.position.y;
+
                             camControl.ispoint = true;
                         }
                     }
                     else
                     {
-                        camControl.move = false;
-                        if(camControl.ispoint)
+                        if(!isTwoPoint)
+                            camControl.move = false;
+                        else
                         {
-                            camControl.move = true;
                             camControl.ispoint = false;
+                            camControl.move = true;
                         }
                     }
                     break;

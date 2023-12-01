@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class OverworldChar : MonoBehaviour
 {
+    int OpenRoadOn = 0;
+    public GameObject OpenRoad;
     //씬 변경 여부확인
     public GameObject TitleCard;
     public GameObject TitleCard2;
@@ -64,7 +66,10 @@ public class OverworldChar : MonoBehaviour
     public GameObject Text1_1;
     public GameObject Text1_2;
     public GameObject Text1_3;
-    
+    public GameObject Text2_1;
+    public GameObject Text2_2;
+    public GameObject Text2_3;
+    int Delay_Flag = 0;
 
     //GameObject scanObject;
 
@@ -76,8 +81,21 @@ public class OverworldChar : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         load();
     }
+    private void Start()
+    {
+        Invoke("IrisOn_Start", 1.25f); //검은화면 오픈 애니메이션
+    }
     void Update()
     {
+        if (OpenRoadOn == 0 && Clear_Dungeon==5)
+        {
+            OpenRoadOn = 1;
+        }
+        if (OpenRoadOn == 1)
+        {
+            OpenRoad.SetActive(true);
+            OpenRoadOn = 2;
+        }
         //입장 씬 전환
         if (Input.GetKeyUp(KeyCode.Z)&&Tag_Num!=0&&Title_flag==0)
         {
@@ -209,7 +227,7 @@ public class OverworldChar : MonoBehaviour
             }
         }
         //npc와 상호작용
-        if (AppleNpc_Talk == false && AppleNpc_ZkeyStay == true && (Input.GetKeyDown(KeyCode.Z)))
+        if (AppleNpc_Page==0&&Delay_Flag == 0&&AppleNpc_Talk == false && AppleNpc_ZkeyStay == true && (Input.GetKeyDown(KeyCode.Z)))
         {
             AppleNpc_Talk = true;
             isHorizonMove = false;
@@ -218,15 +236,41 @@ public class OverworldChar : MonoBehaviour
                 Text1_1.SetActive(true);
                 Text1_2.SetActive(true);
                 Text1_3.SetActive(true);
+                AppleNpc_Page++;
+                Delay_Flag = 1;
+                Invoke("DelayFlag", 0.5f);
+            }
+            
+        }
+        else if (AppleNpc_Page==1&&Delay_Flag == 0 && AppleNpc_Talk == true && 
+            (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Z)))
+        {
+            if (AppleNpc_Page == 1)
+            {
+                Text1_1.SetActive(false);
+                Text1_2.SetActive(false);
+                Text1_3.SetActive(false);
+            }
+            if (AppleNpc_Page == 1)
+            {
+                Text2_1.SetActive(true);
+                Text2_2.SetActive(true);
+                Text2_3.SetActive(true);
+                AppleNpc_Page++;
+                Delay_Flag = 1;
+                Invoke("DelayFlag", 0.5f);
             }
         }
-        if (AppleNpc_Talk = true && AppleNpc_Page == 0 && (Input.GetKeyDown(KeyCode.RightArrow))&& Tag_Num==0)
+        
+        if (AppleNpc_Page==2 && (Input.GetKeyDown(KeyCode.RightArrow)||
+            Input.GetKeyDown(KeyCode.Z)) && Tag_Num == 0&&Delay_Flag == 0)
         {
-            Text1_1.SetActive(false);
-            Text1_2.SetActive(false);
-            Text1_3.SetActive(false);
+            Text2_1.SetActive(false);
+            Text2_2.SetActive(false);
+            Text2_3.SetActive(false);
             isHorizonMove = true;
             AppleNpc_Talk = false;
+            AppleNpc_Page = 0;
         }
         //이동
         if (isHorizonMove)
@@ -480,12 +524,30 @@ public class OverworldChar : MonoBehaviour
         Shop.SetActive(false);
         Invoke("Shop_Exit_Event2", 1.5f);
     }
+    void DelayFlag()
+    {
+        Delay_Flag = 0;
+    }
     void Shop_Exit_Event2()
+    {
+        IrisOn.SetActive(false);
+    }
+    void IrisOn_Start()
     {
         IrisOn.SetActive(false);
     }
     void Save()
     {
+        /*
+         * 
+         * SaveFileNum==1   첫번째 세이브 파일 내용
+         * SaveFileNum==2   두번째 세이브 파일 내용
+         * SaveFileNum==3   세번째 세이브 파일 내용
+         * 게임 입장시 몇번째 세이브 파일인지 구분하며 세이브 파일이 1일때 Clear_Dungeon1,Clear_Tree1,Clear_Botanic1의 클리어 점수를 갱신하게 되며 각각 클리어시 5,6,7점 얻는다..
+         * 또한 오버월드 시작시 첫번째 세이브 파일에 접속시 Clear_Dungeon1이 5점이면 이를 기반으로 깃발이벤트가 발생하여 Clear_Dungeon1은 클리어 된 상태로 로드되게된다.
+         * 만약 Clear_Dungeon1이 클리어 됬다면 해당 세이브 파일일 경우(SaveFileNum==1이 첫번째 세이브파일 )Clear_Dungeon1는 5점Clear_Tree1=6점Clear_Botanic1=7점을 주면 되는데
+         * 그렇게 되면 오버월드 씬이 열렸을때 load()를하면서 깃발이 열립니다.
+         */
         Clear_Score = Clear_Dungeon + Clear_Tree + Clear_Botanic;
         if (PlayerPrefs.GetInt("SaveFileNum") == 1)
         {
@@ -516,6 +578,8 @@ public class OverworldChar : MonoBehaviour
         {
             if (!PlayerPrefs.HasKey("Clear_Dungeon1"))
                 return;
+            else
+                this.transform.position = new Vector3(15.0f, -1.0f, 0.0f);//세이브 파일이 있으면 시작위치 변경
             if (PlayerPrefs.GetInt("Clear_Dungeon1")==5)
             {
                 Flag_Dungeon.SetActive(true);
@@ -536,6 +600,8 @@ public class OverworldChar : MonoBehaviour
         {
             if (!PlayerPrefs.HasKey("Clear_Dungeon2"))
                 return;
+            else
+                this.transform.position = new Vector3(15.0f, -1.0f, 0.0f);//세이브 파일이 있으면 시작위치 변경
             if (PlayerPrefs.GetInt("Clear_Dungeon2") == 5)
             {
                 Flag_Dungeon.SetActive(true);
@@ -556,6 +622,9 @@ public class OverworldChar : MonoBehaviour
         {
             if (!PlayerPrefs.HasKey("Clear_Dungeon3"))
                 return;
+            else
+                this.transform.position = new Vector3(15.0f, -1.0f, 0.0f);//세이브 파일이 있으면 시작위치 변경
+
             if (PlayerPrefs.GetInt("Clear_Dungeon3") == 5)
             {
                 Flag_Dungeon.SetActive(true);

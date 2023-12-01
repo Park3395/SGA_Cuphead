@@ -35,9 +35,9 @@ public class BulletBase : MonoBehaviour
     void Update()
     {
         if (this.bullet == BTYPE.LEFTS)
-            this.transform.Translate(new Vector3(speed, 0, 0));
-        else if (this.bullet == BTYPE.RIGHTS)
             this.transform.Translate(new Vector3(-speed, 0, 0));
+        else if (this.bullet == BTYPE.RIGHTS)
+            this.transform.Translate(new Vector3(speed, 0, 0));
         else if(this.bullet == BTYPE.TRACK)
         {
             // 플레이어 추적 코드

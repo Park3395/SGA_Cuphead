@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected Rigidbody2D rbody;
     protected CapsuleCollider2D CsCollider;
+    protected AudioSource audiosource;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -24,6 +25,7 @@ public class EnemyController : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         CsCollider = GetComponent<CapsuleCollider2D>();
+        audiosource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -43,16 +45,16 @@ public class EnemyController : MonoBehaviour
                 direction1 = "right";       // 플레이어가 몬스터보다 오른쪽에 있을 시 오른쪽으로 이동
             }
         }
+        else
+        {
+            direction1 = "left";
+        }
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        // 지면과 닿았을 때
-        if (collision.gameObject.tag == "Ground")
-        {
-            animator.SetBool("isGround", true);     // Run애니메이션 실행
-        }
-        else if (collision.gameObject.tag == "Bullet")
+        // 지면과 닿았을 때        
+        if (collision.gameObject.tag == "Bullet")
         {
             hp--;
             if (hp <= 0)
@@ -65,19 +67,16 @@ public class EnemyController : MonoBehaviour
     // 사망
     public virtual void Dead()
     {
-        if (hp <= 0)
-        {
-            Vector3 pos = transform.position;   // 현재 위치
+        Vector3 pos = transform.position;   // 현재 위치
 
-            transform.position = new Vector3(pos.x, pos.y + 1, pos.z);  // 피벗위치를 bottom으로 변경했기에 y좌표 변경
+        transform.position = new Vector3(pos.x, pos.y + 1, pos.z);  // 피벗위치를 bottom으로 변경했기에 y좌표 변경
 
-            int randomA = Random.Range(1, 4);   // 터지는 애니메이션을 랜덤으로 재생하기 위한 변수
+        int randomA = Random.Range(1, 4);   // 터지는 애니메이션을 랜덤으로 재생하기 위한 변수
 
-            animator.SetInteger("explosion", randomA);  // 애니메이션 실행
+        animator.SetInteger("explosion", randomA);  // 애니메이션 실행
 
-            CsCollider.enabled = false;     // CapsuleCollider2D 끄기
-            rbody.simulated = false;        // rigidBody2D 끄기
-        }
+        CsCollider.enabled = false;     // CapsuleCollider2D 끄기
+        rbody.simulated = false;        // rigidBody2D 끄기
     }
 
     // 턴    

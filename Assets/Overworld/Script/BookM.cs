@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class BookM : MonoBehaviour
 {
+    public GameObject IrisOff;
     //애니메이션
     public GameObject Intro;
     public GameObject page1;
@@ -42,8 +43,11 @@ public class BookM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-            SceneManager.LoadScene("OverWorld");
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            IrisOff.SetActive(true);
+            Invoke("Overworld_Enter", 1.2f);
+        }
         if (CanKey)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -130,8 +134,13 @@ public class BookM : MonoBehaviour
         }
         if (Page == 11)
         {
-            SceneManager.LoadScene("OverWorld");
+            IrisOff.SetActive(true);
+            Invoke("Overworld_Enter", 1.2f);
         }
+    }
+    void Overworld_Enter()
+    {
+        SceneManager.LoadScene("OverWorld");
     }
     void Page1()
     {

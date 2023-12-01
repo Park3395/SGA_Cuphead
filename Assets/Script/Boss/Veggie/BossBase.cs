@@ -21,7 +21,6 @@ public class BossBase : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            Debug.Log("!");
             this.NowHP--;
             this.GetComponent<Animator>().Play("onHit");
         }

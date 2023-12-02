@@ -161,6 +161,7 @@ MonoBehaviour:
   speed: 5
   jump: 0
   reactionDistance: 0
+  deadanimationposY: 0
   acornDrop: {fileID: 7658106191903852763, guid: 9bf3bfb6e5151c2418ee76cf35bc8bdc, type: 3}
 --- !u!50 &1006666178917632213
 Rigidbody2D:
@@ -210,7 +211,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

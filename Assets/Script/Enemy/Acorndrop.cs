@@ -13,18 +13,21 @@ public class Acorndrop : EnemyController
 
     protected override void Update()
     {
-        transform.Translate(Vector3.down * speed * Time.deltaTime);
-        acornProp.transform.Translate(Vector3.up * speed * 1.5f * Time.deltaTime);
+        if (RngManager.GameIsPaused)
+        {
+            Vector2 nowPos= transform.position;
+            transform.position= nowPos;
+        }
+        else
+        {
+            transform.Translate(Vector3.down * speed * Time.deltaTime);
+            acornProp.transform.Translate(Vector3.up * speed * 1.5f * Time.deltaTime);
+        }
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            CsCollider.isTrigger = true;
-        }
-
-        base.OnCollisionEnter2D(collision);        
+        base.OnCollisionEnter2D(collision);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public float speed = 0.0f;  // 이동속도
     public float jump = 0.0f;   // 점프력
     public float reactionDistance = 0.0f;   // 인식 거리
+    public float deadanimationposY = 0.0f;     // 죽었을 때 애니메이션 Y좌표 변경
 
     protected string direction1 = "left";      // 이동 방향
     protected string direction2 = "left";      // 바라보는 방향
@@ -49,6 +50,8 @@ public class EnemyController : MonoBehaviour
         {
             direction1 = "left";
         }
+
+               
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -61,7 +64,7 @@ public class EnemyController : MonoBehaviour
                 Dead();
             }
         }
-        if (collision.gameObject.tag == "Dead")
+        if (collision.gameObject.tag == "Enemydead")
         {
             Dead();
         }
@@ -74,7 +77,7 @@ public class EnemyController : MonoBehaviour
 
         Vector3 pos = transform.position;   // 현재 위치
 
-        transform.position = new Vector3(pos.x, pos.y + 1, pos.z);  // 피벗위치를 bottom으로 변경했기에 y좌표 변경
+        transform.position = new Vector3(pos.x, pos.y + deadanimationposY, pos.z);  // 피벗위치를 bottom으로 변경했기에 y좌표 변경
 
         int randomA = Random.Range(1, 4);   // 터지는 애니메이션을 랜덤으로 재생하기 위한 변수
 

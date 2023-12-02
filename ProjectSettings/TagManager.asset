@@ -15,6 +15,7 @@ TagManager:
   - Turnwall
   - Goal
   - Dead
+  - Enemydead
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Ground
   - Enemy
   - Bullet
-  - 
+  - EnemyBullet
   - PlayerDamaged
   - 
   - 

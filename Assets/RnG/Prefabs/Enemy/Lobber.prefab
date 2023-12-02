@@ -220,6 +220,7 @@ MonoBehaviour:
   speed: 0
   jump: 0
   reactionDistance: 6
+  deadanimationposY: 0
   shootDelay: 3
   lobberUpPrefab: {fileID: 373871252016405678}
   seedPrefab: {fileID: 4244508981572626512, guid: 1b714f2537700fa43b46bfb497e93db1, type: 3}
@@ -245,7 +246,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

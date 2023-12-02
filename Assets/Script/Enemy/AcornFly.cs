@@ -23,6 +23,7 @@ public class AcornFly : EnemyController
     {
         base.Update();
 
+        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -35,49 +36,56 @@ public class AcornFly : EnemyController
                 {
                     createAcorndrop();
                     Destroy(gameObject);
-                }                
+                }
             }
         }
     }
 
     private void FixedUpdate()
     {
-        if (ismoveY && !ismoveX)
+        if (RngManager.GameIsPaused)
         {
-            rbody.velocity = new Vector2(rbody.velocity.x, speed);
-
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            float dy = transform.position.y - player.transform.position.y;
-            if (dy >= 3.0f) 
-            {
-                rbody.velocity = new Vector2(rbody.velocity.x, 0);
-                ismoveX = true;
-                ismoveY = false;
-                if (dy >= 7.0f)
-                {
-                    Destroy(gameObject);
-                }
-            }
+            rbody.velocity = new Vector2(0, 0);
         }
-
-        if (!ismoveY && ismoveX)
+        else
         {
-            if (direction1 == "right")
+            if (ismoveY && !ismoveX)
             {
-                rbody.velocity = new Vector2(speed, rbody.velocity.y);
-                if (direction2 == "left")
+                rbody.velocity = new Vector2(rbody.velocity.x, speed);
+
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                float dy = transform.position.y - player.transform.position.y;
+                if (dy >= 3.0f)
                 {
-                    spriteRenderer.flipX = true;
-                    direction2 = "right";
+                    rbody.velocity = new Vector2(rbody.velocity.x, 0);
+                    ismoveX = true;
+                    ismoveY = false;
+                    if (dy >= 7.0f)
+                    {
+                        Destroy(gameObject);
+                    }
                 }
             }
-            else
+
+            if (!ismoveY && ismoveX)
             {
-                rbody.velocity = new Vector2(-speed, rbody.velocity.y);
-                if (direction2 == "right")
+                if (direction1 == "right")
                 {
-                    spriteRenderer.flipX = false;
-                    direction2 = "left";
+                    rbody.velocity = new Vector2(speed, rbody.velocity.y);
+                    if (direction2 == "left")
+                    {
+                        spriteRenderer.flipX = true;
+                        direction2 = "right";
+                    }
+                }
+                else
+                {
+                    rbody.velocity = new Vector2(-speed, rbody.velocity.y);
+                    if (direction2 == "right")
+                    {
+                        spriteRenderer.flipX = false;
+                        direction2 = "left";
+                    }
                 }
             }
         }

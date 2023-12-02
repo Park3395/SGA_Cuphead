@@ -14,6 +14,8 @@ public class Flowergrunt : EnemyController
     {
         base.Start();
 
+        deadanimationposY = 1.0f;
+
         // 떨어지는 오디오 재생
         int random = Random.Range(0, Adfloating.Length);
         audiosource.PlayOneShot(Adfloating[random]);
@@ -27,22 +29,29 @@ public class Flowergrunt : EnemyController
 
     private void FixedUpdate()
     {
-        if (direction1 == "right")
+        if (RngManager.GameIsPaused)
         {
-            rbody.velocity = new Vector2(speed, rbody.velocity.y);
-            if (direction2 == "left")
-            {
-                animator.SetBool("turn", true);
-            }
+            rbody.velocity = new Vector2(0, 0);
         }
         else
         {
-            rbody.velocity = new Vector2(-speed, rbody.velocity.y);
-            if (direction2 == "right")
+            if (direction1 == "right")
             {
-                animator.SetBool("turn", true);
+                rbody.velocity = new Vector2(speed, rbody.velocity.y);
+                if (direction2 == "left")
+                {
+                    animator.SetBool("turn", true);
+                }
             }
-        }
+            else
+            {
+                rbody.velocity = new Vector2(-speed, rbody.velocity.y);
+                if (direction2 == "right")
+                {
+                    animator.SetBool("turn", true);
+                }
+            }
+        }        
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)

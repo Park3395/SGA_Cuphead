@@ -430,6 +430,27 @@ public class PlayerController : MonoBehaviour
             GetDamage(collision.gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")        // 적 트리거 설정한것도 있어서 트리거 충돌도 만들었습니다.
+        {
+            Debug.Log("적과 충돌");
+            //데미지를 받는다
+            GetDamage(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Dead")       // 빈 공간에 빠졌을 때 dead오브젝트 트리거 발동
+        {
+            // 임시
+            GetDamage(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Goal")     // clear 오브젝트에 닿았을시 게임클리어
+        {
+            Debug.Log("게임 클리어");
+            gameState = "gameclear";
+        }
+    }
+
     //충돌했을 때 hp가 순식간에 깎이는게 문제
     void GetDamage(GameObject enemy)
     {
@@ -466,7 +487,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("게임오버");
         //게임오버로 만들고
-        //gameState = "gameover";
+        gameState = "gameover";
         GetComponent<CapsuleCollider2D>().enabled = false; //캡슐 콜라이더를 서클 콜라이더로 적용해놓고 안된다고 하고 있었네 ㅋㅋ
         rbody.velocity = new Vector2(0, 0);
         rbody.gravityScale = 1;

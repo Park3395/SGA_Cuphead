@@ -140,7 +140,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!70 &2480613505985109803
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -192,7 +192,11 @@ MonoBehaviour:
   speed: 0
   jump: 0
   reactionDistance: 0
+  deadanimationposY: 0
   flowergrunt: {fileID: 8560811393408449987}
+  backer: {fileID: 3678404714447892180}
+  Fx: {fileID: 8649807854205141094}
+  acornGen: {fileID: 1761460948639056217}
 --- !u!82 &-5980895537753079027
 AudioSource:
   m_ObjectHideFlags: 0
@@ -214,7 +218,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

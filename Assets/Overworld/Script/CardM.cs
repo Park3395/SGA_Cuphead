@@ -16,12 +16,16 @@ public class CardM : MonoBehaviour
     {
         
     }
-    public void RotateCard_True()
+    public void RotateCard_True()//회전
     {
         Anim.SetBool("isChange", true);
     }
-    public void RotateCard_False()
+    public void RotateCard_False()//회전중지 후 앞면
     {
         Anim.SetBool("isChange", false);
+    }
+    public void RotateCard_True2()//뒷면으로
+    {
+        Anim.SetBool("isChange2", true);
     }
 }

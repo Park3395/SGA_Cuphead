@@ -15,13 +15,20 @@ public class RngManager : MonoBehaviour
     public AudioClip gameStartSound;    // 게임 시작 시 사운드
     public AudioClip[] gameClearSound;    // 게임 클리어 시 사운드
 
-    public static bool GameIsPaused = false;
+    public static bool GameIsPaused = false;    // esc 창을 띄우고 끄기 위한 것
+
+    TimeController timeCnt;             // TimeController 클래스
+
+    public static float clearTime;                     // 클리어 타임
+    public static int goldScore = 0;          // 스테이지 점수
+    public static int hpScore = 0;            // 클리어 시 남아있는 체력
 
     public string sceneName = "";       // 결과 씬
 
     // Start is called before the first frame update
     void Start()
     {
+        timeCnt = GetComponent<TimeController>();
         AudioSource sound = GetComponent<AudioSource>();
         if(sound != null)
         {
@@ -40,14 +47,25 @@ public class RngManager : MonoBehaviour
         {
             gameClear.SetActive(true);
 
+            Destroy(gameClear, 2.0f);
+
             PlayerController.gameState = "gameend";
+
+            hpScore = PlayerController.hp;
+
+            if (timeCnt != null)
+            {
+                // 시간 저장
+                clearTime = timeCnt.currentTime;
+            }
+
             AudioSource sound = GetComponent<AudioSource>();
             if (sound != null)
             {
                 int random = Random.Range(0, gameClearSound.Length);
                 sound.Stop();
                 sound.PlayOneShot(gameClearSound[random]);
-            }            
+            }
             
             Invoke("LoadScene", 5);            
         }
@@ -82,7 +100,6 @@ public class RngManager : MonoBehaviour
                     GameIsPaused = false;
                 }
             }
-            
         }
     }
 

@@ -20,6 +20,9 @@ public class OverworldChar : MonoBehaviour
     int Clear_Tree = 0;
     int Clear_Botanic = 0;
     int Clear_Score = 0;
+    int Spread = 0;
+    int Heart = 0;
+    int Coins = 0;//보유 코인
     //Esc메뉴
     public GameObject EscMenu;
     public Text RETURN;
@@ -39,6 +42,7 @@ public class OverworldChar : MonoBehaviour
     float v;
     //1. Home 2. Dungeon 3. Tree 4. Shop 5. Botanic 12.상점 컨트롤 상태 13.esc상태
     int Tag_Num = 0;//무엇과 상호 작용 중인가.
+    public GameObject Wall;//던전클리어시 오픈
     //상점 스크립트 불러오기
     public GameObject Shop_obj;
     //상점 관련
@@ -70,11 +74,32 @@ public class OverworldChar : MonoBehaviour
     public GameObject Text2_2;
     public GameObject Text2_3;
     int Delay_Flag = 0;
+    //사운드 world
+    public AudioSource Bgm;
+    public AudioSource Coin;
+    public AudioSource Bridge1;
+    public AudioSource Bridge2;
+    public AudioSource Birds;
+    public AudioSource IrisCloseSound;
+    public AudioSource ZkeyOff;
+    public AudioSource ZkeyOn;
+    //사운드 shop
+    public AudioSource GoodBye;
+    public AudioSource BuyCoin;
+    public AudioSource BuyPig;
+    public AudioSource Welcome;
+    public AudioSource ShopBgm;
+    public AudioSource PanalOpen;
+    public AudioSource PanalClose;
+    public AudioSource ItemMove;
+    public AudioSource Cantbuy;
+
 
     //GameObject scanObject;
 
     private void Awake()
     {
+        
         PlayerPrefs.SetInt("OpenTitle", 1);//타이틀을 한번이라도 열었는지 체크
         PlayerPrefs.Save();
         anim = GetComponent<Animator>();
@@ -83,6 +108,8 @@ public class OverworldChar : MonoBehaviour
     }
     private void Start()
     {
+        Bgm.Play();
+        Bgm.loop = true;
         Invoke("IrisOn_Start", 1.25f); //검은화면 오픈 애니메이션
     }
     void Update()
@@ -182,23 +209,43 @@ public class OverworldChar : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z)||Input.GetKeyDown(KeyCode.Return))
             {
                 if (Tag_Num == 1)
+                {
+                    
                     SceneManager.LoadScene("SampleSceneY");//집
+                }
+                    
                 else if (Tag_Num == 2)
+                {
+                    IrisOff.SetActive(true);
+                    IrisCloseSound.Play();
                     SceneManager.LoadScene("TestScene");//던전
+                }
+                    
                 else if (Tag_Num == 3)
+                {
+                    IrisOff.SetActive(true);
+                    IrisCloseSound.Play();
                     SceneManager.LoadScene("TestScene");//트리
+                }
+                    
                 else if (Tag_Num == 4)
                 {
                     Shop_Event();
                 }
                 else if (Tag_Num == 5)
+                {
+                    IrisOff.SetActive(true);
+                    IrisCloseSound.Play();
                     SceneManager.LoadScene("TestScene");//농장
+                }
+                    
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if (Tag_Num == 2)
                 {
                     Flag_Dungeon.SetActive(true);
+                    Wall.SetActive(false);
                     Clear_Dungeon = 5;
                 }
                 else if (Tag_Num == 3)
@@ -265,6 +312,10 @@ public class OverworldChar : MonoBehaviour
         if (AppleNpc_Page==2 && (Input.GetKeyDown(KeyCode.RightArrow)||
             Input.GetKeyDown(KeyCode.Z)) && Tag_Num == 0&&Delay_Flag == 0)
         {
+            CoinView();
+            Coin.Play();
+            Coins += 3;
+            Save();
             Text2_1.SetActive(false);
             Text2_2.SetActive(false);
             Text2_3.SetActive(false);
@@ -318,6 +369,10 @@ public class OverworldChar : MonoBehaviour
                 dirVec = Vector3.right;
         }
     }
+    void CoinView()
+    {
+
+    }
     void Esc_Flag()
     {
         EscFlag = true;
@@ -329,34 +384,39 @@ public class OverworldChar : MonoBehaviour
     //Apple Npc
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.gameObject.tag == "Zkey")
         {
+            ZkeyOn.Play();
             AppleNpc_ZkeyStay = true;
             Zkey.SetActive(true);
         }
         if (collision.gameObject.tag == "Home")
         {
+            ZkeyOn.Play();
             Zkey.SetActive(true);
             Tag_Num = 1;
         }
         if (collision.gameObject.tag == "Dungeon")
         {
+            ZkeyOn.Play();
             Zkey.SetActive(true);
             Tag_Num = 2;
         }
         if (collision.gameObject.tag == "Tree")
         {
+            ZkeyOn.Play();
             Zkey.SetActive(true);
             Tag_Num = 3;
         }
         if (collision.gameObject.tag == "Shop")
         {
+            ZkeyOn.Play();
             Zkey.SetActive(true);
             Tag_Num = 4;
         }
         if (collision.gameObject.tag == "Botanic")
         {
+            ZkeyOn.Play();
             Zkey.SetActive(true);
             Tag_Num = 5;
         }
@@ -365,6 +425,7 @@ public class OverworldChar : MonoBehaviour
     {
         if (collision.gameObject.tag == "Zkey")
         {
+            ZkeyOff.Play();
             AppleNpc_ZkeyStay = false;
             Zkey.SetActive(false);
         }
@@ -374,6 +435,7 @@ public class OverworldChar : MonoBehaviour
             collision.gameObject.tag == "Shop" ||
             collision.gameObject.tag == "Botanic")
         {
+            ZkeyOff.Play();
             Zkey.SetActive(false);
             Tag_Num = 0;
             Title_flag = 0;
@@ -393,13 +455,14 @@ public class OverworldChar : MonoBehaviour
     void Shop_Event()
     {
         TitleCard.SetActive(false);
+        IrisCloseSound.Play();
         IrisOff.SetActive(true);
         Invoke("Shop_Event1", 2.0f);
     }
     void Shop_Event1()
     {
-        IrisOn.SetActive(true);
         IrisOff.SetActive(false);
+        IrisOn.SetActive(true);
         Shop.SetActive(true);
         Invoke("Shop_Event2", 2.0f);
     }
@@ -407,17 +470,23 @@ public class OverworldChar : MonoBehaviour
     {
         IrisOn.SetActive(false);
         Tag_Num = 12;
-        Shop_obj.GetComponent<ShopAnimeM>().Shop_Idle();
-        Invoke("Shop_Idle_Control", 1.98f);
+        Bgm.Stop();
+        ShopBgm.Play();
+        Bridge1.Stop();
+        Bridge2.Stop();
+        Shop_obj.GetComponent<ShopAnimeM>().Shop_EnterTrue();
+        Welcome.Play();
+        Invoke("Shop_Idle_Control", 1.8f);
     }
     void Shop_Idle_Control()
     {
+        Shop_obj.GetComponent<ShopAnimeM>().Shop_EnterFalse();
         Item1.GetComponent<ItemM>().Item_Sellect();
-
         if (Shop_Num == -1)
         {
             Shop_Num = 1;
         }
+        PanalOpen.Play();
         LeftDoorObj.GetComponent<LeftDoor>().P1();
         LeftDoorObj.GetComponent<LeftDoor>().Open();
         shop_Input = true;
@@ -426,8 +495,52 @@ public class OverworldChar : MonoBehaviour
     {
         if (shop_Input == true)
         {
+            //구매
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z))
+            {
+                if (Shop_Num == 1&&Coins>=4&& Spread==0)//확산탄 구매
+                {
+                    Shop_obj.GetComponent<ShopAnimeM>().Shop_BuyTrue();
+                    Invoke("Shop_BuyFalseFunc", 0.5f);
+                    Coins -= 4;
+                    BuyCoin.Play();
+                    BuyPig.Play();
+                    Spread = 1;
+                    if (PlayerPrefs.GetInt("SaveFileNum") == 1)//몇번째 세이브 파일인지
+                        PlayerPrefs.SetInt("Spread1", Spread);//Spread1==1이면 사용가능
+                    else if (PlayerPrefs.GetInt("SaveFileNum") == 2)
+                        PlayerPrefs.SetInt("Spread2", Spread);//Spread2==1이면 사용가능
+                    else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
+                        PlayerPrefs.SetInt("Spread3", Spread);//Spread3==1이면 사용가능
+                    Save();
+                }
+                if (Shop_Num == 2&& Coins >= 3 && Heart == 0)//Hp최대치 1증가
+                {
+                    Shop_obj.GetComponent<ShopAnimeM>().Shop_BuyTrue();
+                    Invoke("Shop_BuyFalseFunc", 0.5f);
+                    Coins -= 3;
+                    BuyCoin.Play();
+                    BuyPig.Play();
+                    Heart = 1;
+                    if (PlayerPrefs.GetInt("SaveFileNum") == 1)
+                        PlayerPrefs.SetInt("Heart1", Heart);//Heart1==1이면 사용가능
+                    else if (PlayerPrefs.GetInt("SaveFileNum") == 2)
+                        PlayerPrefs.SetInt("Heart2", Heart);//Spread2==1이면 사용가능
+                    else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
+                        PlayerPrefs.SetInt("Heart3", Heart);//Spread3==1이면 사용가능
+                    Save();
+                }
+                //구매 실패
+                else
+                {
+                    Cantbuy.Play();
+                }
+
+            }
+            //이동sellect
             if (Input.GetKeyDown(KeyCode.RightArrow) && Shop_Num < 5)
             {
+                ItemMove.Play();
                 Shop_Num++;
                 if (Shop_Num == 1)
                 {
@@ -462,6 +575,7 @@ public class OverworldChar : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && Shop_Num > 1)
             {
+                ItemMove.Play();
                 Shop_Num--;
                 if (Shop_Num == 1)
                 {
@@ -499,9 +613,18 @@ public class OverworldChar : MonoBehaviour
         //상점 나가기
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GoodBye.Play();
             Shop_obj.GetComponent<ShopAnimeM>().Shop_Exit();
             LeftDoorObj.GetComponent<LeftDoor>().Close();
+            PanalClose.Play();
             Invoke("Shop_Exit_Event_Delay", 2.0f);
+            Bridge1.Play();
+            Bridge1.loop = true;
+            Bridge2.Play();
+            Bridge2.loop = true;
+            ShopBgm.Stop();
+            
+            
         }
     }
     void Shop_Exit_Event_Delay()
@@ -511,11 +634,13 @@ public class OverworldChar : MonoBehaviour
         Item3.GetComponent<ItemM>().Item_UnSellect();
         Item4.GetComponent<ItemM>().Item_UnSellect();
         Item5.GetComponent<ItemM>().Item_UnSellect();
+        IrisCloseSound.Play();
         IrisOff.SetActive(true);
         Invoke("Shop_Exit_Event", 2.0f);
     }
     void Shop_Exit_Event()
     {
+        
         IrisOn.SetActive(true);
         IrisOff.SetActive(false);
         Tag_Num = 0;
@@ -530,11 +655,17 @@ public class OverworldChar : MonoBehaviour
     }
     void Shop_Exit_Event2()
     {
+        Bgm.Play();
+        Bgm.loop = true;
         IrisOn.SetActive(false);
     }
     void IrisOn_Start()
     {
         IrisOn.SetActive(false);
+    }
+    void Shop_BuyFalseFunc()
+    {
+        Shop_obj.GetComponent<ShopAnimeM>().Shop_BuyFalse();
     }
     void Save()
     {
@@ -555,6 +686,9 @@ public class OverworldChar : MonoBehaviour
             PlayerPrefs.SetInt("Clear_Tree1", Clear_Tree);
             PlayerPrefs.SetInt("Clear_Botanic1", Clear_Botanic);
             PlayerPrefs.SetInt("Clear_Score1", Clear_Score);
+            PlayerPrefs.SetInt("Heart1", Heart);//Spread3==1이면 사용가능
+            PlayerPrefs.SetInt("Spread1", Spread);
+            PlayerPrefs.SetInt("Coins1", Coins);
         }
         else if (PlayerPrefs.GetInt("SaveFileNum") == 2)
         {
@@ -562,6 +696,9 @@ public class OverworldChar : MonoBehaviour
             PlayerPrefs.SetInt("Clear_Tree2", Clear_Tree);
             PlayerPrefs.SetInt("Clear_Botanic2", Clear_Botanic);
             PlayerPrefs.SetInt("Clear_Score2", Clear_Score);
+            PlayerPrefs.SetInt("Heart2", Heart);//Spread3==1이면 사용가능
+            PlayerPrefs.SetInt("Spread2", Spread);
+            PlayerPrefs.SetInt("Coins2", Coins);
         }
         else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
         {
@@ -569,6 +706,9 @@ public class OverworldChar : MonoBehaviour
             PlayerPrefs.SetInt("Clear_Tree3", Clear_Tree);
             PlayerPrefs.SetInt("Clear_Botanic3", Clear_Botanic);
             PlayerPrefs.SetInt("Clear_Score3", Clear_Score);
+            PlayerPrefs.SetInt("Heart3", Heart);//Spread3==1이면 사용가능
+            PlayerPrefs.SetInt("Spread3", Spread);
+            PlayerPrefs.SetInt("Coins3", Coins);
         }
         PlayerPrefs.Save();
     }
@@ -595,6 +735,15 @@ public class OverworldChar : MonoBehaviour
                 Flag_Botanic.SetActive(true);
                 Clear_Botanic = 7;
             }
+            if (PlayerPrefs.GetInt("Spread1") == 1)
+            {
+                Spread = 1;
+            }
+            if (PlayerPrefs.GetInt("Heart1") == 1)
+            {
+                Heart = 1;
+            }
+            Coins = PlayerPrefs.GetInt("Coins1");
         }
         else if (PlayerPrefs.GetInt("SaveFileNum") == 2)
         {
@@ -617,6 +766,15 @@ public class OverworldChar : MonoBehaviour
                 Flag_Botanic.SetActive(true);
                 Clear_Botanic = 7;
             }
+            if (PlayerPrefs.GetInt("Spread2") == 1)
+            {
+                Spread = 1;
+            }
+            if (PlayerPrefs.GetInt("Heart2") == 1)
+            {
+                Heart = 1;
+            }
+            Coins = PlayerPrefs.GetInt("Coins2");
         }
         else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
         {
@@ -640,6 +798,15 @@ public class OverworldChar : MonoBehaviour
                 Flag_Botanic.SetActive(true);
                 Clear_Botanic = 7;
             }
+            if (PlayerPrefs.GetInt("Spread3") == 1)
+            {
+                Spread = 1;
+            }
+            if (PlayerPrefs.GetInt("Heart3") == 1)
+            {
+                Heart = 1;
+            }
+            Coins = PlayerPrefs.GetInt("Coins3");
         }
     }
 }

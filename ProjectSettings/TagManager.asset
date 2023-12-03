@@ -3,23 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags:
-  - Enemy
-  - Damage
-  - Bullet
-  - Pink
-  - Coin
-  - Ground
-  - Object
-  - Wall
-  - Turnwall
-  - Goal
-  - Dead
-  - Enemydead
-=======
   tags: []
->>>>>>> 5d1a45814e27a301233d8b9a2e5739d1daaf4dbf
   layers:
   - Default
   - TransparentFX
@@ -27,21 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
-  - Player
-  - Ground
-  - Enemy
-  - Bullet
-  - EnemyBullet
-  - PlayerDamaged
-=======
   - 
   - 
   - 
   - 
   - 
   - 
->>>>>>> 5d1a45814e27a301233d8b9a2e5739d1daaf4dbf
   - 
   - 
   - 

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class LeftDoor : MonoBehaviour
 {
     public Text Txt;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,22 +24,62 @@ public class LeftDoor : MonoBehaviour
     }
     public void P1()
     {
-        Txt.text = "1번 아이템 가격 : ";
+        if (PlayerPrefs.GetInt("SaveFileNum") == 1)
+        {
+            if(PlayerPrefs.GetInt("Spread1")==1)
+                Txt.text = "아이템 : 확산탄           가    격  :  4\r\n보유 여부 : o\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins1");
+            else
+                Txt.text = "아이템 : 확산탄           가    격  :  4\r\n보유 여부 : x\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins1");
+        }
+        else if(PlayerPrefs.GetInt("SaveFileNum") == 2)
+        {
+            if (PlayerPrefs.GetInt("Spread2") == 1)
+                Txt.text = "아이템 : 확산탄           가    격  :  4\r\n보유 여부 : o\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins2");
+            else
+                Txt.text = "아이템 : 확산탄           가    격  :  4\r\n보유 여부 : x\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins2");
+        }
+        else if(PlayerPrefs.GetInt("SaveFileNum") == 3)
+        {
+            if (PlayerPrefs.GetInt("Spread1") == 3)
+                Txt.text = "아이템 : 확산탄           가    격  :  4\r\n보유 여부 : o\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins3");
+            else
+                Txt.text = "아이템 : 확산탄           가    격  :  4\r\n보유 여부 : x\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins3");
+        }
     }
     public void P2()
     {
-        Txt.text = "2번 아이템 가격 : ";
+        if (PlayerPrefs.GetInt("SaveFileNum") == 1)
+        {
+            if (PlayerPrefs.GetInt("Heart1") == 1)
+                Txt.text = "아이템 : 하  트             가    격  :  3\r\n보유 여부 : o\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins1");
+            else
+                Txt.text = "아이템 : 하  트             가    격  :  3\r\n보유 여부 : x\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins1");
+        }
+        else if (PlayerPrefs.GetInt("SaveFileNum") == 2)
+        {
+            if (PlayerPrefs.GetInt("Heart2") == 1)
+                Txt.text = "아이템 : 하  트             가    격  :  3\r\n보유 여부 : o\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins2");
+            else
+                Txt.text = "아이템 : 하  트             가    격  :  3\r\n보유 여부 : x\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins2");
+        }
+        else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
+        {
+            if (PlayerPrefs.GetInt("Heart3") == 3)
+                Txt.text = "아이템 : 하  트             가    격  :  3\r\n보유 여부 : o\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins3");
+            else
+                Txt.text = "아이템 : 하  트             가    격  :  3\r\n보유 여부 : x\r              소 지 금 :   " + PlayerPrefs.GetInt("Coins3");
+        }
     }
     public void P3()
     {
-        Txt.text = "3번 아이템 가격 : ";
+        Txt.text = "3번 미지정 ";
     }
     public void P4()
     {
-        Txt.text = "4번 아이템 가격 : ";
+        Txt.text = "4번 미지정 ";
     }
     public void P5()
     {
-        Txt.text = "5번 아이템 가격 : ";
+        Txt.text = "5번 미지정 ";
     }
 }

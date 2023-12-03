@@ -109,7 +109,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 22
   m_Sprite: {fileID: 21300000, guid: c1a53f6dfa640c94fa9968ca8aaabf81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -225,6 +225,10 @@ MonoBehaviour:
   mushroomshooter: {fileID: 1351900806626103928}
   poisonPrefab: {fileID: 3967158843787358828, guid: 763b59c4f8ac3854c8e36bf0364b0583, type: 3}
   parringpoisonPrefab: {fileID: 6155808357301980650, guid: 506f1d426140b654c9de88bfa047cd38, type: 3}
+  shootaudio:
+  - {fileID: 8300000, guid: ec3e722f916ac474aaf31c13e3095b1b, type: 3}
+  - {fileID: 8300000, guid: 4e4ac2af532b1324a91296f3c0026a72, type: 3}
+  - {fileID: 8300000, guid: b23ef9cd4d2069442967fb61bbe21e67, type: 3}
   Distance: 6
   shootDistance: 4
   shootForce: 2
@@ -239,8 +243,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -249,7 +253,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 5
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -284,7 +288,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

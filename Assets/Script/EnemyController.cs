@@ -49,9 +49,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             direction1 = "left";
-        }
-
-               
+        }               
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -109,7 +107,7 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void collideroff()
+    public virtual void collideroff()
     {
         CsCollider.enabled = false;
         rbody.simulated = false;

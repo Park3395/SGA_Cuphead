@@ -441,6 +441,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Dead")       // 빈 공간에 빠졌을 때 dead오브젝트 트리거 발동
         {
+            Debug.Log("구멍에 빠짐");
             // 임시
             GetDamage(collision.gameObject);
         }

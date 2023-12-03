@@ -6,9 +6,14 @@ public class Acorndrop : EnemyController
 {
     public GameObject acornProp;
 
+    public AudioClip[] audioclips;
+
     protected override void Start()
     {
         base.Start();
+
+        int random = Random.Range(0, audioclips.Length);
+        audiosource.PlayOneShot(audioclips[random]);
     }
 
     protected override void Update()

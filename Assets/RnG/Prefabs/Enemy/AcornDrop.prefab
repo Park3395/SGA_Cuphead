@@ -184,7 +184,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 21
   m_Sprite: {fileID: 21300000, guid: 0c5d909c306839d4185d019a234c7ebf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -270,6 +270,10 @@ MonoBehaviour:
   reactionDistance: 0
   deadanimationposY: 0
   acornProp: {fileID: 4755607950456858505}
+  audioclips:
+  - {fileID: 8300000, guid: e68383615104632419b3925be36a7540, type: 3}
+  - {fileID: 8300000, guid: 12564a7cd1451d1488c23a3662ca24a7, type: 3}
+  - {fileID: 8300000, guid: 948b308bb6b3243428741db2d6fe093c, type: 3}
 --- !u!82 &1126280768243226850
 AudioSource:
   m_ObjectHideFlags: 0
@@ -281,8 +285,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -291,7 +295,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 5
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -326,7 +330,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

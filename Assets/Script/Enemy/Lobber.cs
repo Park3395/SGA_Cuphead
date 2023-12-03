@@ -8,6 +8,8 @@ public class Lobber : EnemyController
     public GameObject lobberUpPrefab;       // 시드 발생하는 곳
     public GameObject seedPrefab;           // 시드
 
+    public AudioClip[] shootaudio;
+
     bool hasAttacked = true;
 
     public float shootForce = 5.0f; // 위로 발사할 힘
@@ -54,6 +56,8 @@ public class Lobber : EnemyController
     public void Attackanime()
     {
         animator.SetBool("attack", true);
+        int random = Random.Range(0, shootaudio.Length);
+        audiosource.PlayOneShot(shootaudio[random]);
         hasAttacked = false;
     }
 

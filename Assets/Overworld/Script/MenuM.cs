@@ -118,13 +118,13 @@ public class MenuM : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                MenuSellect.Play();
+                OptionsSellect.Play();
                 Sellect_Menu(0);
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                MenuSellect.Play();
+                OptionsSellect.Play();
                 Sellect_Menu(1);
             }
         }
@@ -134,13 +134,13 @@ public class MenuM : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.DownArrow) || Now_Page == 10)
             {
-                StartSellect.Play();
+                OptionsSellect.Play();
                 StartMenu(0);
             }
                 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                StartSellect.Play();
+                OptionsSellect.Play();
                 StartMenu(1);
             }
                 
@@ -179,12 +179,12 @@ public class MenuM : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.RightArrow) && Shift_Sellect == 0)
             {
-                MenuSellect.Play();
+                OptionsSellect.Play();
                 Shift_Sellect++;
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && Shift_Sellect == 1)
             {
-                MenuSellect.Play();
+                OptionsSellect.Play();
                 Shift_Sellect--;
             }
         }
@@ -249,6 +249,7 @@ public class MenuM : MonoBehaviour
             //시작 준비 창
             if (DelayFlag == 1 && Now_Page == 1 && Sellect_Start == 0&& WindowStart==0&&Shift_Flag==0)
             {
+                MenuSellect.Play();
                 DelayFlag = 0;
                 WindowStart1.SetActive(true);
                 WindowStart = 1;
@@ -256,6 +257,7 @@ public class MenuM : MonoBehaviour
             }
             else if (DelayFlag == 1 && Now_Page == 1 && Sellect_Start == 1 && WindowStart == 0 && Shift_Flag == 0)
             {
+                MenuSellect.Play();
                 DelayFlag = 0;
                 WindowStart2.SetActive(true);
                 WindowStart = 2;
@@ -263,6 +265,7 @@ public class MenuM : MonoBehaviour
             }
             else if (DelayFlag == 1 && Now_Page == 1 && Sellect_Start == 2 && WindowStart == 0 && Shift_Flag == 0)
             {
+                MenuSellect.Play();
                 DelayFlag = 0;
                 WindowStart3.SetActive(true);
                 WindowStart = 3;
@@ -271,6 +274,7 @@ public class MenuM : MonoBehaviour
             //삭제 Yes No
             if (Shift_Sellect==0&& Shift_Flag==1)
             {
+                MenuSellect.Play();
                 Shift_Flag = 0;
                 DataDelete_Window.SetActive(false);
 
@@ -320,13 +324,15 @@ public class MenuM : MonoBehaviour
             //Start 들어감
             if (Now_Page == 0 && Sellect_Button == 0)
                 {
-                    Sellect_Start = -1;
+                MenuSellect.Play();
+                Sellect_Start = -1;
                     Now_Page = 10;
                 }
                 //옵션 들어감
                 if (Now_Page == 0 && Sellect_Button == 1)
                 {
-                    Sellect_Options = -1;
+                MenuSellect.Play();
+                Sellect_Options = -1;
                     Now_Page = 11;
                 }
                 //DLC
@@ -343,7 +349,8 @@ public class MenuM : MonoBehaviour
             //옵션에서 시작으로 되돌아가기
             if (Now_Page == 2 && Sellect_Options == 3)
                 {
-                    AUDIO.text = "";
+                MenuSellect.Play();
+                AUDIO.text = "";
                     VISUAL.text = "";
                     CONTROLS.text = "";
                     Back.text = "";
@@ -355,14 +362,15 @@ public class MenuM : MonoBehaviour
                 //Controlls창 인터페이스 변경
                 if (Now_Page == 2 && Sellect_Options == 2)
                 {
-                    Input_Change();
+                MenuSellect.Play();
+                Input_Change();
                 }
             }
             if (Input.GetKeyDown(KeyCode.Escape) && DelayFlag == 1)
             {
             MenuSellect.Play();
             if (Shift_Flag == 1)
-                {
+            {
                     DataDelete_Window.SetActive(false);
                     Shift_Flag = 0;
                     Invoke("DelayFlag_", 0.5f);
@@ -396,6 +404,7 @@ public class MenuM : MonoBehaviour
                 }
                 if (Now_Page == 2)
                 {
+                
                     AUDIO.text = "";
                     VISUAL.text = "";
                     CONTROLS.text = "";
@@ -408,7 +417,7 @@ public class MenuM : MonoBehaviour
                 //DLC에서 시작창으로
                 if (Now_Page == 12)
                 {
-                MenuSellect.Play();
+                
                 DLC_Screen.SetActive(false);
                     Now_Page = 0;
                     Sellect_Button = 1;
@@ -486,6 +495,7 @@ public class MenuM : MonoBehaviour
     }
     void StartMenu(int updown)
     {
+        StartSellect.Play();
         if (PlayerPrefs.HasKey("Clear_Dungeon1"))
             Clear_Score1 = PlayerPrefs.GetInt("Clear_Score1");
         else

@@ -83,6 +83,8 @@ public class OverworldChar : MonoBehaviour
     public AudioSource IrisCloseSound;
     public AudioSource ZkeyOff;
     public AudioSource ZkeyOn;
+    public AudioSource FlagSound;
+    public AudioSource OptionSellect;
     //사운드 shop
     public AudioSource GoodBye;
     public AudioSource BuyCoin;
@@ -93,7 +95,7 @@ public class OverworldChar : MonoBehaviour
     public AudioSource PanalClose;
     public AudioSource ItemMove;
     public AudioSource Cantbuy;
-
+    
 
     //GameObject scanObject;
 
@@ -114,6 +116,7 @@ public class OverworldChar : MonoBehaviour
     }
     void Update()
     {
+        Zkey.transform.position = new Vector3(transform.position.x, transform.position.y+1.0f, transform.position.z);
         if (OpenRoadOn == 0 && Clear_Dungeon==5)
         {
             OpenRoadOn = 1;
@@ -136,7 +139,11 @@ public class OverworldChar : MonoBehaviour
         //ESC메뉴
         if(isHorizonMove==true&& Input.GetKeyDown(KeyCode.Escape)&& EscFlag==false)
         {
+            Bgm.volume = 0.2f;
+            Bridge1.volume = 0.3f;
+            Bridge2.volume = 0.3f;
             Invoke("Esc_Flag", 0.3f);
+            h = 0; v = 0;
             isHorizonMove = false;
             EscMenu.SetActive(true);
             Tag_Num = 13;
@@ -164,10 +171,12 @@ public class OverworldChar : MonoBehaviour
         }
         if(Tag_Num==13&&Input.GetKeyDown(KeyCode.UpArrow))
         {
+            OptionSellect.Play();
             Sellect_Esc--;
         }
         else if (Tag_Num == 13 && Input.GetKeyDown(KeyCode.DownArrow))
         {
+            OptionSellect.Play();
             Sellect_Esc++;
         }
         if (Sellect_Esc > 2)
@@ -177,6 +186,9 @@ public class OverworldChar : MonoBehaviour
         //ESC-ENTER 이벤트
         if(Tag_Num==13&&(Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Z))&&Sellect_Esc==0)
         {
+            Bgm.volume = 0.6f;
+            Bridge1.volume = 1.0f;
+            Bridge2.volume = 1.0f;
             Sellect_Esc = 0;
             isHorizonMove = true;
             EscMenu.SetActive(false);
@@ -185,17 +197,26 @@ public class OverworldChar : MonoBehaviour
         }
         else if (Tag_Num == 13 && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z)) && Sellect_Esc == 1)
         {
+            Bgm.volume = 0.6f;
+            Bridge1.volume = 1.0f;
+            Bridge2.volume = 1.0f;
             Save();
             SceneManager.LoadScene("StartScene");//타이틀로
         }
         else if (Tag_Num == 13 && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z)) && Sellect_Esc == 2)
         {
+            Bgm.volume = 0.6f;
+            Bridge1.volume = 1.0f;
+            Bridge2.volume = 1.0f;
             Save();
             Application.Quit();
         }
         //ESC-ESC 이벤트
         if (Tag_Num==13&&Input.GetKeyDown(KeyCode.Escape)&& EscFlag==true)
         {
+            Bgm.volume = 0.6f;
+            Bridge1.volume = 1.0f;
+            Bridge2.volume = 1.0f;
             Sellect_Esc = 0;
             isHorizonMove = true;
             EscMenu.SetActive(false);
@@ -242,20 +263,23 @@ public class OverworldChar : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
+                
                 if (Tag_Num == 2)
                 {
+                    FlagSound.Play();
                     Flag_Dungeon.SetActive(true);
                     Wall.SetActive(false);
                     Clear_Dungeon = 5;
                 }
                 else if (Tag_Num == 3)
                 {
-                    
+                    FlagSound.Play();
                     Flag_Tree.SetActive(true);
                     Clear_Tree = 6;
                 }
                 else if (Tag_Num == 5)
                 {
+                    FlagSound.Play();
                     Flag_Botanic.SetActive(true);
                     Clear_Botanic = 7;
                 }
@@ -277,6 +301,7 @@ public class OverworldChar : MonoBehaviour
         if (AppleNpc_Page==0&&Delay_Flag == 0&&AppleNpc_Talk == false && AppleNpc_ZkeyStay == true && (Input.GetKeyDown(KeyCode.Z)))
         {
             AppleNpc_Talk = true;
+            h = 0; v = 0;
             isHorizonMove = false;
             if (AppleNpc_Page == 0)
             {
@@ -346,14 +371,14 @@ public class OverworldChar : MonoBehaviour
 
             if (h == -1)
             {
-                Zkey.transform.localScale = new Vector3(-0.67f, 0.67f, 0.67f);
+                //Zkey.transform.localScale = new Vector3(-0.67f, 0.67f, 0.67f);
                 transform.localScale = new Vector3(-1.35f, 1.35f, 1.35f);
                 CameraObj.transform.localScale = new Vector3(-0.62f, 0.62f, 0.62f);
                 EscMenu.transform.localScale = new Vector3(-1.0f, 0.7f, 0.74f);
             }
             if (h == 1)
             {
-                Zkey.transform.localScale = new Vector3(0.67f, 0.67f, 0.67f);
+                //Zkey.transform.localScale = new Vector3(0.67f, 0.67f, 0.67f);
                 transform.localScale = new Vector3(1.35f, 1.35f, 1.35f);
                 CameraObj.transform.localScale = new Vector3(0.62f, 0.62f, 0.62f);
                 EscMenu.transform.localScale = new Vector3(1.0f, 0.7f, 0.74f);
@@ -427,7 +452,7 @@ public class OverworldChar : MonoBehaviour
         {
             ZkeyOff.Play();
             AppleNpc_ZkeyStay = false;
-            Zkey.SetActive(false);
+            Invoke("ZkeyOffFun", 0.30f);
         }
         if (collision.gameObject.tag == "Home" ||
             collision.gameObject.tag == "Dungeon" ||
@@ -435,12 +460,16 @@ public class OverworldChar : MonoBehaviour
             collision.gameObject.tag == "Shop" ||
             collision.gameObject.tag == "Botanic")
         {
+            Invoke("ZkeyOffFun", 0.30f);
             ZkeyOff.Play();
-            Zkey.SetActive(false);
             Tag_Num = 0;
             Title_flag = 0;
         }
 
+    }
+    void ZkeyOffFun()
+    {
+        Zkey.SetActive(false);
     }
     void Ask_Title()//입장 여부확인
     {
@@ -449,6 +478,7 @@ public class OverworldChar : MonoBehaviour
         else
             TitleCard2.SetActive(true);
         WindowBlack.SetActive(true);
+        h = 0; v = 0;
         isHorizonMove = false;
         Title_flag = 10;
     }
@@ -513,6 +543,7 @@ public class OverworldChar : MonoBehaviour
                     else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
                         PlayerPrefs.SetInt("Spread3", Spread);//Spread3==1이면 사용가능
                     Save();
+                    LeftDoorObj.GetComponent<LeftDoor>().P1();//글자 갱신
                 }
                 if (Shop_Num == 2&& Coins >= 3 && Heart == 0)//Hp최대치 1증가
                 {
@@ -529,6 +560,7 @@ public class OverworldChar : MonoBehaviour
                     else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
                         PlayerPrefs.SetInt("Heart3", Heart);//Spread3==1이면 사용가능
                     Save();
+                    LeftDoorObj.GetComponent<LeftDoor>().P1();//글자갱신
                 }
                 //구매 실패
                 else
@@ -613,6 +645,11 @@ public class OverworldChar : MonoBehaviour
         //상점 나가기
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Item1.GetComponent<ItemM>().Item_UnSellect();
+            Item2.GetComponent<ItemM>().Item_UnSellect();
+            Item3.GetComponent<ItemM>().Item_UnSellect();
+            Item4.GetComponent<ItemM>().Item_UnSellect();
+            Item5.GetComponent<ItemM>().Item_UnSellect();
             GoodBye.Play();
             Shop_obj.GetComponent<ShopAnimeM>().Shop_Exit();
             LeftDoorObj.GetComponent<LeftDoor>().Close();
@@ -629,11 +666,7 @@ public class OverworldChar : MonoBehaviour
     }
     void Shop_Exit_Event_Delay()
     {
-        Item1.GetComponent<ItemM>().Item_UnSellect();
-        Item2.GetComponent<ItemM>().Item_UnSellect();
-        Item3.GetComponent<ItemM>().Item_UnSellect();
-        Item4.GetComponent<ItemM>().Item_UnSellect();
-        Item5.GetComponent<ItemM>().Item_UnSellect();
+        
         IrisCloseSound.Play();
         IrisOff.SetActive(true);
         Invoke("Shop_Exit_Event", 2.0f);

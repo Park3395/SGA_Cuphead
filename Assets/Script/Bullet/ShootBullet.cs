@@ -133,22 +133,23 @@ public class NewBehaviourScript : MonoBehaviour
 
                 //밑으로 발사 N->negative(음수)
                 
-                if(Onground ==false && angleZ == -90)
+                if(angleZ == -90)
                 {
                     Vector3 bulletDirN90 = new Vector3(Mathf.Cos((angleZ + 30.0f - 20.0f * i) * Mathf.Deg2Rad), Mathf.Sin((angleZ + 30.0f - 20.0f * i) * Mathf.Deg2Rad)) * shootspeed;
                     Rigidbody2D bodyN90 = spread.GetComponent<Rigidbody2D>();
                     bodyN90.AddForce(bulletDirN90, ForceMode2D.Impulse);
                 }
                 //점프가 아니면서 밑을 바라볼때 총알의 회전각도도 바꿔야하는 문제가 생겼다.
+                /*
                 if (Onground && angleZ == -90)
                 {
                     Vector3 bulletDirON90 = new Vector3(Mathf.Cos((angleZ + 90 + 11.25f * i) * Mathf.Deg2Rad), Mathf.Sin((angleZ + 90 + 11.25f * i) * Mathf.Deg2Rad)) * shootspeed;
                     Rigidbody2D bodyON90 = spread.GetComponent<Rigidbody2D>();
                     bodyON90.AddForce(bulletDirON90, ForceMode2D.Impulse);
-                }
+                }*/
 
                 //밑 좌대각
-                if (Onground == false && angleZ == -135)
+                if (angleZ == -135)
                 {
                     Vector3 bulletDirN135 = new Vector3(Mathf.Cos((angleZ - 20.0f + 11.25f * i) * Mathf.Deg2Rad), Mathf.Sin((angleZ - 20.0f + 11.25f * i) * Mathf.Deg2Rad)) * shootspeed;
                     Rigidbody2D bodyN135 = spread.GetComponent<Rigidbody2D>();
@@ -156,12 +157,13 @@ public class NewBehaviourScript : MonoBehaviour
                 }
 
                 //아래쪽 누른 상태로 왼쪽을 바라볼 때 angleZ 0일 때 발사각도도 angleZ 0이 되는 문제가 생겼다.
+                /*
                 if (Onground && angleZ == -135)
                 {
                     Vector3 bulletDirON135 = new Vector3(Mathf.Cos((angleZ + 315 - 11.25f * i) * Mathf.Deg2Rad), Mathf.Sin((angleZ+315 -11.25f * i) * Mathf.Deg2Rad)) * shootspeed;
                     Rigidbody2D bodyON135 = spread.GetComponent<Rigidbody2D>();
                     bodyON135.AddForce(bulletDirON135, ForceMode2D.Impulse);
-                }
+                }*/
 
 
 

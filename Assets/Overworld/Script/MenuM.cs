@@ -85,8 +85,6 @@ public class MenuM : MonoBehaviour
         Invoke("IrisOpenFun", 1.2f);
         ControlWindow.SetActive(false);
     }
-   
-
     void Update()
     {
         

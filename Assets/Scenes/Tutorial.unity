@@ -2901,7 +2901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTwoPoint: 0
   pcase: 1
-  player: {fileID: 1916511971}
+  player: {fileID: 0}
   cameraMaster: {fileID: 2125557851}
   togoPoint: {fileID: 0}
 --- !u!1 &847047066
@@ -5016,6 +5016,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1710334716330418168, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1710334716330418168, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.9
+      objectReference: {fileID: 0}
     - target: {fileID: 7234241205195762543, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5065,11 +5073,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
---- !u!1 &1916511971 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7234241205195762543, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
-  m_PrefabInstance: {fileID: 1916511970}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1934965781
 GameObject:
   m_ObjectHideFlags: 0
@@ -5519,7 +5522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTwoPoint: 0
   pcase: 0
-  player: {fileID: 1916511971}
+  player: {fileID: 0}
   cameraMaster: {fileID: 2125557851}
   togoPoint: {fileID: 0}
 --- !u!1 &2125557851
@@ -5551,7 +5554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bed661c0125a4468df8688bddad42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1916511971}
+  player: {fileID: 0}
   move: 0
   ispoint: 0
   startY: 0

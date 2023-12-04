@@ -29,11 +29,11 @@ public class InterfaceM : MonoBehaviour
             dir[i] = new Vector3(Card[i].transform.position.x, Card[i].transform.position.y, Card[i].transform.position.z);
         }
     }
-    //버튼 3개
-    public void OnClicked()//히트
-    {
-        GageUp();//테스트 에서는 클릭시 GageUp()이 발동하게 되있으나 이를 히트시 1회 발동하도록 옴기면 된됩니다.
-    }
+    ////버튼 3개
+    //public void OnClicked()//히트
+    //{
+    //    GageUp();//테스트 에서는 클릭시 GageUp()이 발동하게 되있으나 이를 히트시 1회 발동하도록 옴기면 된됩니다.
+    //}
     public void OnClickedPShot()//카드 사용
     {
         PShot();

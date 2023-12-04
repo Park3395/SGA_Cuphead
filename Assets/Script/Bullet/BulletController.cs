@@ -22,6 +22,7 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             GetComponent<Animator>().Play("PeaShooterDead");
+            GameObject.FindWithTag("UI").GetComponent<InterfaceM>().GageUp();
             Destroy(gameObject, 0.25f);
         }
         if(collision.gameObject.tag == "Ground")

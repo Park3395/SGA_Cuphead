@@ -7,6 +7,7 @@ public enum BTYPE
     LEFTS,                      // 좌측 직선
     RIGHTS,                     // 우측 직선
     DOWN,                       // 하강
+    UP,                         // 상승
     TRACK                       // 추적
 }
 
@@ -45,6 +46,10 @@ public class BulletBase : MonoBehaviour
         else if (this.bullet == BTYPE.DOWN)
         {
             this.transform.Translate(new Vector3(0, -speed, 0));
+        }
+        else if (this.bullet == BTYPE.UP)
+        {
+            this.transform.Translate(new Vector3(0, speed, 0));
         }
         else if(this.bullet == BTYPE.TRACK)
         {

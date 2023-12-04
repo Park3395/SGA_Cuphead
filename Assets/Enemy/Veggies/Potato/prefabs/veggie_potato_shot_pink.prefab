@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: 0
-  speed: 0.01
+  speed: 0.5
   target: {fileID: 7234241205195762543, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
   deadAnim: veggie_potato_shoot_pink_destroy
 --- !u!58 &986494301153215548

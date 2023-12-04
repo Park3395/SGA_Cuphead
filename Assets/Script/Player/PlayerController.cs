@@ -462,6 +462,14 @@ public class PlayerController : MonoBehaviour
             Debug.Log("게임 클리어");
             gameState = "gameclear";
         }
+
+        if (collision.gameObject.tag == "Parry")
+        {
+            Debug.Log("패링 감지");
+            Vector2 jumpPw = new Vector2(0, jump);
+            rbody.AddForce(jumpPw, ForceMode2D.Impulse);
+
+        }
     }
 
     //충돌했을 때 hp가 순식간에 깎이는게 문제
@@ -533,18 +541,6 @@ public class PlayerController : MonoBehaviour
         isParry = false;
         GetComponent<BoxCollider2D>().enabled = false;
         Debug.Log("패링 끝");
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Parry")
-        {
-            Debug.Log("패링 감지");
-            Vector2 jumpPw = new Vector2(0, jump);
-            rbody.AddForce(jumpPw, ForceMode2D.Impulse);
-
-        }
-
-
     }
     //클래스 변수에다가 public bool isParry = false; 추가
     //BoxCollider2D를 추가해서 Exclude Layer에 Everything 체크 후 Parry 체크해서 Parry에만 반응하게

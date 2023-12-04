@@ -1,0 +1,875 @@
+fileFormatVersion: 2
+guid: 628286d137c2e954ba5c4dcafa862290
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shop_Exit_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1336.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc4b34f553d687242b52b25d014e6e2a
+      internalID: 296508694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_1
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1336.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7725d5a5ea8e66f4aa3e3f91bc3637b8
+      internalID: -1836789500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_2
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 1336.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f2c6d3d32165a049be6127dfa706bdf
+      internalID: -751045421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_3
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 1336.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a5a50861591424187c3b7857531129
+      internalID: 1586012289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_4
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 1336.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de822412d31d104dacc061370bfd339
+      internalID: 1700586705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_5
+      rect:
+        serializedVersion: 2
+        x: 2580
+        y: 1336.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f26655819425a428e064565d739cca
+      internalID: 1728083368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_6
+      rect:
+        serializedVersion: 2
+        x: 3096
+        y: 1336.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d283e9e8adb65d4991232d92cf6938b
+      internalID: 784006734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_7
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 1336.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e8ae90e4d65ea1419de56200805f781
+      internalID: 1735741934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_8
+      rect:
+        serializedVersion: 2
+        x: 4128
+        y: 1336.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ce3c763c73b1294b98782cb19a8e0bf
+      internalID: -1358178895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 891.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a706b2b03e47fbc4aaa850c1d27ca369
+      internalID: 1289770470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_10
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 891.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3891460cff22c9a4c9f98854c372a3b4
+      internalID: -1948839640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_11
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 891.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35022189ce32cf4ca31851f51fe42dd
+      internalID: 497807580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_12
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 891.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de65f7a2db7d51e4f9f05446b7f14a37
+      internalID: 643676932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_13
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 891.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54b11332aa6abf7478f7db6719a64fd2
+      internalID: -1705485287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_14
+      rect:
+        serializedVersion: 2
+        x: 2580
+        y: 891.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b3dc81cb9d08a04e9cefefb249b857d
+      internalID: 817714994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_15
+      rect:
+        serializedVersion: 2
+        x: 3096
+        y: 891.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c273dcb72b4960f4bbffb2c808a9dfec
+      internalID: 100848681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_16
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 891.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca1d60e7c14b7fe449cebfae2417f203
+      internalID: -2088513690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_17
+      rect:
+        serializedVersion: 2
+        x: 4128
+        y: 891.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acb0934fc47575347a29af5a85e22fed
+      internalID: 296788485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 446.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 189f5bafb15bcad42838e8ce296b5fef
+      internalID: 1372389502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_19
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 446.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1827485f60703a14c9e68458bf1c8bad
+      internalID: -1237877236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_20
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 446.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d997291748c42754fa1a7a0ae41f1bfb
+      internalID: 1253570352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_21
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 446.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62fd44f3cf838ed41b2e2ec75e21ca75
+      internalID: 283406842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_22
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 446.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7163c2d6f892d4885f209c0c9394bd
+      internalID: -668708847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_23
+      rect:
+        serializedVersion: 2
+        x: 2580
+        y: 446.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0bd266e71592847b29bfbce71efd8c
+      internalID: -1015111880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_24
+      rect:
+        serializedVersion: 2
+        x: 3096
+        y: 446.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43000a7483789c1478f3b14e04f6e7e5
+      internalID: -1819524177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_25
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 446.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33e0d8a55114dfe47947b76be2b3dcaa
+      internalID: 294697607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_26
+      rect:
+        serializedVersion: 2
+        x: 4128
+        y: 446.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16f1c8fc220be8e4e8df9120ba91d091
+      internalID: 778696578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 848ecab2cb0a35146949fc4a0fcc03f3
+      internalID: 469492890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_28
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48dd5f974b58f9b48a52fc066c775972
+      internalID: 2132480590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_29
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 1.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b07a1bae02e0e7a43be34794b1ebc443
+      internalID: -784034293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_30
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 1.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c5df53528c105342bd857f7ff065ff5
+      internalID: -786294487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_31
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 1.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cca8a783171a844583e01fd86c9db44
+      internalID: -641796601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_32
+      rect:
+        serializedVersion: 2
+        x: 2580
+        y: 1.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bbe58987c4181148b05bd1b1b867dad
+      internalID: 1519403038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_Exit_33
+      rect:
+        serializedVersion: 2
+        x: 3096
+        y: 1.5
+        width: 516.2222
+        height: 445.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6e025f68ddeec648951144f4a1e53c6
+      internalID: -1344218529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      shop_Exit_0: 296508694
+      shop_Exit_1: -1836789500
+      shop_Exit_10: -1948839640
+      shop_Exit_11: 497807580
+      shop_Exit_12: 643676932
+      shop_Exit_13: -1705485287
+      shop_Exit_14: 817714994
+      shop_Exit_15: 100848681
+      shop_Exit_16: -2088513690
+      shop_Exit_17: 296788485
+      shop_Exit_18: 1372389502
+      shop_Exit_19: -1237877236
+      shop_Exit_2: -751045421
+      shop_Exit_20: 1253570352
+      shop_Exit_21: 283406842
+      shop_Exit_22: -668708847
+      shop_Exit_23: -1015111880
+      shop_Exit_24: -1819524177
+      shop_Exit_25: 294697607
+      shop_Exit_26: 778696578
+      shop_Exit_27: 469492890
+      shop_Exit_28: 2132480590
+      shop_Exit_29: -784034293
+      shop_Exit_3: 1586012289
+      shop_Exit_30: -786294487
+      shop_Exit_31: -641796601
+      shop_Exit_32: 1519403038
+      shop_Exit_33: -1344218529
+      shop_Exit_4: 1700586705
+      shop_Exit_5: 1728083368
+      shop_Exit_6: 784006734
+      shop_Exit_7: 1735741934
+      shop_Exit_8: -1358178895
+      shop_Exit_9: 1289770470
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

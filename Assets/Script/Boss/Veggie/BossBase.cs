@@ -13,9 +13,11 @@ public class BossBase : MonoBehaviour
     protected string DeadAnim;
     [SerializeField]
     protected string[] EffectAnims;
+    [SerializeField]
+    protected GameObject bossController;
 
-    private bool idle = false;
     protected float idleTime = 0;
+    protected float shootTime = 0;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -25,21 +27,12 @@ public class BossBase : MonoBehaviour
             this.GetComponent<Animator>().Play("onHit");
         }
     }
-
     protected void Dead()
-    { 
-        Destroy(this.gameObject);
+    {
+        this.gameObject.SetActive(false);
+        bossController.GetComponent<BossControl>().endAnim();
     }
 
-    protected void idling()
-    {
-        this.idle = true;
-    }
-    protected void acting()
-    {
-        this.idle = false;
-        idleTime = 0;
-    }
     // Start is called before the first frame update
     void Start()
     {

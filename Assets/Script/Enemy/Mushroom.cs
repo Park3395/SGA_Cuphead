@@ -9,6 +9,8 @@ public class Mushroom : EnemyController
     public GameObject poisonPrefab;           // 독구름
     public GameObject parringpoisonPrefab;      // 패링가능 독구름
 
+    public AudioClip[] shootaudio;
+
     public float Distance = 0.0f;       // 플레이어 발견 거리
     public float shootDistance = 0.0f;   // 발사 인식 거리
 
@@ -65,6 +67,9 @@ public class Mushroom : EnemyController
 
     public void Attack()
     {
+        int random = Random.Range(0, shootaudio.Length);
+        audiosource.PlayOneShot(shootaudio[random]);
+
         GameObject poisonObj = Instantiate(poisonPrefab, mushroomshooter.transform.position, Quaternion.identity);
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Potato : BossBase
 {
-    private Animator anim;
     private int shootCount = 0;
 
     [SerializeField]
@@ -17,44 +16,72 @@ public class Potato : BossBase
     // Start is called before the first frame update
     void Start()
     {
-        anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         idleTime += Time.deltaTime;
-        Debug.Log(idleTime);
-        if(NowHP == 0)
-            this.anim.Play(DeadAnim);
-        
-        if(idleTime >= 3f)
+        if (NowHP == 0)
+            this.GetComponent<Animator>().Play(DeadAnim);
+        else if (NowHP / MaxHP < 0.5f)
         {
-            StartCoroutine(Shoot());
+            this.GetComponent<Animator>().speed = 1.5f;
+            if (idleTime >= 2.0f)
+            {
+                shoot();
+            }
         }
+        else
+            if (idleTime >= 3.0f)
+            {
+                shoot();
+            }
     }
-
-    IEnumerator Shoot()
+    private void initBullet()
     {
         if(shootCount < 3)
         {
-            Instantiate(defaultBullet,shoot_fx.transform.position,new Quaternion());
-            shoot_fx.GetComponent<Animator>().Play(EffectAnims[0]);
+            Instantiate(defaultBullet, shoot_fx.transform.position, new Quaternion());
             this.shootCount++;
-
-            if (NowHP / MaxHP > 0.5f)
-                yield return new WaitForSeconds(2.0f);
-            else
-                yield return new WaitForSeconds(1.0f);
         }
         else
         {
-            Instantiate (pinkBullet, shoot_fx.transform.position, new Quaternion());
-            shoot_fx.GetComponent<Animator>().Play(EffectAnims[0]);
+            Instantiate(pinkBullet, shoot_fx.transform.position, new Quaternion());
             this.shootCount = 0;
-            idleTime = 0;
+        }
 
-            yield break;
+        shoot_fx.GetComponent<Animator>().Play(EffectAnims[0]);
+    }
+    private void shoot()
+    {
+        if(shootTime == 0f)
+        {
+            Debug.Log(shootCount);
+            if (shootCount < 3)
+            {
+                this.GetComponent<Animator>().Play("veggie_potato_shoot");
+            }
+            else
+            {
+                this.GetComponent<Animator>().Play("veggie_potato_shoot");
+                idleTime = 0;
+            }
+        }
+
+        shootTime += Time.deltaTime;
+
+        if (NowHP / MaxHP > 0.5f)
+        {
+            if (shootTime > 1.5f)
+                shootTime = 0f;
+        }
+        else
+        {
+            if (shootTime > 1.0f)
+            {
+                shootTime = 0f;
+            }
         }
     }
 }

@@ -31,6 +31,12 @@ public class BookM : MonoBehaviour
     public GameObject page8_;
     public GameObject page9_;
     public GameObject page10_;
+
+    //사운드
+    public AudioSource NextPageSound;
+    public AudioSource DevilLaugh;
+    public AudioSource DevilLaugh2;
+    public AudioSource DevilKick;
     bool CanKey = false;
     int Bookmark = 0;//현재 페이지
     // Start is called before the first frame update
@@ -50,6 +56,7 @@ public class BookM : MonoBehaviour
         }
         if (CanKey)
         {
+            NextPageSound.Play();
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 Bookmark++;
@@ -86,6 +93,7 @@ public class BookM : MonoBehaviour
         }
         if (Page == 3)
         {
+            DevilLaugh.Play();
             page3.SetActive(true);
             page2_.SetActive(false);
             Invoke("Page3", 1.9f);
@@ -98,18 +106,21 @@ public class BookM : MonoBehaviour
         }
         if (Page == 5)
         {
+            
             page5.SetActive(true);
             page4_.SetActive(false);
             Invoke("Page5", 1.9f);
         }
         if (Page == 6)
         {
+            DevilLaugh2.Play();
             page6.SetActive(true);
             page5_.SetActive(false);
             Invoke("Page6", 1.9f);
         }
         if (Page == 7)
         {
+            
             page7.SetActive(true);
             page6_.SetActive(false);
             Invoke("Page7", 1.9f);
@@ -122,6 +133,7 @@ public class BookM : MonoBehaviour
         }
         if (Page == 9)
         {
+            DevilKick.Play();
             page9.SetActive(true);
             page8_.SetActive(false);
             Invoke("Page9", 1.9f);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RnGCamera : MonoBehaviour
@@ -10,7 +11,13 @@ public class RnGCamera : MonoBehaviour
     public float topLimit = 0.0f;
     public float bottomLimit = 0.0f;
 
-    public float movespeed = 0.01f;
+    public float movespeed = 0.02f;
+
+    // 다중 스크롤을 적용하기 위한 서브스크린
+    public GameObject backScreen;
+    public GameObject forwardScreen;
+
+    public GameObject landscape;
 
     public GameObject cameraPoint1;
     public GameObject cameraPoint2;
@@ -55,90 +62,316 @@ public class RnGCamera : MonoBehaviour
             Vector3 v3 = new Vector3(x, y, z);
             transform.position = v3;
 
+            // 서브 스크린 스크롤
+            if (backScreen != null)
+            {
+                y = backScreen.transform.position.y;
+                z = backScreen.transform.position.z;
+                Vector3 v = new Vector3(x / 4.0f, y, z);
+                backScreen.transform.position = v;
+            }
+
+            if (forwardScreen != null)
+            {
+                y = forwardScreen.transform.position.y;
+                z = forwardScreen.transform.position.z;
+                Vector3 v = new Vector3(x / 4.05f, y, z);
+                forwardScreen.transform.position = v;
+            }
+
+
             if (transform.position.x >= cameraPoint1.transform.position.x && transform.position.x < cameraPoint2.transform.position.x)
             {
-                if (topLimit <= 1.3f)
-                    topLimit += movespeed;
-                if (bottomLimit <= 1.3f)
-                    bottomLimit += movespeed;
+                landscape.SetActive(false);
+
+                if (topLimit != 1.3f)
+                {
+                    if (topLimit <= 1.3f)
+                    {
+                        topLimit += movespeed;
+                        if (topLimit >= 1.25f && topLimit <= 1.35f)
+                        {
+                            topLimit = 1.3f;
+                        }
+                    }                    
+                }
+                if (bottomLimit != 1.3f)
+                {
+                    if (bottomLimit <= 1.3f)
+                    {
+                        bottomLimit += movespeed;
+                        if (bottomLimit >= 1.25f && bottomLimit <= 1.35f)
+                        {
+                            bottomLimit = 1.3f;
+                        }
+                    }
+                }
+                    
             }
             else if (transform.position.x >= cameraPoint2.transform.position.x && transform.position.x < cameraPoint3.transform.position.x)
             {
-                if (topLimit > 0.1f)
-                    topLimit -= movespeed;
-                else if (topLimit < 0.1f)
-                    topLimit += movespeed;
+                landscape.SetActive(true);
+                if (topLimit != 0.1f)
+                {
+                    if (topLimit > 0.1f)
+                    {
+                        topLimit -= movespeed;
+                        if (topLimit >= 0.05f && topLimit <= 0.15f)
+                        {
+                            topLimit = 0.1f;
+                        }
 
-                if (bottomLimit > -0.1f)
-                    bottomLimit -= movespeed;
-                else if (bottomLimit < -0.1f)
-                    bottomLimit += movespeed;
+                    }
+                    else if (topLimit < 0.1f)
+                    {
+                        topLimit += movespeed;
+                        if (topLimit >= 0.05f && topLimit <= 0.15f)
+                        {
+                            topLimit = 0.1f;
+                        }
+                    }
+                }
+
+                if (bottomLimit != 0.1f)
+                {
+                    if (bottomLimit > 0.1f)
+                    {
+                        bottomLimit -= movespeed;
+                        if (bottomLimit >= 0.05f && bottomLimit <= 0.15f)
+                        {
+                            bottomLimit = 0.1f;
+                        }
+
+                    }
+                    else if (bottomLimit < 0.1f)
+                    {
+                        bottomLimit += movespeed;
+                        if (bottomLimit >= 0.05f && bottomLimit <= 0.15f)
+                        {
+                            bottomLimit = 0.1f;
+                        }
+                    }
+                }
             }
             else if (transform.position.x >= cameraPoint3.transform.position.x && transform.position.x < cameraPoint4.transform.position.x)
             {
-                if (topLimit > 0.6f)
-                    topLimit -= movespeed;
-                else if (topLimit < 0.6f)
-                    topLimit += movespeed;
+                if (topLimit != 1.5f)
+                {
+                    if (topLimit > 1.5f)
+                    {
+                        topLimit -= movespeed;
+                        if (topLimit >= 1.45f && topLimit <= 1.55f)
+                        {
+                            topLimit = 1.5f;
+                        }
 
-                if (bottomLimit > 0.6f)
-                    bottomLimit -= movespeed;
-                else if (bottomLimit < 0.6f)
-                    bottomLimit += movespeed;
+                    }
+                    else if (topLimit < 1.5f)
+                    {
+                        topLimit += movespeed;
+                        if (topLimit >= 1.45f && topLimit <= 1.55f)
+                        {
+                            topLimit = 1.5f;
+                        }
+                    }
+                }
+
+                if (bottomLimit != 1.5f)
+                {
+                    if (bottomLimit > 1.5f)
+                    {
+                        bottomLimit -= movespeed;
+                        if (bottomLimit >= 1.45f && bottomLimit <= 1.55f)
+                        {
+                            bottomLimit = 1.5f;
+                        }
+
+                    }
+                    else if (bottomLimit < 1.5f)
+                    {
+                        bottomLimit += movespeed;
+                        if (bottomLimit >= 1.45f && bottomLimit <= 1.55f)
+                        {
+                            bottomLimit = 1.5f;
+                        }
+                    }
+                }
             }
             else if (transform.position.x >= cameraPoint4.transform.position.x && transform.position.x < cameraPoint5.transform.position.x)
             {
-                if (topLimit > -1.2f)
-                    topLimit -= movespeed;
-                else if (topLimit < -1.2f)
-                    topLimit += movespeed;
+                if (topLimit != -1.2f)
+                {
+                    if (topLimit > -1.2f)
+                    {
+                        topLimit -= 0.03f;
+                        if (topLimit >= -1.25f && topLimit <= -1.15f)
+                        {
+                            topLimit = -1.2f;
+                        }
 
-                if (bottomLimit > -1.2f)
-                    bottomLimit -= movespeed;
-                else if (bottomLimit < -1.2f)
-                    bottomLimit += movespeed;
+                    }
+                    else if (topLimit < -1.2f)
+                    {
+                        topLimit += 0.03f;
+                        if (topLimit >= -1.25f && topLimit <= -1.15f)
+                        {
+                            topLimit = -1.2f;
+                        }
+                    }
+                }
+
+                if (bottomLimit != -1.2f)
+                {
+                    if (bottomLimit > -1.2f)
+                    {
+                        bottomLimit -= 0.03f;
+                        if (bottomLimit >= -1.25f && bottomLimit <= -1.15f)
+                        {
+                            bottomLimit = -1.2f;
+                        }
+
+                    }
+                    else if (bottomLimit < -1.2f)
+                    {
+                        bottomLimit += 0.03f;
+                        if (bottomLimit >= -1.25f && bottomLimit <= -1.15f)
+                        {
+                            bottomLimit = -1.2f;
+                        }
+                    }
+                }
             }
             else if (transform.position.x >= cameraPoint5.transform.position.x && transform.position.x < cameraPoint6.transform.position.x)
             {
-                if (topLimit > -1.7f)
-                    topLimit -= movespeed;
-                else if (topLimit < -1.7f)
-                    topLimit += movespeed;
+                movespeed = 0.01f;
+                if (topLimit != -1.7f)
+                {
+                    if (topLimit > -1.7f)
+                    {
+                        topLimit -= movespeed;
+                        if (topLimit >= -1.75f && topLimit <= -1.65f)
+                        {
+                            topLimit = -1.7f;
+                        }
 
-                if (bottomLimit > -1.7f)
-                    bottomLimit -= movespeed;
-                else if (bottomLimit < -1.7f)
-                    bottomLimit += movespeed;
+                    }
+                    else if (topLimit < -1.7f)
+                    {
+                        topLimit += movespeed;
+                        if (topLimit >= -1.75f && topLimit <= -1.65f)
+                        {
+                            topLimit = -1.7f;
+                        }
+                    }
+                }
+
+                if (bottomLimit != -1.7f)
+                {
+                    if (bottomLimit > -1.7f)
+                    {
+                        bottomLimit -= movespeed;
+                        if (bottomLimit >= -1.75f && bottomLimit <= -1.65f)
+                        {
+                            bottomLimit = -1.7f;
+                        }
+
+                    }
+                    else if (bottomLimit < -1.7f)
+                    {
+                        bottomLimit += movespeed;
+                        if (bottomLimit >= -1.75f && bottomLimit <= -1.65f)
+                        {
+                            bottomLimit = -1.7f;
+                        }
+                    }
+                }
             }
             else if (transform.position.x >= cameraPoint6.transform.position.x)
             {
-                if (topLimit > -2.5f)
-                    topLimit -= movespeed;
-                else if (topLimit < -2.5f)
-                    topLimit += movespeed;
+                if (topLimit != -2.5f)
+                {
+                    if (topLimit > -2.5f)
+                    {
+                        topLimit -= movespeed;
+                        if (topLimit >= -2.55f && topLimit <= -2.45f)
+                        {
+                            topLimit = -2.5f;
+                        }
 
-                if (bottomLimit > -2.5f)
-                    bottomLimit -= movespeed;
-                else if (bottomLimit < -2.5f)
-                    bottomLimit += movespeed;
+                    }
+                    else if (topLimit < -2.5f)
+                    {
+                        topLimit += movespeed;
+                        if (topLimit >= -2.55f && topLimit <= -2.45f)
+                        {
+                            topLimit = -2.5f;
+                        }
+                    }
+                }
+
+                if (bottomLimit != -2.5f)
+                {
+                    if (bottomLimit > -2.5f)
+                    {
+                        bottomLimit -= movespeed;
+                        if (bottomLimit >= -2.55f && bottomLimit <= -2.45f)
+                        {
+                            bottomLimit = -2.5f;
+                        }
+
+                    }
+                    else if (bottomLimit < -2.5f)
+                    {
+                        bottomLimit += movespeed;
+                        if (bottomLimit >= -2.55f && bottomLimit <= -2.45f)
+                        {
+                            bottomLimit = -2.5f;
+                        }
+                    }
+                }
             }
             else
             {
-                topLimit = 0.0f;
-                bottomLimit = 0.0f;
                 if (topLimit != 0.0f)
                 {
                     if (topLimit > 0.0f)
+                    {
                         topLimit -= movespeed;
+                        if (topLimit >= -0.05f && topLimit <= 0.05f)
+                        {
+                            topLimit = 0.0f;
+                        }
+
+                    }
                     else if (topLimit < 0.0f)
+                    {
                         topLimit += movespeed;
+                        if (topLimit >= -0.05f && topLimit <= 0.05f)
+                        {
+                            topLimit = 0.0f;
+                        }
+                    }
                 }
+
                 if (bottomLimit != 0.0f)
                 {
                     if (bottomLimit > 0.0f)
+                    {
                         bottomLimit -= movespeed;
+                        if (bottomLimit >= -0.05f && bottomLimit <= 0.05f)
+                        {
+                            bottomLimit = 0.0f;
+                        }
+
+                    }
                     else if (bottomLimit < 0.0f)
+                    {
                         bottomLimit += movespeed;
+                        if (bottomLimit >= -0.05f && bottomLimit <= 0.05f)
+                        {
+                            bottomLimit = 0.0f;
+                        }
+                    }
                 }
             }
         }

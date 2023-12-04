@@ -39,20 +39,27 @@ public class Blobmelt : EnemyController
 
     private void FixedUpdate()
     {
-        if (direction1 == "right")
+        if (RngManager.GameIsPaused)
         {
-            rbody.velocity = new Vector2(speed, rbody.velocity.y);
-            if (direction2 == "left")
-            {
-                animator.SetBool("turn", true);
-            }
+            rbody.velocity = new Vector2(0, 0);
         }
         else
         {
-            rbody.velocity = new Vector2(-speed, rbody.velocity.y);
-            if (direction2 == "right")
+            if (direction1 == "right")
             {
-                animator.SetBool("turn", true);
+                rbody.velocity = new Vector2(speed, rbody.velocity.y);
+                if (direction2 == "left")
+                {
+                    animator.SetBool("turn", true);
+                }
+            }
+            else
+            {
+                rbody.velocity = new Vector2(-speed, rbody.velocity.y);
+                if (direction2 == "right")
+                {
+                    animator.SetBool("turn", true);
+                }
             }
         }
     }

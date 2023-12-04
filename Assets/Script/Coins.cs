@@ -6,6 +6,8 @@ public class Coins : MonoBehaviour
 {
     Collider2D collider2d;
 
+    //int value = 1;
+
     private void Start()
     {
         collider2d = GetComponent<Collider2D>();

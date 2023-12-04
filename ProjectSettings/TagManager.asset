@@ -6,16 +6,20 @@ TagManager:
   tags:
   - Enemy
   - Damage
-  - Bullet
   - Pink
   - Coin
   - Ground
   - Object
+  - Enemydead
   - Wall
   - Turnwall
   - Goal
   - Dead
+<<<<<<< HEAD
   - Parry
+=======
+  - UI
+>>>>>>> 2ff4c544df1c09a6c9693de578bc8f12748c0fd5
   layers:
   - Default
   - TransparentFX
@@ -23,13 +27,18 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Ground
-  - Enemy
-  - Bullet
   - 
+<<<<<<< HEAD
   - PlayerDamaged
   - Parry
+=======
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+>>>>>>> 2ff4c544df1c09a6c9693de578bc8f12748c0fd5
   - 
   - 
   - 

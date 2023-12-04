@@ -3,6 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - Enemy
   - Damage
@@ -16,6 +17,9 @@ TagManager:
   - Goal
   - Dead
   - Parry
+=======
+  tags: []
+>>>>>>> 2f7475536e25e371f9b28a1b990580dc56caaef4
   layers:
   - Default
   - TransparentFX
@@ -23,13 +27,18 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Ground
-  - Enemy
-  - Bullet
   - 
+<<<<<<< HEAD
   - PlayerDamaged
   - Parry
+=======
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+>>>>>>> 2f7475536e25e371f9b28a1b990580dc56caaef4
   - 
   - 
   - 

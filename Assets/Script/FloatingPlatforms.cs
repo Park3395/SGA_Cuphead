@@ -28,6 +28,7 @@ public class FloatingPlatforms : MonoBehaviour
         perDY = moveY / (1.0f / timestep * times);
     }
 
+
     private void FixedUpdate()
     {
         if (isCanMove)
@@ -81,15 +82,6 @@ public class FloatingPlatforms : MonoBehaviour
                 }
                 isReverse = !isReverse;     // 현재 값 반전
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            // 접촉한 것이 플레이어일 경우 플랫폼 살짝 내리기
-                        
         }
     }
 }

@@ -13,11 +13,13 @@ public class LogoM : MonoBehaviour
     public GameObject IrisA_;
     public GameObject Title_Text;
 
+    public AudioSource LogoSound;
     bool CanKey = false;
-    // Start is called before the first frame update
+
     void Start()
     {
         Logo.SetActive(true);
+        Invoke("LogoSound_f", 3.2f);
     }
     void Update()
     {
@@ -28,6 +30,10 @@ public class LogoM : MonoBehaviour
             Title_Text.SetActive(false);
             Invoke("StartScene",3.1f);
         }
+    }
+    void LogoSound_f()
+    {
+        LogoSound.Play();
     }
     void LogoDelete()
     {

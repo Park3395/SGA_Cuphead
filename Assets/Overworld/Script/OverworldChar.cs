@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class OverworldChar : MonoBehaviour
 {
     int OpenRoadOn = 0;
+    //던전 클리어시 길 열림
     public GameObject OpenRoad;
     //씬 변경 여부확인
     public GameObject TitleCard;
@@ -44,6 +45,7 @@ public class OverworldChar : MonoBehaviour
     int Tag_Num = 0;//무엇과 상호 작용 중인가.
     public GameObject Wall;//던전클리어시 오픈
     //상점 스크립트 불러오기
+    public GameObject CoinEvent;
     public GameObject Shop_obj;
     //상점 관련
     int Shop_Num = -1;
@@ -101,7 +103,6 @@ public class OverworldChar : MonoBehaviour
 
     private void Awake()
     {
-        
         PlayerPrefs.SetInt("OpenTitle", 1);//타이틀을 한번이라도 열었는지 체크
         PlayerPrefs.Save();
         anim = GetComponent<Animator>();
@@ -117,6 +118,7 @@ public class OverworldChar : MonoBehaviour
     void Update()
     {
         Zkey.transform.position = new Vector3(transform.position.x, transform.position.y+1.0f, transform.position.z);
+        CoinEvent.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
         if (OpenRoadOn == 0 && Clear_Dungeon==5)
         {
             OpenRoadOn = 1;
@@ -231,22 +233,23 @@ public class OverworldChar : MonoBehaviour
             {
                 if (Tag_Num == 1)
                 {
-                    
-                    SceneManager.LoadScene("SampleSceneY");//집
+                    IrisOff.SetActive(true);
+                    IrisCloseSound.Play();
+                    Invoke("GoHome",1.5f);
                 }
                     
                 else if (Tag_Num == 2)
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
-                    SceneManager.LoadScene("TestScene");//던전
+                    Invoke("GoDungeon", 1.5f);
                 }
                     
                 else if (Tag_Num == 3)
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
-                    SceneManager.LoadScene("TestScene");//트리
+                    Invoke("GoTree", 1.5f);
                 }
                     
                 else if (Tag_Num == 4)
@@ -257,7 +260,7 @@ public class OverworldChar : MonoBehaviour
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
-                    SceneManager.LoadScene("TestScene");//농장
+                    Invoke("GoBotanic",1.5f);
                 }
                     
             }
@@ -394,8 +397,30 @@ public class OverworldChar : MonoBehaviour
                 dirVec = Vector3.right;
         }
     }
+    void GoHome()
+    {
+        SceneManager.LoadScene("Tutorial");//집
+    }
+    void GoDungeon()
+    {
+        SceneManager.LoadScene("RnGstage1");//던전
+    }
+    void GoTree()
+    {
+        SceneManager.LoadScene("Ruse of an Ooze");//트리
+    }
+    void GoBotanic()
+    {
+        SceneManager.LoadScene("Botanic Panic");//농장
+    }
     void CoinView()
     {
+        CoinEvent.SetActive(true);
+        Invoke("CoinViewOff", 1.0f);
+    }
+    void CoinViewOff()
+    {
+        CoinEvent.SetActive(false);
 
     }
     void Esc_Flag()

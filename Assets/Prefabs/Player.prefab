@@ -156,7 +156,8 @@ MonoBehaviour:
   dash: 50
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
+  onGround: 0
   downJump: 0
   stopAnime: PlayerIdle
   jumpAnime: PlayerJump

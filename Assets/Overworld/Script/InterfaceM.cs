@@ -13,13 +13,16 @@ public class InterfaceM : MonoBehaviour
     int UpCard_Front = 0;       //2초뒤 게이지가 쌓이고 있는앞에 카드 구분
     int UpCard = 0;             //UpCard번째 카드의 게이지가 쌓이는중
     int FirstCard = 0;          //현재 맨앞 카드 구분
-    //5개로 돌려쓰려 했으나 오류떠서 수를 늘리는 방향으로 함 Pshot 많이 쓰면 오류
-    //───────────────────────────목숨
+    //5
+    //───────────────────────개로 돌려쓰려 했으나 오류떠서 수를 늘리는 방향으로 함 Pshot 많이 쓰면 오류────목숨
     //PlayerPrefs로  목숨 갯수는 이후 가져옴.
-    public GameObject[] Life_Img = new GameObject[4];
-    int MaxLife = 3;
-    int Life = 3;
+    public GameObject[] Life_Img = new GameObject[5];
     
+    int MaxLife = 4;
+    int Life = 4;
+
+    int Spread = 0;//1이면 Tab가능하게
+    int Heart = 0;
     
     private void Start()
     {
@@ -28,22 +31,57 @@ public class InterfaceM : MonoBehaviour
         {
             dir[i] = new Vector3(Card[i].transform.position.x, Card[i].transform.position.y, Card[i].transform.position.z);
         }
+        //Heart 아이템을 들고있는지 들고 있다면 Spread/Heart는 1이됩니다.
+        if (PlayerPrefs.GetInt("SaveFileNum") == 1)
+        {
+            if (PlayerPrefs.GetInt("Spread1") == 1)
+                Spread = 1;
+            if (PlayerPrefs.GetInt("Heart1") == 1)
+                Heart = 1;
+        }
+        else if (PlayerPrefs.GetInt("SaveFileNum") == 2)
+        {
+            if (PlayerPrefs.GetInt("Spread2") == 1)
+                Spread = 1;
+            if (PlayerPrefs.GetInt("Heart2") == 1)
+                Heart = 1;
+        }
+        else if (PlayerPrefs.GetInt("SaveFileNum") == 3)
+        {
+            if (PlayerPrefs.GetInt("Spread3") == 1)
+                Spread = 1;
+            if (PlayerPrefs.GetInt("Heart3") == 1)
+                Heart = 1;
+        }
+        //하트 아이템이 있을시 최대 목숨이랑 현제4라이프 되있던게 까이게된다. 
+        if(Heart==1)
+        {
+            Life_Img[Life + 1].SetActive(false);
+            MaxLife -= 1;
+            Life -= 1;
+        }
     }
-    //버튼 3개
+
+
+    //버튼 3개────────────────────────────────
     public void OnClicked()//히트
     {
-        GageUp();//테스트 에서는 클릭시 GageUp()이 발동하게 되있으나 이를 히트시 1회 발동하도록 옴기면 된됩니다.
+        GageUp();//타겟을 1회 맞출때 불러옴
     }
-    public void OnClickedPShot()//카드 사용
+    public void OnClickedPShot()//카드 사용 
     {
-        PShot();
+        PShot();//ex샷시 발동
     }
     public void OnClickedDamaged()//라이프-1
     {
-        if (Life>0)
-            Life--;
-        Life_Show();
+        Life_Show();//맞았을 때
     }
+    //────────────────────────────────────
+
+
+
+
+
     public void OnClickedReset()//라이프 최대치
     {
         Life = MaxLife;
@@ -103,44 +141,34 @@ public class InterfaceM : MonoBehaviour
             else
                 dir1[i] = new Vector3(Card[i - 1].transform.position.x, Card[i].transform.position.y, Card[i].transform.position.z);
         }
-        Card[0].transform.position = dir1[0];
-        Card[1].transform.position = dir1[1];
-        Card[2].transform.position = dir1[2];
-        Card[3].transform.position = dir1[3];
-        Card[4].transform.position = dir1[4];
-        Card[5].transform.position = dir1[5];
-        Card[6].transform.position = dir1[6];
-        Card[7].transform.position = dir1[7];
-        Card[8].transform.position = dir1[8];
-        Card[9].transform.position = dir1[9];
-        Card[10].transform.position = dir1[10];
-        Card[11].transform.position = dir1[11];
-        Card[12].transform.position = dir1[12];
-        Card[13].transform.position = dir1[13];
+        for (int i=0; i<14;i++)
+            Card[i].transform.position = dir1[i];
 
         Card[FirstCard].transform.position = dir[13];
         Card_Reverse2();
         FirstCard++;
-        
     }
     
     //──────────────────────────목숨 함수
-    void Life_Show()//데미지를 입은 후 현재 라이프를 보여줌
+    public void Life_Show()//데미지를 입은 후 현재 라이프를 보여줌
     {
-        if(0<=Life)//현재 목숨값+1의 오브젝트를 숨김
+        if (Life > 0)
         {
-            if(Life<MaxLife)
-                Life_Img[Life+1].SetActive(false);
+            Life--;
+            Life_Img[Life + 1].SetActive(false);
+            
+            if (Life == 1)//라이프가 1로 갈때 애니메이션
+            {
+                Life_Img[1].GetComponent<HpM>().HP1Anim_True();
+                Invoke("HP1AnimeFalse", 1.5f);
+            }
         }
-        if(Life==0)//라이프가 1로 갈때 애니메이션
-        {
-            Life_Img[0].GetComponent<HpM>().HP1Anim_True();
-            Invoke("HP1AnimeFalse", 1.5f);
-        }
+        else//사망 상태
+            Life_Img[1].SetActive(false);
     }
     public void HP1AnimeFalse()//Hp1의 깜빡임을 끄는 함수
     {
-        Life_Img[0].GetComponent<HpM>().HP1Anim_False();
+        Life_Img[1].GetComponent<HpM>().HP1Anim_False();
     }
     
 }

@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     //근데 싱글톤 패턴이 뭐였냐
     private void Awake()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
         if (PlayerController.instance == null)
         {
             PlayerController.instance = this;
@@ -530,7 +530,7 @@ public class PlayerController : MonoBehaviour
     public void Parry()
     {
         isParry = true;
-        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = true;
 
         Debug.Log("패링");
 
@@ -539,7 +539,7 @@ public class PlayerController : MonoBehaviour
     public void ParryEnd()
     {
         isParry = false;
-        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
         Debug.Log("패링 끝");
     }
     //클래스 변수에다가 public bool isParry = false; 추가

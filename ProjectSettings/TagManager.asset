@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Door
+  - Descend
+  - OutLine
+  - Parry
+  - Enemy
+  - Damage
+  - Bullet
+  - Pink
+  - SuperBeam
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -11,14 +22,14 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Ground
+  - Enemy
+  - Bullet
+  - EnemyBullet
+  - PlayerDamaged
+  - Parry
+  - SuperBeam
   - 
   - 
   - 

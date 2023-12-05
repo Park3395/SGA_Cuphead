@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class OverworldChar : MonoBehaviour
 {
     int OpenRoadOn = 0;
+    //던전 클리어시 길 열림
     public GameObject OpenRoad;
     //씬 변경 여부확인
     public GameObject TitleCard;
@@ -44,6 +45,7 @@ public class OverworldChar : MonoBehaviour
     int Tag_Num = 0;//무엇과 상호 작용 중인가.
     public GameObject Wall;//던전클리어시 오픈
     //상점 스크립트 불러오기
+    public GameObject CoinEvent;
     public GameObject Shop_obj;
     //상점 관련
     int Shop_Num = -1;
@@ -65,7 +67,8 @@ public class OverworldChar : MonoBehaviour
     Vector3 dirVec;//캐릭터가 보는방향
     //카메라
     public GameObject CameraObj;
-
+    //UI
+    public GameObject CoinUI;
     //임시 텍스트 구현
     public GameObject Text1_1;
     public GameObject Text1_2;
@@ -96,17 +99,21 @@ public class OverworldChar : MonoBehaviour
     public AudioSource ItemMove;
     public AudioSource Cantbuy;
     
+    //장비 관련 오브젝트
+    public GameObject[] EquipM = new GameObject [7];//Hierarchy의 배치순서대로
+    bool ShiftFlag = false;
+    
 
     //GameObject scanObject;
 
     private void Awake()
     {
-        
         PlayerPrefs.SetInt("OpenTitle", 1);//타이틀을 한번이라도 열었는지 체크
         PlayerPrefs.Save();
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         load();
+        Save();
     }
     private void Start()
     {
@@ -116,7 +123,9 @@ public class OverworldChar : MonoBehaviour
     }
     void Update()
     {
+        
         Zkey.transform.position = new Vector3(transform.position.x, transform.position.y+1.0f, transform.position.z);
+        CoinEvent.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
         if (OpenRoadOn == 0 && Clear_Dungeon==5)
         {
             OpenRoadOn = 1;
@@ -136,8 +145,44 @@ public class OverworldChar : MonoBehaviour
             //상점 컨트롤러
             Shop_Control();
         }
-        //ESC메뉴
-        if(isHorizonMove==true&& Input.GetKeyDown(KeyCode.Escape)&& EscFlag==false)
+        //EQUIT 이벤트
+        if (isHorizonMove == true && Input.GetKeyDown(KeyCode.LeftShift)&& ShiftFlag==false)
+        {
+            isHorizonMove = false;
+            ShiftFlag = true;
+            h = 0;
+            v = 0;
+            Invoke("Shift_Flag", 0.3f);
+            Bgm.volume = 0.2f;
+            Bridge1.volume = 0.3f;
+            Bridge2.volume = 0.3f;
+            EquipM[0].SetActive(true);
+            int result = Random.Range(-5, 5); //메뉴 각도 랜덤
+            EquipM[0].transform.position = new Vector3(transform.position.x, transform.position.y + -.30f, transform.position.z);
+            EquipM[0].transform.rotation = Quaternion.Euler(new Vector3(0, 0, result));
+            Tag_Num = 14;//쉬프트 키보드 이벤트
+            if (Heart == 1)
+                EquipM[5].SetActive(true);
+            else if (Spread==1)
+                EquipM[4].SetActive(true);
+        }
+        //EQUIT 종료
+        if (isHorizonMove == false && Input.GetKeyDown(KeyCode.Escape) && Tag_Num == 14)
+        {
+            Bgm.volume = 0.6f;
+            Bridge1.volume = 1.0f;
+            Bridge2.volume = 1.0f;
+            EquipM[0].SetActive(false);
+            EquipM[0].transform.position = new Vector3(transform.position.x, transform.position.y + -.100f, transform.position.z);
+            isHorizonMove = true;
+            Tag_Num = 1;
+                EquipM[5].SetActive(false);
+                EquipM[4].SetActive(false);
+            ShiftFlag = true;//종료시 esc이벤트가 열리는거 방지
+            Invoke("Shift_Flag", 0.4f);
+        }
+            //ESC메뉴
+        if (isHorizonMove==true&& Input.GetKeyDown(KeyCode.Escape)&& EscFlag==false&& ShiftFlag ==false)
         {
             Bgm.volume = 0.2f;
             Bridge1.volume = 0.3f;
@@ -146,7 +191,7 @@ public class OverworldChar : MonoBehaviour
             h = 0; v = 0;
             isHorizonMove = false;
             EscMenu.SetActive(true);
-            Tag_Num = 13;
+            Tag_Num = 13;//Esc 키보드 이벤트
         }
         if(Tag_Num==13)
         {
@@ -211,6 +256,7 @@ public class OverworldChar : MonoBehaviour
             Save();
             Application.Quit();
         }
+        
         //ESC-ESC 이벤트
         if (Tag_Num==13&&Input.GetKeyDown(KeyCode.Escape)&& EscFlag==true)
         {
@@ -223,6 +269,7 @@ public class OverworldChar : MonoBehaviour
             Tag_Num = 0;
             EscFlag = false;
         }
+        
         //씬 전환을 물어보는 상태
         if (Title_flag==10)
         {
@@ -231,22 +278,23 @@ public class OverworldChar : MonoBehaviour
             {
                 if (Tag_Num == 1)
                 {
-                    
-                    SceneManager.LoadScene("SampleSceneY");//집
+                    IrisOff.SetActive(true);
+                    IrisCloseSound.Play();
+                    Invoke("GoHome",1.5f);
                 }
                     
                 else if (Tag_Num == 2)
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
-                    SceneManager.LoadScene("TestScene");//던전
+                    Invoke("GoDungeon", 1.5f);
                 }
                     
                 else if (Tag_Num == 3)
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
-                    SceneManager.LoadScene("TestScene");//트리
+                    Invoke("GoTree", 1.5f);
                 }
                     
                 else if (Tag_Num == 4)
@@ -257,7 +305,7 @@ public class OverworldChar : MonoBehaviour
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
-                    SceneManager.LoadScene("TestScene");//농장
+                    Invoke("GoBotanic",1.5f);
                 }
                     
             }
@@ -394,13 +442,39 @@ public class OverworldChar : MonoBehaviour
                 dirVec = Vector3.right;
         }
     }
+    void GoHome()
+    {
+        SceneManager.LoadScene("Tutorial");//집
+    }
+    void GoDungeon()
+    {
+        SceneManager.LoadScene("RnGstage1");//던전
+    }
+    void GoTree()
+    {
+        SceneManager.LoadScene("Ruse of an Ooze");//트리
+    }
+    void GoBotanic()
+    {
+        SceneManager.LoadScene("Botanic Panic");//농장
+    }
     void CoinView()
     {
+        CoinEvent.SetActive(true);
+        Invoke("CoinViewOff", 1.0f);
+    }
+    void CoinViewOff()
+    {
+        CoinEvent.SetActive(false);
 
     }
     void Esc_Flag()
     {
         EscFlag = true;
+    }
+    void Shift_Flag()
+    {
+        ShiftFlag = false;
     }
     void FixedUpdate()
     {
@@ -712,6 +786,7 @@ public class OverworldChar : MonoBehaviour
          * 만약 Clear_Dungeon1이 클리어 됬다면 해당 세이브 파일일 경우(SaveFileNum==1이 첫번째 세이브파일 )Clear_Dungeon1는 5점Clear_Tree1=6점Clear_Botanic1=7점을 주면 되는데
          * 그렇게 되면 오버월드 씬이 열렸을때 load()를하면서 깃발이 열립니다.
          */
+        
         Clear_Score = Clear_Dungeon + Clear_Tree + Clear_Botanic;
         if (PlayerPrefs.GetInt("SaveFileNum") == 1)
         {
@@ -744,17 +819,23 @@ public class OverworldChar : MonoBehaviour
             PlayerPrefs.SetInt("Coins3", Coins);
         }
         PlayerPrefs.Save();
+        CoinUI.GetComponent<CoinUI>().CoinViewF();
     }
     void load()
     {
+
         if (PlayerPrefs.GetInt("SaveFileNum")==1)
         {
             if (!PlayerPrefs.HasKey("Clear_Dungeon1"))
                 return;
             else
+            {
                 this.transform.position = new Vector3(15.0f, -1.0f, 0.0f);//세이브 파일이 있으면 시작위치 변경
+                
+            }
             if (PlayerPrefs.GetInt("Clear_Dungeon1")==5)
             {
+                Wall.SetActive(false);
                 Flag_Dungeon.SetActive(true);
                 Clear_Dungeon = 5;
             }
@@ -841,6 +922,7 @@ public class OverworldChar : MonoBehaviour
             }
             Coins = PlayerPrefs.GetInt("Coins3");
         }
+        CoinUI.GetComponent<CoinUI>().CoinViewF();
     }
 }
 

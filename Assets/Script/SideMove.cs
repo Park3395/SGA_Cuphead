@@ -20,7 +20,7 @@ public class SideMove : MonoBehaviour
         if(isRight)
         {
 
-            this.transform.Translate(new Vector3(speed, 0, 0));
+            this.transform.Translate(new Vector3(speed*Time.deltaTime, 0, 0));
 
             if (this.transform.position.x > 15)
             {
@@ -29,7 +29,7 @@ public class SideMove : MonoBehaviour
         }
         else
         {
-            this.transform.Translate(new Vector3(-speed, 0, 0));
+            this.transform.Translate(new Vector3(-speed*Time.deltaTime, 0, 0));
 
             if(this.transform.position.x < -15)
             this.transform.position = new Vector3(15, this.transform.position.y, this.transform.position.z);

@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7728251105750226539}
   - component: {fileID: 5844356530220683876}
   - component: {fileID: 1224502562355628936}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: veggie_onion_tear_drop
-  m_TagString: Damage
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: 2
-  speed: 0.01
+  speed: 3
   target: {fileID: 0}
   deadAnim: bullet_dead
 --- !u!58 &1224502562355628936

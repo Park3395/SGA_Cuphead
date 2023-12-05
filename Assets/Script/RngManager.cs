@@ -28,6 +28,8 @@ public class RngManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerController.hp = 3;
+
         timeCnt = GetComponent<TimeController>();
         AudioSource sound = GetComponent<AudioSource>();
         if(sound != null)
@@ -71,6 +73,9 @@ public class RngManager : MonoBehaviour
         }
         else if (PlayerController.gameState == "gameover")
         {
+            gameOver.SetActive(true);
+            Invoke("activePanel", 1.7f);
+
             PlayerController.gameState = "gameend";
 
             AudioSource sound = GetComponent<AudioSource>();
@@ -79,17 +84,18 @@ public class RngManager : MonoBehaviour
                 sound.Stop();
             }
 
-            gameOver.SetActive(true);
-            Invoke("activePanel", 1.7f);
+            
+            
         }
         else if (PlayerController.gameState == "playing")
         {
-            if(!GameIsPaused)
+            if (!GameIsPaused)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     panel.SetActive(true);
                     GameIsPaused = true;
+                    Time.timeScale = 0;
                 }
             }
             else
@@ -98,6 +104,7 @@ public class RngManager : MonoBehaviour
                 {
                     panel.SetActive(false);
                     GameIsPaused = false;
+                    Time.timeScale = 1;
                 }
             }
         }
@@ -106,12 +113,10 @@ public class RngManager : MonoBehaviour
     void activePanel()
     {
         panel.SetActive(true);
-        PlayerController.gameState = "gameend";
     }
 
     public void LoadScene()
     {
         SceneManager.LoadScene(sceneName);
-        PlayerController.gameState = "gameend";
     }
 }

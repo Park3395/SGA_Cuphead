@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1804949917682853710}
   - component: {fileID: 6066016961613979858}
   - component: {fileID: 1223295544860397974}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pinkspiker
-  m_TagString: Untagged
+  m_TagString: Parry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

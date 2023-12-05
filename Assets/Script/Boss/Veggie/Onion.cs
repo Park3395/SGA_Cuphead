@@ -21,6 +21,7 @@ public class Onion : BossBase
     private float camleft;
     private float camright;
     private float height;
+    private bool isAttack = false;
 
     void activeDirt()
     {
@@ -34,6 +35,15 @@ public class Onion : BossBase
         }
     }
 
+    void attackOn()
+    {
+        isAttack = true;
+    }
+
+    void activeDamage()
+    {
+        this.GetComponent<CircleCollider2D>().enabled = true;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +52,7 @@ public class Onion : BossBase
         camright = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, 0, 0)).x;
         height = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0)).y;
         this.shootTime = -1f;
+        this.GetComponent<CircleCollider2D>().enabled = false;
     }
 
     // Update is called once per frame
@@ -52,22 +63,25 @@ public class Onion : BossBase
         if(this.MaxHP != this.NowHP)
             animator.SetBool("attack",true);
 
-        if (NowHP == 0)
+        if (NowHP <= 0)
         {
             for (int i = 0; i < tears.Length; i++)
             {
                 tears[i].SetActive(false);
             }
+            this.GetComponent<CircleCollider2D>().enabled = false;
             animator.Play(DeadAnim);
+            explode.SetActive(true);
         }
 
         if (this.idleTime > 15.0f && animator.GetBool("attack") == false)
         {
+            this.GetComponent<CircleCollider2D>().enabled = false;
             animator.Play(peaceleave);
         }
 
 
-        if (animator.GetBool("attack") == true && this.NowHP != 0)
+        if (isAttack && this.NowHP > 0)
         {
             if(shootTime > 1.0f)
             {

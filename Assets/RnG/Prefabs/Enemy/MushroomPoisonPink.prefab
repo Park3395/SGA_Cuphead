@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 9047654994033047378}
   - component: {fileID: 1563773057802184377}
   - component: {fileID: -4825207418497939426}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: MushroomPoisonPink
-  m_TagString: Untagged
+  m_TagString: Parry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

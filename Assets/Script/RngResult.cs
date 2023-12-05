@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RngResult : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class RngResult : MonoBehaviour
     public GameObject goldText;         // °ñµå
     public GameObject gradeText;        // µî±Þ
 
+    public string sceneName = "";       // ´ÙÀ½ ¾À
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,8 @@ public class RngResult : MonoBehaviour
         goldText.GetComponent<Text>().text = RngManager.goldScore.ToString("0") + "/5";
         gradeText.GetComponent<Text>().text = "?";
         Grade();
+
+        Invoke("LoadScene", 8);
     }
 
     // Update is called once per frame
@@ -45,5 +49,10 @@ public class RngResult : MonoBehaviour
             gradeText.GetComponent<Text>().text = "C";
         else                                                                                            // ±× ¿Ü¿£ D
             gradeText.GetComponent<Text>().text = "D";
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

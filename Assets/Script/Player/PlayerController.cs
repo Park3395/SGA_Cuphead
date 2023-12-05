@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     bool inIvincible = false;        //무적 상태
     public static int coin = 0;
 
-   // public AudioSource audioSource;
+    public AudioSource audioSource;
 
     //public AudioClip audioClip;
     public AudioClip PlayerHit;     //피격시 오디오

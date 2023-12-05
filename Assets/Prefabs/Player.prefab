@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 4922371770595415269}
   - component: {fileID: 542246744371506725}
   - component: {fileID: 4048127956137839153}
-  - component: {fileID: 3083463005113428798}
   - component: {fileID: 9156955309071383175}
   - component: {fileID: 8803591556524537408}
   - component: {fileID: 5610386604758864986}
   - component: {fileID: 5101734153684379673}
   - component: {fileID: -926179774173743844}
+  - component: {fileID: 7138600298701939573}
+  - component: {fileID: 4808813181217863814}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -140,51 +141,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3083463005113428798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4768427360697396801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 656791d46b4fdc548afa3b997f8a49c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  jump: 8.5
-  dash: 50
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  onGround: 0
-  downJump: 0
-  stopAnime: PlayerIdle
-  jumpAnime: PlayerJump
-  runAnime: PlayerRun
-  aimupAnime: PlayerAimUp
-  shootstraightAnime: PlayerShootStraight
-  shootupAnime: PlayerShootUp
-  runshootstraightAnime: PlayerRunShootStraight
-  duckAnime: PlayerDuck
-  duckidleAnime: PlayerDuckIdle
-  duckshootAnime: PlayerDuckShoot
-  peashooterspawnanime: PeaShooterSpawn
-  rundiagonlaupAnime: PlayerRunDiagonalUp
-  dashAnime: PlayerDash
-  dustAnime: PlayerDust
-  hitAnime: PlayerHit
-  deadAnime: PlayerDead
-  parryAnime: PlayerParry
-  parrysucceedAnime: PlayerParrySucceed
-  superbeamAnime: PlayerSuperBeam
-  angleZ: -90
-  isParry: 0
-  isParrySucced: 0
-  isSuperBeam: 0
-  PlayerHit: {fileID: 0}
-  PlayerParry: {fileID: 0}
 --- !u!70 &9156955309071383175
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -238,8 +194,8 @@ MonoBehaviour:
   Spread: {fileID: 671846155895431572, guid: daaf3db47acdfa8469576b9a6662e491, type: 3}
   equipPeashooter: 0
   equipSpread: 0
-  Peashootershoot: {fileID: 0}
-  Spreadshoot: {fileID: 0}
+  Peashootershoot: {fileID: 8300000, guid: 754fde715cbac4e4ba965de61715c852, type: 3}
+  Spreadshoot: {fileID: 8300000, guid: 6ad12634fffdc674698c1cf2ce2aebe6, type: 3}
 --- !u!114 &5610386604758864986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,3 +258,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   superbeamPrefeb: {fileID: 2103681957599815143, guid: 00edec539ab3315439e4638c4ec1af96, type: 3}
+--- !u!114 &7138600298701939573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4768427360697396801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cb2fd8bd7d5234eb75d09204931278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  jump: 8.5
+  dash: 50
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  onGround: 0
+  downJump: 0
+  stopAnime: PlayerIdle
+  jumpAnime: PlayerJump
+  runAnime: PlayerRun
+  aimupAnime: PlayerAimUp
+  shootstraightAnime: PlayerShootStraight
+  shootupAnime: PlayerShootUp
+  runshootstraightAnime: PlayerRunShootStraight
+  duckAnime: PlayerDuck
+  duckidleAnime: PlayerDuckIdle
+  duckshootAnime: PlayerDuckShoot
+  peashooterspawnanime: PeaShooterSpawn
+  rundiagonlaupAnime: PlayerRunDiagonalUp
+  dashAnime: PlayerDash
+  dustAnime: PlayerDust
+  hitAnime: PlayerHit
+  deadAnime: PlayerDead
+  parryAnime: PlayerParry
+  parrysucceedAnime: PlayerParrySucceed
+  superbeamAnime: PlayerSuperBeam
+  angleZ: -90
+  isParry: 0
+  isParrySucced: 0
+  isSuperBeam: 0
+  PlayerHit: {fileID: 8300000, guid: 08673a3c688a47e49829ef96946db000, type: 3}
+  PlayerParry: {fileID: 8300000, guid: e064be1182b1643408d5bc196988d21e, type: 3}
+--- !u!81 &4808813181217863814
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4768427360697396801}
+  m_Enabled: 1

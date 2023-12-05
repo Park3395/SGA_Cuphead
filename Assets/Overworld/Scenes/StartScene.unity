@@ -1330,6 +1330,7 @@ MonoBehaviour:
   OptionsSellect: {fileID: 575644330}
   Reddy: {fileID: 2118518952}
   StartSellect: {fileID: 37899201}
+  IntroSound: {fileID: 1553725863}
 --- !u!1 &300773651
 GameObject:
   m_ObjectHideFlags: 0

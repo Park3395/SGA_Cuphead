@@ -52,19 +52,6 @@ public class VeggieSceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isStop && Input.GetKeyDown(KeyCode.Escape))
-        {
-            isStop = true;
-            activeOverUI();
-            Time.timeScale = 0;
-        }
-        else if(isStop && Input.GetKeyDown(KeyCode.Escape))
-        {
-            isStop = false;
-            overUI.SetActive(false);
-            Time.timeScale = 1;
-        }
-
         if(bossState == 0 && msgCard.activeSelf == false)
         {
             StartCoroutine(initPotato());

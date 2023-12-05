@@ -11718,9 +11718,9 @@ Transform:
   - {fileID: 17116443}
   - {fileID: 2136411231}
   - {fileID: 659434555}
+  - {fileID: 1276120435}
   - {fileID: 554858882}
   - {fileID: 819912635}
-  - {fileID: 1276120435}
   - {fileID: 476513654}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15333,7 +15333,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 106
+  m_SortingOrder: 151
   m_Sprite: {fileID: 2064379639, guid: be7f30a539ff9f34baa64c0af976015d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -17251,6 +17251,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7366532283325867836, guid: 0d3df9c05c7e14446b7d3217043e0471, type: 3}
+      propertyPath: m_SortingOrder
+      value: 151
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17264,6 +17268,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1809947617}
     m_Modifications:
+    - target: {fileID: 5067525586235931501, guid: 80ea6d02f2c7d9544b425d92b5d9b14d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 151
+      objectReference: {fileID: 0}
     - target: {fileID: 7295574148669803391, guid: 80ea6d02f2c7d9544b425d92b5d9b14d, type: 3}
       propertyPath: m_Name
       value: irisA_Close

@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float deleteTime = 3.0f;
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, deleteTime);
+        Destroy(gameObject, 3.0f);
     }
 
     // Update is called once per frame
@@ -19,18 +18,30 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (NewBehaviourScript.instance.equipPeashooter && collision.gameObject.tag == "Enemy")
         {
             GetComponent<Animator>().Play("PeaShooterDead");
             Destroy(gameObject, 0.25f);
         }
-        if(collision.gameObject.tag == "Ground")
+        if(NewBehaviourScript.instance.equipPeashooter && collision.gameObject.tag == "Ground")
         {
             GetComponent<Animator>().Play("PeaShooterDead");
             Destroy(gameObject, 0.25f);
 
         }
-        
+        if (NewBehaviourScript.instance.equipSpread && collision.gameObject.tag == "Enemy")
+        {
+            GetComponent<Animator>().Play("SpreadDead");
+            Destroy(gameObject, 0.25f);
+        }
+
+        if (NewBehaviourScript.instance.equipSpread && collision.gameObject.tag == "Ground")
+        {
+            GetComponent<Animator>().Play("SpreadDead");
+            Destroy(gameObject, 0.25f);
+
+        }
+
     }
 
    

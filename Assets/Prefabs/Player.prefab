@@ -157,11 +157,7 @@ MonoBehaviour:
   dash: 50
   groundLayer:
     serializedVersion: 2
-<<<<<<< HEAD
-    m_Bits: 0
-=======
     m_Bits: 128
->>>>>>> e47397093cd50d2c24c82e437dd19887df60d123
   onGround: 0
   downJump: 0
   stopAnime: PlayerIdle

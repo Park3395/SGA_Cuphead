@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,7 +10,7 @@ public class PlayerController : MonoBehaviour
     float axisV = 0.0f;
     public float speed = 4.0f;         //이동속도, 3.0f -> 4.0f로 변경
 
-    public float jump = 7.0f;          //점프력
+    public float jump = 8.5f;          //점프력 7.0f -> 8.5f로 변경
     public float dash = 50.0f;          //대쉬력
     public LayerMask groundLayer;       //착지 가능한 레이어
     bool goJump = false;               //점프키 입력상태
@@ -36,6 +37,9 @@ public class PlayerController : MonoBehaviour
     public string dustAnime = "PlayerDust"; //대쉬할 때 사라지는 애니메이션
     public string hitAnime = "PlayerHit";   //맞았을 때 애니메이션
     public string deadAnime = "PlayerDead"; //죽었을 때 애니메이션
+    public string parryAnime = "PlayerParry"; //패링 애니메이션
+    public string parrysucceedAnime = "PlayerParrySucceed"; //패링 성공 애니메이션
+    public string superbeamAnime = "PlayerSuperBeam";       //슈퍼빔(필살기)애니메이션
 
     string nowAnime = "";
     string oldAnime = "";
@@ -48,10 +52,22 @@ public class PlayerController : MonoBehaviour
     bool inDamage = false;
     public static PlayerController instance; //싱글톤 패턴에 쓴다?
     public bool isParry = false;      //패링 상태
+    public bool isParrySucced = false; //패링 성공여부
+    public bool isSuperBeam = false;  //슈퍼빔(필살기)사용여부
+    bool inIvincible = false;        //무적 상태
+    public static int coin = 0;
+
+   // public AudioSource audioSource;
+
+    //public AudioClip audioClip;
+    public AudioClip PlayerHit;     //피격시 오디오
+    public AudioClip PlayerParry;     //피격시 오디오
+
     //근데 싱글톤 패턴이 뭐였냐
+
     private void Awake()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        
         if (PlayerController.instance == null)
         {
             PlayerController.instance = this;
@@ -60,6 +76,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource sound = GetComponent<AudioSource>();
+        GetComponent<CircleCollider2D>().enabled = false;
         // RigidBody 2D 컴포넌트 정보 가져오기
         rbody = this.GetComponent<Rigidbody2D>();
 
@@ -311,8 +329,18 @@ public class PlayerController : MonoBehaviour
         }*/
         if (onGround == false && Input.GetKeyDown(KeyCode.Space))
         {
+            //nowAnime = parryAnime;
+            //animator.Play(nowAnime);
             Parry();
             Invoke("ParryEnd", 0.25f);
+        }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            SuperBeam();
+            Invincible();
+            Invoke("SuperBeamEnd", 3.0f);
+            Invoke("InvincibleEnd", 3.0f);
+            
         }
 
     }
@@ -382,7 +410,7 @@ public class PlayerController : MonoBehaviour
             oldAnime = nowAnime;
             animator.Play(nowAnime); //애니메이션 재생 
         }
-
+       
 
     }
 
@@ -462,12 +490,13 @@ public class PlayerController : MonoBehaviour
             Debug.Log("게임 클리어");
             gameState = "gameclear";
         }
-
         if (collision.gameObject.tag == "Parry")
         {
             Debug.Log("패링 감지");
+            ParrySucceed();
             Vector2 jumpPw = new Vector2(0, jump);
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);
+            Invoke("ParrySucceedEnd", 0.25f);
 
         }
     }
@@ -477,7 +506,7 @@ public class PlayerController : MonoBehaviour
     {
         if (gameState == "playing")
         {
-            gameObject.layer = 11; //PlayerDamaged 레이어로 바꿔서 피격판정 없앤다.
+            Invincible();
             Debug.Log("겟 데미지 함수 발동");
             hp--;
             PlayerPrefs.SetInt("PlayerHP", hp); //현재 hp 갱신
@@ -486,9 +515,30 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("체력이 0보다 클 때 겟 데미지 함수 발동");
                 //이동 중지
                 rbody.velocity = new Vector2(0, 0);
+                //어떻게 해야 제대로 된 피격 판정이 뜰까
+                /* 
+                Vector2 attackedVelocity = Vector2.zero;
+                if(enemy.gameObject.transform.position.x>transform.position.x)
+                {
+                    attackedVelocity = new Vector2(-12f, 0f);
+                }
+                else 
+                {
+                    attackedVelocity = new Vector2(12f, 0f);
+                }
+                rbody.AddForce(attackedVelocity, ForceMode2D.Impulse);
+                */
                 animator.Play(hitAnime);
                 inDamage = true;
-                Invoke("DamageEnd", 1f);
+                Invoke("DamageEnd", 1.0f);
+                Invoke("InvincibleEnd", 3f);
+                AudioSource sound = GetComponent<AudioSource>();
+                if (sound != null)
+                {
+                    sound.PlayOneShot(PlayerHit);
+                }
+
+
             }
             else
             {
@@ -501,8 +551,23 @@ public class PlayerController : MonoBehaviour
     void DamageEnd()
     {
         inDamage = false;
+        
+    }
+
+    
+    void Invincible()
+    {
+        inIvincible = true;
+        gameObject.layer = 11; //플레이어 데미지 레이어로 변환
+        Debug.Log("무적 발동");
+    }
+
+    void InvincibleEnd()
+    {
+        inIvincible = false;
         gameObject.layer = 6; //플레이어 레이어로 변환
-        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        Debug.Log("무적 끝");
+        
     }
 
     //함수 호출은 되는데 왜 함수 적용이 안됨?
@@ -530,7 +595,14 @@ public class PlayerController : MonoBehaviour
     public void Parry()
     {
         isParry = true;
-        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = true;
+        GetComponent<Animator>().Play("PlayerParry");
+        AudioSource sound = GetComponent<AudioSource>();
+        if (sound != null)
+        {
+            sound.PlayOneShot(PlayerParry);
+        }
+
 
         Debug.Log("패링");
 
@@ -539,9 +611,33 @@ public class PlayerController : MonoBehaviour
     public void ParryEnd()
     {
         isParry = false;
-        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
         Debug.Log("패링 끝");
+    }
+
+    public void ParrySucceed()
+    {
+        isParrySucced = true;
+        GetComponent<Animator>().Play("PlayerParrySucceed");
+        Debug.Log("패링 성공");
+    }
+    public void ParrySucceedEnd()
+    {
+        isParrySucced = false;
+        Debug.Log("패링 성공 끝");
     }
     //클래스 변수에다가 public bool isParry = false; 추가
     //BoxCollider2D를 추가해서 Exclude Layer에 Everything 체크 후 Parry 체크해서 Parry에만 반응하게
+    public void SuperBeam()
+    {
+        isSuperBeam = true;
+        GetComponent<Animator>().Play("PlayerSuperBeam");
+        Debug.Log("슈퍼빔 발사");
+    }
+
+    public void SuperBeamEnd()
+    {
+        isSuperBeam = false;
+        Debug.Log("슈퍼빔 끝");
+    }
 }

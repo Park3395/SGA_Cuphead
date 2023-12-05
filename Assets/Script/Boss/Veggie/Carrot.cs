@@ -11,22 +11,13 @@ public class Carrot : BossBase
     private GameObject defaultBack;
     [SerializeField]
     private GameObject eyeBullet;
-
-    [SerializeField]
-    private GameObject shootEyes;
     [SerializeField]
     private GameObject eyePoint;
-
 
     private Animator animator;
     private float camleft;
     private float camright;
     private float bottom;
-
-    void activeEyes()
-    {
-        this.shootEyes.SetActive(true);
-    }
 
     // Start is called before the first frame update
     void Start()

@@ -18,8 +18,8 @@ public class InterfaceM : MonoBehaviour
     //PlayerPrefs로  목숨 갯수는 이후 가져옴.
     public GameObject[] Life_Img = new GameObject[5];
     
-    int MaxLife = 4;
-    int Life = 4;
+    int MaxLife = 3;
+    int Life = 3;
 
     int Spread = 0;//1이면 Tab가능하게
     int Heart = 0;
@@ -60,6 +60,13 @@ public class InterfaceM : MonoBehaviour
             MaxLife -= 1;
             Life -= 1;
         }
+    }
+
+    private void Update()
+    {
+        Life = PlayerController.hp;
+
+        Life_Show();
     }
 
 
@@ -154,7 +161,6 @@ public class InterfaceM : MonoBehaviour
     {
         if (Life > 0)
         {
-            Life--;
             Life_Img[Life + 1].SetActive(false);
             
             if (Life == 1)//라이프가 1로 갈때 애니메이션

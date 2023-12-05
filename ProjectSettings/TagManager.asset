@@ -11,6 +11,8 @@ TagManager:
   - Coin
   - Ground
   - Parry
+  - NoHitEnemy
+  - SceneManager
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - EnemyBullet
   - PlayerDamaged
   - Parry
-  - 
+  - NoHitEnemy
   - 
   - 
   - 

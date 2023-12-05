@@ -12,11 +12,34 @@ public class VeggieSceneManager : MonoBehaviour
     private GameObject Onion;
     [SerializeField]
     private GameObject Carrot;
+    [SerializeField]
+    private GameObject Player;
+    [SerializeField]
+    private GameObject overUI;
+    [SerializeField]
+    private GameObject[] overtext;
 
     private int bossState = 0;
     private string introMsg = "Ready";
     private string clearMsg = "Clear";
-    private string goverMsg = "GameOver";
+    private string goverMsg = "Gameover";
+
+    public void clear()
+    {
+        msgCard.SetActive(true);
+        msgCard.GetComponent<Animator>().Play(clearMsg);
+    }
+
+    public void activeOverUI()
+    {
+        overUI.SetActive(true);
+        if(Potato != null)
+            overtext[0].SetActive(true);
+        else if(Onion != null)
+            overtext[1].SetActive(true);
+        else if(Carrot != null)
+            overtext[2].SetActive(true);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +64,12 @@ public class VeggieSceneManager : MonoBehaviour
         if(bossState == 2 && Onion == null)
         {
             StartCoroutine(initCarrot());
+        }
+
+        if(Player == null)
+        {
+            msgCard.SetActive(true);
+            msgCard.GetComponent<Animator>().Play(goverMsg);
         }
     }
 

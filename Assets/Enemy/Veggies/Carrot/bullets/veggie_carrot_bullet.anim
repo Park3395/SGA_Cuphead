@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: veggie_carrot_bullet_a
+  m_Name: veggie_carrot_bullet
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -26,6 +26,12 @@ AnimationClip:
       value: {fileID: 21300000, guid: 6d362947b6c72a3489448e2fd030d356, type: 3}
     - time: 0.16666667
       value: {fileID: 21300000, guid: 1cdc6abdd3bd96142bdff377cb271740, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 5de475a92707d7548a47741ff76de322, type: 3}
+    - time: 0.33333334
+      value: {fileID: 21300000, guid: 98a6f903e080df045bf31ac69fb78184, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21300000, guid: 470eda106ae77da42892ce4dc1e6f4f3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -51,12 +57,15 @@ AnimationClip:
     - {fileID: 21300000, guid: 1c1dc6bcaad65e34786c4c71318b77f5, type: 3}
     - {fileID: 21300000, guid: 6d362947b6c72a3489448e2fd030d356, type: 3}
     - {fileID: 21300000, guid: 1cdc6abdd3bd96142bdff377cb271740, type: 3}
+    - {fileID: 21300000, guid: 5de475a92707d7548a47741ff76de322, type: 3}
+    - {fileID: 21300000, guid: 98a6f903e080df045bf31ac69fb78184, type: 3}
+    - {fileID: 21300000, guid: 470eda106ae77da42892ce4dc1e6f4f3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

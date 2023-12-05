@@ -531,7 +531,6 @@ public class PlayerController : MonoBehaviour
     {
         isParry = true;
         GetComponent<CircleCollider2D>().enabled = true;
-
         Debug.Log("ÆÐ¸µ");
 
     }

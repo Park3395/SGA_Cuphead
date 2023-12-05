@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6876154144084080993}
   - component: {fileID: 4379706060058932624}
   - component: {fileID: 986494301153215548}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: veggie_potato_shot_pink
-  m_TagString: Pink
+  m_TagString: Parry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: 0
-  speed: 0.01
+  speed: 3
   target: {fileID: 7234241205195762543, guid: 82019d1ab36e648408d82b968fa64ae8, type: 3}
   deadAnim: veggie_potato_shoot_pink_destroy
 --- !u!58 &986494301153215548

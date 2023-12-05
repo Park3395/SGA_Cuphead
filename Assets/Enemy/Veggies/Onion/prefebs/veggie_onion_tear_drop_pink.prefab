@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6803718864408955397}
   - component: {fileID: 7964207204841998546}
   - component: {fileID: 7306664355645588859}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: veggie_onion_tear_drop_pink
-  m_TagString: Pink
+  m_TagString: Parry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: 2
-  speed: 0.01
+  speed: 3
   target: {fileID: 0}
   deadAnim: veggie_onion_pink_dead
 --- !u!58 &7306664355645588859

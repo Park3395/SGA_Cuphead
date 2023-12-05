@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Damage
+  - Bullet
+  - Pink
+  - Coin
+  - Ground
+  - Parry
+  - NoHitEnemy
+  - SceneManager
   layers:
   - Default
   - TransparentFX
@@ -11,14 +20,14 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Ground
+  - Enemy
+  - Bullet
+  - EnemyBullet
+  - PlayerDamaged
+  - Parry
+  - NoHitEnemy
   - 
   - 
   - 

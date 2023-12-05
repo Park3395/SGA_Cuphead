@@ -869,6 +869,7 @@ MonoBehaviour:
   DevilLaugh: {fileID: 351991131}
   DevilLaugh2: {fileID: 1654200304}
   DevilKick: {fileID: 225352961}
+  BookBgm: {fileID: 1615726348}
 --- !u!1 &505895039
 GameObject:
   m_ObjectHideFlags: 0

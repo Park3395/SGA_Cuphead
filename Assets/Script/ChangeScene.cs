@@ -10,6 +10,7 @@ public class ChangeScene : MonoBehaviour
     public void Load()      // 다음 씬 불러오기
     {
         SceneManager.LoadScene(sceneName);
+        Time.timeScale = 1;
     }
 
     public void Quitgame()      // 게임 종료

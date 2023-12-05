@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     //public AudioClip audioClip;
     public AudioClip PlayerHit;     //피격시 오디오
     public AudioClip PlayerParry;     //피격시 오디오
+    public AudioClip PlayerDead;     //사망시 오디오
 
     //근데 싱글톤 패턴이 뭐였냐
 
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioSource sound = GetComponent<AudioSource>();
+        AudioSource audioSource = GetComponent<AudioSource>();
         GetComponent<CircleCollider2D>().enabled = false;
         // RigidBody 2D 컴포넌트 정보 가져오기
         rbody = this.GetComponent<Rigidbody2D>();
@@ -506,6 +507,7 @@ public class PlayerController : MonoBehaviour
         if (gameState == "playing")
         {
             Invincible();
+            audioSource.PlayOneShot(PlayerHit);
             Debug.Log("겟 데미지 함수 발동");
             hp--;
             PlayerPrefs.SetInt("PlayerHP", hp); //현재 hp 갱신
@@ -531,12 +533,7 @@ public class PlayerController : MonoBehaviour
                 inDamage = true;
                 Invoke("DamageEnd", 1.0f);
                 Invoke("InvincibleEnd", 3f);
-                AudioSource sound = GetComponent<AudioSource>();
-                if (sound != null)
-                {
-                    sound.PlayOneShot(PlayerHit);
-                }
-
+                
 
             }
             else
@@ -573,6 +570,7 @@ public class PlayerController : MonoBehaviour
     void GameOver()
     {
         Debug.Log("게임오버");
+        audioSource.PlayOneShot(PlayerDead);
         //게임오버로 만들고
         gameState = "gameover";
         GetComponent<CapsuleCollider2D>().enabled = false; //캡슐 콜라이더를 서클 콜라이더로 적용해놓고 안된다고 하고 있었네 ㅋㅋ
@@ -596,11 +594,8 @@ public class PlayerController : MonoBehaviour
         isParry = true;
         GetComponent<CircleCollider2D>().enabled = true;
         GetComponent<Animator>().Play("PlayerParry");
-        AudioSource sound = GetComponent<AudioSource>();
-        if (sound != null)
-        {
-            sound.PlayOneShot(PlayerParry);
-        }
+
+        audioSource.PlayOneShot(PlayerParry);
 
 
         Debug.Log("패링");

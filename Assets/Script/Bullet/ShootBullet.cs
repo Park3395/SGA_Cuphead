@@ -16,8 +16,10 @@ public class NewBehaviourScript : MonoBehaviour
     bool changeBullet = false;
     GameObject spawnBullet;
     public static NewBehaviourScript instance;
+    public AudioSource audioSource;
     public AudioClip Peashootershoot;
     public AudioClip Spreadshoot;
+
 
     //싱글톤 패턴 별로 안 쓰고 싶었는데
     private void Awake()
@@ -32,6 +34,8 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource audioSource = GetComponent<AudioSource>();
+
         equipPeashooter = true;
     }
 
@@ -85,15 +89,10 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if(equipPeashooter&&isAttack == false)
         {
+            audioSource.PlayOneShot(Peashootershoot);
             isAttack = true;
             PlayerController playerCnt = GetComponent<PlayerController>();
             float angleZ = playerCnt.angleZ;
-            AudioSource sound = GetComponent<AudioSource>();
-            if (sound != null)
-            {
-                sound.PlayOneShot(Peashootershoot);
-            }
-
             //총알이 캐릭터 방향으로 회전
             Quaternion r = Quaternion.Euler(0, 0, angleZ);
             //총알 생성
@@ -128,12 +127,9 @@ public class NewBehaviourScript : MonoBehaviour
         
         if (equipSpread&&isAttack == false)
         {
+            audioSource.PlayOneShot(Spreadshoot);
             isAttack = true;
-            AudioSource sound = GetComponent<AudioSource>();
-            if (sound != null)
-            {
-                sound.PlayOneShot(Spreadshoot);
-            }
+            
             PlayerController playerCnt = GetComponent<PlayerController>();
             float angleZ = playerCnt.angleZ;
             bool Onground = playerCnt.onGround;

@@ -3,7 +3,12 @@ guid: 72fffc4001971b14392d4ab1dced5c34
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - peashooterPrefab: {instanceID: 0}
+  - Spread: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - Peashootershoot: {fileID: 8300000, guid: 6ad12634fffdc674698c1cf2ce2aebe6, type: 3}
+  - Spreadshoot: {fileID: 8300000, guid: 754fde715cbac4e4ba965de61715c852, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

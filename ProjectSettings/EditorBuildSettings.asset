@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Overworld/Scenes/TestScene.unity
     guid: 7290558e4e4db0e4e8950bcd9de90976
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleSceneY.unity
     guid: b065a7f49dc75ef47b602780ac64703a
   - enabled: 1

@@ -29,29 +29,22 @@ public class Flowergrunt : EnemyController
 
     private void FixedUpdate()
     {
-        if (RngManager.GameIsPaused)
+        if (direction1 == "right")
         {
-            rbody.velocity = new Vector2(0, 0);
+            rbody.velocity = new Vector2(speed, rbody.velocity.y);
+            if (direction2 == "left")
+            {
+                animator.SetBool("turn", true);
+            }
         }
         else
         {
-            if (direction1 == "right")
+            rbody.velocity = new Vector2(-speed, rbody.velocity.y);
+            if (direction2 == "right")
             {
-                rbody.velocity = new Vector2(speed, rbody.velocity.y);
-                if (direction2 == "left")
-                {
-                    animator.SetBool("turn", true);
-                }
+                animator.SetBool("turn", true);
             }
-            else
-            {
-                rbody.velocity = new Vector2(-speed, rbody.velocity.y);
-                if (direction2 == "right")
-                {
-                    animator.SetBool("turn", true);
-                }
-            }
-        }        
+        }
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)

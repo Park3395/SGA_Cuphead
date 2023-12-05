@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         gameState = "playing";
 
         //HP 불러오기
-        hp = PlayerPrefs.GetInt("PlayerHP");
+        //hp = PlayerPrefs.GetInt("PlayerHP");
 
     }
 

@@ -29,19 +29,12 @@ public class Chomper : EnemyController
     // Update is called once per frame
     protected override void Update()
     {
-        if (RngManager.GameIsPaused)
-        {
-            rbody.velocity = new Vector2(0, 0);
-        }
-        else
-        {
-            currTime += Time.deltaTime;
+        currTime += Time.deltaTime;
 
-            if (currTime > destroytime)
-            {
-                Destroy(gameObject);
-                currTime = 0.0f;
-            }
+        if (currTime > destroytime)
+        {
+            Destroy(gameObject);
+            currTime = 0.0f;
         }
 
         //if (PlayerController.gameState != "playing")

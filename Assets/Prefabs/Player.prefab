@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8803591556524537408}
   - component: {fileID: 5610386604758864986}
   - component: {fileID: 5101734153684379673}
+  - component: {fileID: -8787951676187694839}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  jump: 7
+  jump: 8.5
   dash: 50
   groundLayer:
     serializedVersion: 2
@@ -176,8 +177,15 @@ MonoBehaviour:
   dustAnime: PlayerDust
   hitAnime: PlayerHit
   deadAnime: PlayerDead
+  parryAnime: PlayerParry
+  parrysucceedAnime: PlayerParrySucceed
+  superbeamAnime: PlayerSuperBeam
   angleZ: -90
   isParry: 0
+  isParrySucced: 0
+  isSuperBeam: 0
+  PlayerHit: {fileID: 0}
+  PlayerParry: {fileID: 0}
 --- !u!70 &9156955309071383175
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -193,7 +201,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4087
+    m_Bits: 0
   m_LayerOverridePriority: 1
   m_ForceSendLayers:
     serializedVersion: 2
@@ -229,6 +237,10 @@ MonoBehaviour:
   shootdelay: 0.1
   peashooterPrefab: {fileID: 6620933106818605848, guid: 47219e3f909037548b5c0751e2dad89a, type: 3}
   Spread: {fileID: 671846155895431572, guid: daaf3db47acdfa8469576b9a6662e491, type: 3}
+  equipPeashooter: 0
+  equipSpread: 0
+  Peashootershoot: {fileID: 0}
+  Spreadshoot: {fileID: 0}
 --- !u!114 &5610386604758864986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +290,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.005420089}
   serializedVersion: 2
   m_Radius: 0.899663
---- !u!1 &5363662576228337226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4768427360697396801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6578f5621c3f3324196eb19ba6556a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
@@ -10,39 +11,88 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject peashooterPrefab; //장난감 총(기본 총)
     public GameObject Spread;           //확산탄
     bool isAttack = false;
+    public bool equipPeashooter = false;
+    public bool equipSpread = false;
+    bool changeBullet = false;
     GameObject spawnBullet;
+    public static NewBehaviourScript instance;
+    public AudioClip Peashootershoot;
+    public AudioClip Spreadshoot;
 
-    
+    //싱글톤 패턴 별로 안 쓰고 싶었는데
+    private void Awake()
+    {
+
+        if (NewBehaviourScript.instance == null)
+        {
+            NewBehaviourScript.instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        equipPeashooter = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKey(KeyCode.Z))
+        //장난감 총 발사
+        if (equipPeashooter && Input.GetKey(KeyCode.Z))
         {
             Attack();
-        }*/
+        }
 
-        if (Input.GetKey(KeyCode.Z))
+        //확산탄 발사
+        if (equipSpread&&Input.GetKey(KeyCode.Z))
         {
             SpreadAttack();
+        }
+        //무기 교체
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            ChangeBullet();
+            changeBullet = true;
+            
         }
         
     }
 
+    public void ChangeBullet()
+    {
+       
+        if(equipPeashooter && changeBullet)
+        {
+            Debug.Log("확산탄 활성화");
+            equipPeashooter = false;
+            equipSpread = true;
+            changeBullet = false;
+        }
+        if (equipSpread && changeBullet)
+        {
+            Debug.Log("장난감총 활성화");
+            equipSpread = false;
+            equipPeashooter = true;
+            changeBullet = false;
+        }
+    }
+
+   
+
     //공격함수
     public void Attack()
     {
-        if(isAttack == false)
+        if(equipPeashooter&&isAttack == false)
         {
             isAttack = true;
             PlayerController playerCnt = GetComponent<PlayerController>();
             float angleZ = playerCnt.angleZ;
+            AudioSource sound = GetComponent<AudioSource>();
+            if (sound != null)
+            {
+                sound.PlayOneShot(Peashootershoot);
+            }
 
             //총알이 캐릭터 방향으로 회전
             Quaternion r = Quaternion.Euler(0, 0, angleZ);
@@ -76,9 +126,14 @@ public class NewBehaviourScript : MonoBehaviour
     public void SpreadAttack()
     {
         
-        if (isAttack == false)
+        if (equipSpread&&isAttack == false)
         {
             isAttack = true;
+            AudioSource sound = GetComponent<AudioSource>();
+            if (sound != null)
+            {
+                sound.PlayOneShot(Spreadshoot);
+            }
             PlayerController playerCnt = GetComponent<PlayerController>();
             float angleZ = playerCnt.angleZ;
             bool Onground = playerCnt.onGround;

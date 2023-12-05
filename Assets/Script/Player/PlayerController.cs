@@ -1,43 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rbody;
-    float axisH = 0.0f;                //ÁÂ¿ì ¹æÇâÅ° ÀÔ·Â
+    float axisH = 0.0f;                //ì¢Œìš° ë°©í–¥í‚¤ ì…ë ¥
     float axisV = 0.0f;
-    public float speed = 4.0f;         //ÀÌµ¿¼Óµµ, 3.0f -> 4.0f·Î º¯°æ
+    public float speed = 4.0f;         //ì´ë™ì†ë„, 3.0f -> 4.0fë¡œ ë³€ê²½
 
-    public float jump = 7.0f;          //Á¡ÇÁ·Â
-    public float dash = 50.0f;          //´ë½¬·Â
-    public LayerMask groundLayer;       //ÂøÁö °¡´ÉÇÑ ·¹ÀÌ¾î
-    bool goJump = false;               //Á¡ÇÁÅ° ÀÔ·Â»óÅÂ
-    public bool onGround = false;             //Áö¸é°ú Á¢ÃË»óÅÂ
-    bool goDash = false;               //´ë½¬ ÀÔ·Â »óÅÂ
-    public bool downJump = false;             //¾Æ·¡ Á¡ÇÁ
+    public float jump = 8.5f;          //ì í”„ë ¥ 7.0f -> 8.5fë¡œ ë³€ê²½
+    public float dash = 50.0f;          //ëŒ€ì‰¬ë ¥
+    public LayerMask groundLayer;       //ì°©ì§€ ê°€ëŠ¥í•œ ë ˆì´ì–´
+    bool goJump = false;               //ì í”„í‚¤ ì…ë ¥ìƒíƒœ
+    public bool onGround = false;             //ì§€ë©´ê³¼ ì ‘ì´‰ìƒíƒœ
+    bool goDash = false;               //ëŒ€ì‰¬ ì…ë ¥ ìƒíƒœ
+    public bool downJump = false;             //ì•„ë˜ ì í”„
 
 
-    //¾Ö´Ï¸ŞÀÌÅÍ
+    //ì• ë‹ˆë©”ì´í„°
     Animator animator;
-    public string stopAnime = "PlayerIdle"; //°¡¸¸È÷ ÀÖÀ» ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string jumpAnime = "PlayerJump"; //Á¡ÇÁÇÒ ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string runAnime = "PlayerRun";   //¿òÁ÷ÀÏ ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string aimupAnime = "PlayerAimUp"; //À§¸¦ º¼ ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string shootstraightAnime = "PlayerShootStraight"; //Á÷¼±¹æÇâ ¹ß»ç ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string shootupAnime = "PlayerShootUp"; //À­¹æÇâ ¹ß»ç ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string runshootstraightAnime = "PlayerRunShootStraight"; //´Ş¸®¸é¼­ Á÷¼±¹æÇâ ¹ß»ç ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string duckAnime = "PlayerDuck"; //¾Æ·¡¹æÇâÅ°¸¦ ´­·¶À» ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string duckidleAnime = "PlayerDuckIdle";//¾Æ·¡¹æÇâÅ°¸¦ °è¼Ó ´©¸£°í ÀÖÀ» ¶§ÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string duckshootAnime = "PlayerDuckShoot"; //¼ö±×¸° »óÅÂ¿¡¼­ ¹ß»çÇÒ ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string peashooterspawnanime = "PeaShooterSpawn"; //Àå³­°¨ ÃÑ ¹ß»çµÉ ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string rundiagonlaupAnime = "PlayerRunDiagonalUp"; //¿òÁ÷ÀÌ¸é¼­ ´ë°¢¼± Á¶ÁØÇÒ¶§³ª ´ë°¢¼± ¹ß»çÇÒ ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
+    public string stopAnime = "PlayerIdle"; //ê°€ë§Œíˆ ìˆì„ ë•Œ ì• ë‹ˆë©”ì´ì…˜
+    public string jumpAnime = "PlayerJump"; //ì í”„í•  ë•Œ ì• ë‹ˆë©”ì´ì…˜
+    public string runAnime = "PlayerRun";   //ì›€ì§ì¼ ë•Œ ì• ë‹ˆë©”ì´ì…˜
+    public string aimupAnime = "PlayerAimUp"; //ìœ„ë¥¼ ë³¼ ë•Œ ì• ë‹ˆë©”ì´ì…˜
+    public string shootstraightAnime = "PlayerShootStraight"; //ì§ì„ ë°©í–¥ ë°œì‚¬ ì• ë‹ˆë©”ì´ì…˜
+    public string shootupAnime = "PlayerShootUp"; //ìœ—ë°©í–¥ ë°œì‚¬ ì• ë‹ˆë©”ì´ì…˜
+    public string runshootstraightAnime = "PlayerRunShootStraight"; //ë‹¬ë¦¬ë©´ì„œ ì§ì„ ë°©í–¥ ë°œì‚¬ ì• ë‹ˆë©”ì´ì…˜
+    public string duckAnime = "PlayerDuck"; //ì•„ë˜ë°©í–¥í‚¤ë¥¼ ëˆŒë €ì„ ë•Œ ì• ë‹ˆë©”ì´ì…˜
+    public string duckidleAnime = "PlayerDuckIdle";//ì•„ë˜ë°©í–¥í‚¤ë¥¼ ê³„ì† ëˆ„ë¥´ê³  ìˆì„ ë•Œì˜ ì• ë‹ˆë©”ì´ì…˜
+    public string duckshootAnime = "PlayerDuckShoot"; //ìˆ˜ê·¸ë¦° ìƒíƒœì—ì„œ ë°œì‚¬í•  ë•Œ ì• ë‹ˆë©”ì´ì…˜
+    public string peashooterspawnanime = "PeaShooterSpawn"; //ì¥ë‚œê° ì´ ë°œì‚¬ë  ë•Œ ì• ë‹ˆë©”ì´ì…˜
+    public string rundiagonlaupAnime = "PlayerRunDiagonalUp"; //ì›€ì§ì´ë©´ì„œ ëŒ€ê°ì„  ì¡°ì¤€í• ë•Œë‚˜ ëŒ€ê°ì„  ë°œì‚¬í•  ë•Œ ì• ë‹ˆë©”ì´ì…˜
     public string dashAnime = "PlayerDash";
-    public string dustAnime = "PlayerDust"; //´ë½¬ÇÒ ¶§ »ç¶óÁö´Â ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string hitAnime = "PlayerHit";   //¸Â¾ÒÀ» ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string deadAnime = "PlayerDead"; //Á×¾úÀ» ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string parryAnime = "PlayerParry"; //ÆĞ¸µ ¾Ö´Ï¸ŞÀÌ¼Ç
-    public string parrysucceedAnime = "PlayerParrySucceed";
+    public string dustAnime = "PlayerDust"; //ëŒ€ì‰¬í•  ë•Œ ì‚¬ë¼ì§€ëŠ” ì• ë‹ˆë©”ì´ì…˜
+    public string hitAnime = "PlayerHit";   //ë§ì•˜ì„ ë•Œ ì• ë‹ˆë©”ì´ì…˜
+    public string deadAnime = "PlayerDead"; //ì£½ì—ˆì„ ë•Œ ì• ë‹ˆë©”ì´ì…˜
+    public string parryAnime = "PlayerParry"; //íŒ¨ë§ ì• ë‹ˆë©”ì´ì…˜
+    public string parrysucceedAnime = "PlayerParrySucceed"; //íŒ¨ë§ ì„±ê³µ ì• ë‹ˆë©”ì´ì…˜
+    public string superbeamAnime = "PlayerSuperBeam";       //ìŠˆí¼ë¹”(í•„ì‚´ê¸°)ì• ë‹ˆë©”ì´ì…˜
 
     string nowAnime = "";
     string oldAnime = "";
@@ -45,13 +47,23 @@ public class PlayerController : MonoBehaviour
     bool isMoving = false;
 
     public static string gameState = "playing";
-    public float angleZ = -90.0f; //È¸Àü
+    public float angleZ = -90.0f; //íšŒì „
     public static int hp = 3;
     bool inDamage = false;
-    public static PlayerController instance; //½Ì±ÛÅæ ÆĞÅÏ¿¡ ¾´´Ù?
-    public bool isParry = false;      //ÆĞ¸µ »óÅÂ
-    public bool isParrySucced = false; //ÆĞ¸µ ¼º°ø¿©ºÎ
-    //±Ùµ¥ ½Ì±ÛÅæ ÆĞÅÏÀÌ ¹¹¿´³Ä
+    public static PlayerController instance; //ì‹±ê¸€í†¤ íŒ¨í„´ì— ì“´ë‹¤?
+    public bool isParry = false;      //íŒ¨ë§ ìƒíƒœ
+    public bool isParrySucced = false; //íŒ¨ë§ ì„±ê³µì—¬ë¶€
+    public bool isSuperBeam = false;  //ìŠˆí¼ë¹”(í•„ì‚´ê¸°)ì‚¬ìš©ì—¬ë¶€
+    bool inIvincible = false;        //ë¬´ì  ìƒíƒœ
+    public static int coin = 0;
+
+   // public AudioSource audioSource;
+
+    //public AudioClip audioClip;
+    public AudioClip PlayerHit;     //í”¼ê²©ì‹œ ì˜¤ë””ì˜¤
+    public AudioClip PlayerParry;     //í”¼ê²©ì‹œ ì˜¤ë””ì˜¤
+
+    //ê·¼ë° ì‹±ê¸€í†¤ íŒ¨í„´ì´ ë­ì˜€ëƒ
 
     private void Awake()
     {
@@ -64,8 +76,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource sound = GetComponent<AudioSource>();
         GetComponent<CircleCollider2D>().enabled = false;
-        // RigidBody 2D ÄÄÆ÷³ÍÆ® Á¤º¸ °¡Á®¿À±â
+        // RigidBody 2D ì»´í¬ë„ŒíŠ¸ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
         rbody = this.GetComponent<Rigidbody2D>();
 
 
@@ -73,16 +86,16 @@ public class PlayerController : MonoBehaviour
         nowAnime = stopAnime;
         oldAnime = stopAnime;
 
-        //°ÔÀÓ »óÅÂ(ÇÃ·¹ÀÌ Áß)
+        //ê²Œì„ ìƒíƒœ(í”Œë ˆì´ ì¤‘)
         gameState = "playing";
 
-        //HP ºÒ·¯¿À±â
+        //HP ë¶ˆëŸ¬ì˜¤ê¸°
         hp = PlayerPrefs.GetInt("PlayerHP");
 
     }
 
     // Update is called once per frame
-    // GetKeyDownÀ» GetKey·Î ¹Ù²Ù´Â°Ô ¸ÂÀ»¼öµµ
+    // GetKeyDownì„ GetKeyë¡œ ë°”ê¾¸ëŠ”ê²Œ ë§ì„ìˆ˜ë„
     void Update()
     {
         if (gameState != "playing" || inDamage)
@@ -91,53 +104,53 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        //¼öÆò ¹æÇâ ÀÔ·Â ->GetKeyDownÀ¸·Î ¸ğµÎ ¹Ù²Ù´Â °Ô ³ªÀ»¼öµµ
+        //ìˆ˜í‰ ë°©í–¥ ì…ë ¥ ->GetKeyDownìœ¼ë¡œ ëª¨ë‘ ë°”ê¾¸ëŠ” ê²Œ ë‚˜ì„ìˆ˜ë„
         if (isMoving == false)
         {
             axisH = Input.GetAxisRaw("Horizontal");
             axisV = Input.GetAxisRaw("Vertical");
         }
-        //Å° ÀÔ·ÂÀ» ÅëÇØ ÀÌµ¿°¢µµ¸¦ ±¸ÇÏ±â
+        //í‚¤ ì…ë ¥ì„ í†µí•´ ì´ë™ê°ë„ë¥¼ êµ¬í•˜ê¸°
         Vector2 fromPt = transform.position;
         Vector2 toPt = new Vector2(fromPt.x + axisH, fromPt.y + axisV);
         angleZ = GetAngle(fromPt, toPt);
 
         //Input.GetKeyDown(KeySetting.Keys(KeyAction. ......)
 
-        //Ä³¸¯ÅÍ ¹æÇâ Á¶Àı
+        //ìºë¦­í„° ë°©í–¥ ì¡°ì ˆ
         if (Input.GetKeyDown(KeyCode.RightArrow) && onGround)
         {
-            //¿À¸¥ÂÊ ÀÌµ¿
-            Debug.Log("¿À¸¥ÂÊ ÀÌµ¿");
+            //ì˜¤ë¥¸ìª½ ì´ë™
+            Debug.Log("ì˜¤ë¥¸ìª½ ì´ë™");
             transform.localScale = new Vector2(1, 1);
-            //³ª´Â 8¹æÇâ ¹ß»çº¸´Ü 8¹æÇâ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸¸µé·Á°í Çß´Âµ¥ ¿Ö 8¹æÇâ ¹ß»ç°¡ µÊ?
+            //ë‚˜ëŠ” 8ë°©í–¥ ë°œì‚¬ë³´ë‹¨ 8ë°©í–¥ ì• ë‹ˆë©”ì´ì…˜ì„ ë§Œë“¤ë ¤ê³  í–ˆëŠ”ë° ì™œ 8ë°©í–¥ ë°œì‚¬ê°€ ë¨?
 
         }
         if (Input.GetKeyUp(KeyCode.RightArrow) && onGround)
         {
-            Debug.Log("¿À¸¥ÂÊ ÀÌµ¿Å° ¶À");
+            Debug.Log("ì˜¤ë¥¸ìª½ ì´ë™í‚¤ ë—Œ");
             nowAnime = stopAnime;
             animator.Play(nowAnime);
         }
 
         if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow) && onGround)
         {
-            // ¿ì´ë°¢ ¹æÇâ
-            Debug.Log("¿ì´ë°¢");
+            // ìš°ëŒ€ê° ë°©í–¥
+            Debug.Log("ìš°ëŒ€ê°");
             nowAnime = rundiagonlaupAnime;
             animator.Play(nowAnime);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) && onGround)
         {
-            //¿ŞÂÊ ÀÌµ¿
-            Debug.Log("¿ŞÂÊ ÀÌµ¿");
-            transform.localScale = new Vector2(-1, 1); //ÁÂ¿ì ¹İÀü
+            //ì™¼ìª½ ì´ë™
+            Debug.Log("ì™¼ìª½ ì´ë™");
+            transform.localScale = new Vector2(-1, 1); //ì¢Œìš° ë°˜ì „
         }
 
         if (Input.GetKeyUp(KeyCode.LeftArrow) && onGround)
         {
-            Debug.Log("¿ŞÂÊ ÀÌµ¿Å° ¶À");
+            Debug.Log("ì™¼ìª½ ì´ë™í‚¤ ë—Œ");
             nowAnime = stopAnime;
             animator.Play(nowAnime);
 
@@ -146,29 +159,29 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && onGround)
         {
-            Debug.Log("¿ŞÂÊ ÀÌµ¿Å° ¶¼¸é¼­ ¿À¸¥ÂÊÀ¸·Î");
+            Debug.Log("ì™¼ìª½ ì´ë™í‚¤ ë–¼ë©´ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ");
             nowAnime = runAnime;
             animator.Play(nowAnime);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow) && onGround)
         {
-            //ÁÂ´ë°¢ ¹æÇâ ÁÂ´ë°¢À¸·Î ¹Ù¶óº¸°í ÀÖÀ» ¶§ Á¡ÇÁ°¡ ¾ÈµÇ´Âµ¥ ¿ÖÁö?
-            Debug.Log("ÁÂ´ë°¢");
+            //ì¢ŒëŒ€ê° ë°©í–¥ ì¢ŒëŒ€ê°ìœ¼ë¡œ ë°”ë¼ë³´ê³  ìˆì„ ë•Œ ì í”„ê°€ ì•ˆë˜ëŠ”ë° ì™œì§€?
+            Debug.Log("ì¢ŒëŒ€ê°");
             nowAnime = rundiagonlaupAnime;
             animator.Play(nowAnime);
         }
         //(KeySetting.keys[KeyAction.Shot])
         if (Input.GetKeyDown(KeyCode.Z) && onGround)
         {
-            Debug.Log("¼­ ÀÖÀ¸¸é¼­ ¹ß»ç");
+            Debug.Log("ì„œ ìˆìœ¼ë©´ì„œ ë°œì‚¬");
             nowAnime = shootstraightAnime;
             animator.Play(nowAnime);
 
         }
         if (Input.GetKeyUp(KeyCode.Z) && onGround)
         {
-            Debug.Log("zÅ°¿¡¼­ ¼Õ ¶«");
+            Debug.Log("zí‚¤ì—ì„œ ì† ë•œ");
             nowAnime = stopAnime;
             animator.Play(nowAnime);
 
@@ -176,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.Z) && axisV == 0 && onGround)
         {
-            Debug.Log("¿À¸¥ÂÊ ÀÌµ¿ÇÏ¸é¼­ ¹ß»ç");
+            Debug.Log("ì˜¤ë¥¸ìª½ ì´ë™í•˜ë©´ì„œ ë°œì‚¬");
             transform.localScale = new Vector2(1, 1);
             nowAnime = runshootstraightAnime;
             animator.Play(nowAnime);
@@ -190,7 +203,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Z) && axisV == 0 && onGround)
         {
-            Debug.Log("¿ŞÂÊ ÀÌµ¿ÇÏ¸é¼­ ¹ß»ç");
+            Debug.Log("ì™¼ìª½ ì´ë™í•˜ë©´ì„œ ë°œì‚¬");
             transform.localScale = new Vector2(-1, 1);
             nowAnime = runshootstraightAnime;
             animator.Play(nowAnime);
@@ -202,66 +215,66 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        //Ä³¸¯ÅÍ Á¡ÇÁ
+        //ìºë¦­í„° ì í”„
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
-        //À­ ¹æÇâÅ°¸¦ ´­·¶À» ¶§ À§ÂÊÀ» º¸´Â ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà(¾Ö´Ï¸ŞÀÌ¼Ç ¼öÁ¤ ÇÊ¼ö)
+        //ìœ— ë°©í–¥í‚¤ë¥¼ ëˆŒë €ì„ ë•Œ ìœ„ìª½ì„ ë³´ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰(ì• ë‹ˆë©”ì´ì…˜ ìˆ˜ì • í•„ìˆ˜)
         if (Input.GetKeyDown(KeyCode.UpArrow) && onGround)
         {
-            Debug.Log("À§ÂÊ ¹æÇâ");
+            Debug.Log("ìœ„ìª½ ë°©í–¥");
             nowAnime = aimupAnime;
             animator.Play(nowAnime);
         }
-        //À­ ¹æÇâÅ°¿¡¼­ ¼ÕÀ» ¶ÃÀ» ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç ¹Ù²Ù±â
+        //ìœ— ë°©í–¥í‚¤ì—ì„œ ì†ì„ ë—ì„ ë•Œ ì• ë‹ˆë©”ì´ì…˜ ë°”ê¾¸ê¸°
         if (Input.GetKeyUp(KeyCode.UpArrow) && onGround)
         {
-            Debug.Log("À­ ¹æÇâÅ° ¼Õ ¶«");
+            Debug.Log("ìœ— ë°©í–¥í‚¤ ì† ë•œ");
             nowAnime = stopAnime;
             animator.Play(nowAnime);
         }
 
-        //À§¸¦ º¸¸é¼­ µ¿½Ã¿¡ z¸¦ ´­·¶À» ¶§
-        //if¹®¿¡ GetKeyDownÀ» µÎ °³ ¾²¸é ÇÑ ÇÁ·¹ÀÓ¿¡ Å° µÎ °³¸¦ ´Ù ÀÔ·ÂÇß´ÂÁö °Ë»çÇÏ±â¿¡ ±¸ÇöÀÌ ¾î·Æ´Ù.
-        //À­¹æÇâ ¹ß»ç
+        //ìœ„ë¥¼ ë³´ë©´ì„œ ë™ì‹œì— zë¥¼ ëˆŒë €ì„ ë•Œ
+        //ifë¬¸ì— GetKeyDownì„ ë‘ ê°œ ì“°ë©´ í•œ í”„ë ˆì„ì— í‚¤ ë‘ ê°œë¥¼ ë‹¤ ì…ë ¥í–ˆëŠ”ì§€ ê²€ì‚¬í•˜ê¸°ì— êµ¬í˜„ì´ ì–´ë µë‹¤.
+        //ìœ—ë°©í–¥ ë°œì‚¬
         if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Z) && axisH == 0 && onGround)
         {
             nowAnime = shootupAnime;
             animator.Play(shootupAnime);
-            Debug.Log("À­¹æÇâÅ°, ZÅ° ´©¸§");
+            Debug.Log("ìœ—ë°©í–¥í‚¤, Zí‚¤ ëˆ„ë¦„");
 
         }
-        //ÀÌ·¸°Ô if¹®ÀÌ ¼öµµ ¾øÀÌ ´Ã¾î³ª´Â°Ô ¸Â³ª????
+        //ì´ë ‡ê²Œ ifë¬¸ì´ ìˆ˜ë„ ì—†ì´ ëŠ˜ì–´ë‚˜ëŠ”ê²Œ ë§ë‚˜????
         if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z) && onGround)
         {
             nowAnime = aimupAnime;
             animator.Play(nowAnime);
-            Debug.Log("À­¹æÇâÅ°, ZÅ° ¶«");
+            Debug.Log("ìœ—ë°©í–¥í‚¤, Zí‚¤ ë•œ");
         }
         if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Z) && onGround)
         {
-            //¿ì´ë°¢ ¹ß»ç
-            Debug.Log("¿ì´ë°¢ ¹ß»ç");
+            //ìš°ëŒ€ê° ë°œì‚¬
+            Debug.Log("ìš°ëŒ€ê° ë°œì‚¬");
             nowAnime = rundiagonlaupAnime;
             animator.Play(nowAnime);
         }
-        //¿ì´ë°¢À¸·Î Á¶ÁØÇÏ¸ç ¿òÁ÷ÀÌ´ø Áß À­ ¹æÇâÅ°¿¡¼­ ¼Õ ¶§¸é
+        //ìš°ëŒ€ê°ìœ¼ë¡œ ì¡°ì¤€í•˜ë©° ì›€ì§ì´ë˜ ì¤‘ ìœ— ë°©í–¥í‚¤ì—ì„œ ì† ë•Œë©´
         if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.UpArrow) && onGround)
         {
-            Debug.Log("À­¹æÇâÅ° ¼Õ ¶«");
+            Debug.Log("ìœ—ë°©í–¥í‚¤ ì† ë•œ");
             nowAnime = runAnime;
             animator.Play(nowAnime);
         }
-        //ÁÂ´ë°¢À¸·Î Á¶ÁØÇÏ¸ç ¿òÁ÷ÀÌ´ø Áß À­ ¹æÇâÅ°¿¡¼­ ¼Õ ¶§¸é
+        //ì¢ŒëŒ€ê°ìœ¼ë¡œ ì¡°ì¤€í•˜ë©° ì›€ì§ì´ë˜ ì¤‘ ìœ— ë°©í–¥í‚¤ì—ì„œ ì† ë•Œë©´
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.UpArrow) && onGround)
         {
-            Debug.Log("À­¹æÇâÅ° ¼Õ ¶«");
+            Debug.Log("ìœ—ë°©í–¥í‚¤ ì† ë•œ");
             nowAnime = runAnime;
             animator.Play(nowAnime);
         }
 
-        //¾Æ·¡¹æÇâÅ°¸¦ ´­·¶À» ¶§ ÀÌ ¾Ö´Ï¸ŞÀÌ¼Ç¿¡¼­ ½ºÇÁ¶óÀÌÆ® À§Ä¡°¡ Àß ¾È¸Â´Â ¹®Á¦°¡ ÀÖÀ¸´Ï ¼öÁ¤ÇØ¾ßÇÔ
+        //ì•„ë˜ë°©í–¥í‚¤ë¥¼ ëˆŒë €ì„ ë•Œ ì´ ì• ë‹ˆë©”ì´ì…˜ì—ì„œ ìŠ¤í”„ë¼ì´íŠ¸ ìœ„ì¹˜ê°€ ì˜ ì•ˆë§ëŠ” ë¬¸ì œê°€ ìˆìœ¼ë‹ˆ ìˆ˜ì •í•´ì•¼í•¨
         if (Input.GetKeyDown(KeyCode.DownArrow) && onGround)
         {
             nowAnime = duckidleAnime;
@@ -282,7 +295,7 @@ public class PlayerController : MonoBehaviour
             nowAnime = duckidleAnime;
             animator.Play(nowAnime);
         }
-        //´ë½¬, xÅ°¸¦ ´­·¶À» ¶§ ´ë½¬ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ±×³É ºí¸µÅ©·Î ¹Ù²ÙÀÚ
+        //ëŒ€ì‰¬, xí‚¤ë¥¼ ëˆŒë €ì„ ë•Œ ëŒ€ì‰¬ ì• ë‹ˆë©”ì´ì…˜ì„ ê·¸ëƒ¥ ë¸”ë§í¬ë¡œ ë°”ê¾¸ì
         if (Input.GetKeyDown(KeyCode.X))
         {
             Dash();
@@ -299,18 +312,18 @@ public class PlayerController : MonoBehaviour
 
 
 
-        //zÅ°¸¦ ´­·¶À» ¶§ ¹ß»çÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼Ç, ÀÎÇ²¸Å´ÏÀú ¼³Á¤ ¾È¹Ù²ã¼­ ÀÓ½Ã·Î z
+        //zí‚¤ë¥¼ ëˆŒë €ì„ ë•Œ ë°œì‚¬í•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜, ì¸í’‹ë§¤ë‹ˆì € ì„¤ì • ì•ˆë°”ê¿”ì„œ ì„ì‹œë¡œ z
         /*
         if (Input.GetKey(KeyCode.Z))
         {
-            Debug.Log("zÅ° ´©¸§");
+            Debug.Log("zí‚¤ ëˆ„ë¦„");
             nowAnime = shootstraightAnime;
             animator.Play(nowAnime);
         }
-        //zÅ°¿¡¼­ ¶ÃÀ» ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç ¹Ù²Ù±â, ÀÎÇ²¸Å´ÏÀú ¼³Á¤ ¾È¹Ù²ã¼­ ÀÓ½Ã·Î z
+        //zí‚¤ì—ì„œ ë—ì„ ë•Œ ì• ë‹ˆë©”ì´ì…˜ ë°”ê¾¸ê¸°, ì¸í’‹ë§¤ë‹ˆì € ì„¤ì • ì•ˆë°”ê¿”ì„œ ì„ì‹œë¡œ z
         if (Input.GetKeyUp(KeyCode.Z))
         {
-            Debug.Log("zÅ° ¶À");
+            Debug.Log("zí‚¤ ë—Œ");
             nowAnime = stopAnime;
             animator.Play(nowAnime);
         }*/
@@ -321,44 +334,52 @@ public class PlayerController : MonoBehaviour
             Parry();
             Invoke("ParryEnd", 0.25f);
         }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            SuperBeam();
+            Invincible();
+            Invoke("SuperBeamEnd", 3.0f);
+            Invoke("InvincibleEnd", 3.0f);
+            
+        }
 
     }
-    //private °¡ ¾Õ¿¡ ºÙ¾îÀÖ¾î¼­ ¾ø¾ÖºÃÁö¸¸ ¿©ÀüÈ÷ ÂøÁö ÆÇÁ¤ Ã³¸®°¡ ÀÌ»óÇÏ´Ù->linecastÀÇ yÃà °ªÀ» Á¶Á¤ÇÏ´Ï ÆÇÁ¤ Ã³¸®°¡ ±¦Âú¾ÆÁ³´Ù.
+    //private ê°€ ì•ì— ë¶™ì–´ìˆì–´ì„œ ì—†ì• ë´¤ì§€ë§Œ ì—¬ì „íˆ ì°©ì§€ íŒì • ì²˜ë¦¬ê°€ ì´ìƒí•˜ë‹¤->linecastì˜ yì¶• ê°’ì„ ì¡°ì •í•˜ë‹ˆ íŒì • ì²˜ë¦¬ê°€ ê´œì°®ì•„ì¡Œë‹¤.
     void FixedUpdate()
     {
         if (gameState != "playing")
             return;
-        //ÂøÁö ÆÇÁ¤ Ã³¸®
+        //ì°©ì§€ íŒì • ì²˜ë¦¬
         onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 1.0f), groundLayer);
 
-        //ÀÌ if¹®ÀÌ ÀÖÀ» ¶§ ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ ¿òÁ÷ÀÌ±ä ÇÏ³ª Ä³¸¯ÅÍ°¡ ¾ş¾îÁ³´Ù.
-        //Rigidbody 2DÀÇ ConstraintsÀÇ Freeze RotationÀÇ zÃàÀ» Ã¼Å©ÇÏÀÚ Ä³¸¯ÅÍ°¡ ¾ş¾îÁöÁø ¾Ê¾ÒÀ¸³ª ÀÇµµÄ¡¾Ê°Ô °¡¼Óµµ°¡ ºÙ´Â´Ù.
+        //ì´ ifë¬¸ì´ ìˆì„ ë•Œ í”Œë ˆì´ì–´ ìºë¦­í„°ê°€ ì›€ì§ì´ê¸´ í•˜ë‚˜ ìºë¦­í„°ê°€ ì—ì–´ì¡Œë‹¤.
+        //Rigidbody 2Dì˜ Constraintsì˜ Freeze Rotationì˜ zì¶•ì„ ì²´í¬í•˜ì ìºë¦­í„°ê°€ ì—ì–´ì§€ì§„ ì•Šì•˜ìœ¼ë‚˜ ì˜ë„ì¹˜ì•Šê²Œ ê°€ì†ë„ê°€ ë¶™ëŠ”ë‹¤.
         if (onGround || axisH != 0)
         {
-            //Ä³¸¯ÅÍ°¡ Áö¸é¿¡ ÀÖ°Å³ª xÃà ÀÔ·Â°ªÀÌ 0ÀÌ ¾Æ´Ò °æ¿ì velocity º¯°æ
+            //ìºë¦­í„°ê°€ ì§€ë©´ì— ìˆê±°ë‚˜ xì¶• ì…ë ¥ê°’ì´ 0ì´ ì•„ë‹ ê²½ìš° velocity ë³€ê²½
             rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
         }
-        //ÀÌ if¹®±îÁö ³Ö¾úÀ» ¶§ Jump ÇÔ¼ö°¡ È°¼ºÈ­ µÇ³ª Ä³¸¯ÅÍ°¡ Á¡ÇÁÇÏÁø ¾Ê¾Ò´Ù.
+        //ì´ ifë¬¸ê¹Œì§€ ë„£ì—ˆì„ ë•Œ Jump í•¨ìˆ˜ê°€ í™œì„±í™” ë˜ë‚˜ ìºë¦­í„°ê°€ ì í”„í•˜ì§„ ì•Šì•˜ë‹¤.
         if (onGround && goJump)
         {
-            Debug.Log("Á¡ÇÁ!");
-            Vector2 jumpPw = new Vector2(0, jump);            //Á¡ÇÁ¸¦ À§ÇÑ º¤ÅÍ
-            rbody.AddForce(jumpPw, ForceMode2D.Impulse);      //¼ø°£ÀûÀÎ ÈûÀ» °¡ÇÑ´Ù
-            goJump = false;  //Á¡ÇÁ ÇÃ·¡±× off
+            Debug.Log("ì í”„!");
+            Vector2 jumpPw = new Vector2(0, jump);            //ì í”„ë¥¼ ìœ„í•œ ë²¡í„°
+            rbody.AddForce(jumpPw, ForceMode2D.Impulse);      //ìˆœê°„ì ì¸ í˜ì„ ê°€í•œë‹¤
+            goJump = false;  //ì í”„ í”Œë˜ê·¸ off
 
         }
         if (onGround && downJump)
         {
-            Debug.Log("´Ù¿î Á¡ÇÁ!");
+            Debug.Log("ë‹¤ìš´ ì í”„!");
             Vector2 jumpPw = new Vector2(0, -jump);
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);
             downJump = false;
         }
-        //ÀÌ if¹®À» ³Ö¾úÀ» ¶§ ´ë½¬ ÇÔ¼ö¿Í ÀÌ if¹®ÀÌ È°¼ºÈ­ µÇ±ä ÇÏ³ª ´ë½¬°¡ µÇÁø ¾Ê¾Ò´Ù ´ë½¬ÀÇ ±âº»°ªÀ» Å©°Ô ´Ã·ÁÁÖÀÚ ´ë½¬¸¦ Çß´Ù..
-        //´ë½¬¸¦ ¿¬¼ÓÀûÀ¸·Î ¸øÇÏ°Ô ÇÏ°í ½Í±äÇÏÁö¸¸ ³ªÁß¿¡ ½Ã°£ ³¯¶§ ±¸ÇöÇÏÀÚ.
+        //ì´ ifë¬¸ì„ ë„£ì—ˆì„ ë•Œ ëŒ€ì‰¬ í•¨ìˆ˜ì™€ ì´ ifë¬¸ì´ í™œì„±í™” ë˜ê¸´ í•˜ë‚˜ ëŒ€ì‰¬ê°€ ë˜ì§„ ì•Šì•˜ë‹¤ ëŒ€ì‰¬ì˜ ê¸°ë³¸ê°’ì„ í¬ê²Œ ëŠ˜ë ¤ì£¼ì ëŒ€ì‰¬ë¥¼ í–ˆë‹¤..
+        //ëŒ€ì‰¬ë¥¼ ì—°ì†ì ìœ¼ë¡œ ëª»í•˜ê²Œ í•˜ê³  ì‹¶ê¸´í•˜ì§€ë§Œ ë‚˜ì¤‘ì— ì‹œê°„ ë‚ ë•Œ êµ¬í˜„í•˜ì.
         if (goDash)
         {
-            Debug.Log("´ë½¬!");
+            Debug.Log("ëŒ€ì‰¬!");
             //rbody.velocity = new Vector2(axisH * dash, rbody.velocity.y);
             rbody.AddForce(new Vector2(dash * axisH, 0), ForceMode2D.Impulse);
             goDash = false;
@@ -369,7 +390,7 @@ public class PlayerController : MonoBehaviour
 
         if (onGround)
         {
-            //Áö¸é°ú ¸Â´ê¾ÆÀÖÀ» ¶§
+            //ì§€ë©´ê³¼ ë§ë‹¿ì•„ìˆì„ ë•Œ
 
             if (axisH == 0)
                 nowAnime = "PlayerIdle";
@@ -380,30 +401,29 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            //°øÁß¿¡ ÀÖÀ» ¶§ Á¡ÇÁ ¾Ö´Ï¸ŞÀÌ¼Ç
+            //ê³µì¤‘ì— ìˆì„ ë•Œ ì í”„ ì• ë‹ˆë©”ì´ì…˜
             nowAnime = jumpAnime;
         }
 
         if (nowAnime != oldAnime)
         {
             oldAnime = nowAnime;
-            animator.Play(nowAnime); //¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı 
+            animator.Play(nowAnime); //ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ 
         }
-
-
+       
     }
 
-    //Á¡ÇÁ Æ®¸®°Å on
+    //ì í”„ íŠ¸ë¦¬ê±° on
     public void Jump()
     {
-        goJump = true; //Á¡ÇÁ ÇÃ·¡±× È°¼ºÈ­
-        Debug.Log("Á¡ÇÁ");
+        goJump = true; //ì í”„ í”Œë˜ê·¸ í™œì„±í™”
+        Debug.Log("ì í”„");
     }
 
     public void Dash()
     {
         goDash = true;
-        Debug.Log("´ë½¬");
+        Debug.Log("ëŒ€ì‰¬");
 
     }
     public void DashFalse()
@@ -411,18 +431,18 @@ public class PlayerController : MonoBehaviour
         goDash = false;
     }
 
-    //p1¿¡¼­ p2±îÁöÀÇ °¢µµ¸¦ °è»êÇÑ´Ù. ÀÌ °è»êÀÌ ¿Ö ÀÌ·¸°Ô µÇ´ÂÁö´Â ÀÌÇØ°¡ ¾î·Æ´Ù ¾ÆÁ÷
+    //p1ì—ì„œ p2ê¹Œì§€ì˜ ê°ë„ë¥¼ ê³„ì‚°í•œë‹¤. ì´ ê³„ì‚°ì´ ì™œ ì´ë ‡ê²Œ ë˜ëŠ”ì§€ëŠ” ì´í•´ê°€ ì–´ë µë‹¤ ì•„ì§
     float GetAngle(Vector2 p1, Vector2 p2)
     {
         float angle;
 
         if (axisH != 0 || axisV != 0)
         {
-            //p2¿Í p1ÀÇ Â÷¸¦ ±¸ÇÏ±â(¿øÁ¡À» 0À¸·Î ÇÏ±â À§ÇØ)
+            //p2ì™€ p1ì˜ ì°¨ë¥¼ êµ¬í•˜ê¸°(ì›ì ì„ 0ìœ¼ë¡œ í•˜ê¸° ìœ„í•´)
             float dx = p2.x - p1.x;
             float dy = p2.y - p1.y;
 
-            //¾ÆÅ©ÅºÁ¨Æ® ÇÔ¼ö·Î ¶óµğ¾È ±¸ÇÏ±â. ±Ùµ¥ ¾î¶² ½ÄÀ¸·Î Àû¿ëµÇ´Â ÇÔ¼öÀÓ?
+            //ì•„í¬íƒ„ì  íŠ¸ í•¨ìˆ˜ë¡œ ë¼ë””ì•ˆ êµ¬í•˜ê¸°. ê·¼ë° ì–´ë–¤ ì‹ìœ¼ë¡œ ì ìš©ë˜ëŠ” í•¨ìˆ˜ì„?
             float rad = Mathf.Atan2(dy, dx);
 
             angle = rad * Mathf.Rad2Deg;
@@ -438,40 +458,40 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("Àû°ú Ãæµ¹");
-            //µ¥¹ÌÁö¸¦ ¹Ş´Â´Ù
+            Debug.Log("ì ê³¼ ì¶©ëŒ");
+            //ë°ë¯¸ì§€ë¥¼ ë°›ëŠ”ë‹¤
             GetDamage(collision.gameObject);
         }
         if (collision.gameObject.tag == "Parry")
         {
-            Debug.Log("Àû°ú Ãæµ¹");
-            //µ¥¹ÌÁö¸¦ ¹Ş´Â´Ù
+            Debug.Log("ì ê³¼ ì¶©ëŒ");
+            //ë°ë¯¸ì§€ë¥¼ ë°›ëŠ”ë‹¤
             GetDamage(collision.gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")        // Àû Æ®¸®°Å ¼³Á¤ÇÑ°Íµµ ÀÖ¾î¼­ Æ®¸®°Å Ãæµ¹µµ ¸¸µé¾ú½À´Ï´Ù.
+        if (collision.gameObject.tag == "Enemy")        // ì  íŠ¸ë¦¬ê±° ì„¤ì •í•œê²ƒë„ ìˆì–´ì„œ íŠ¸ë¦¬ê±° ì¶©ëŒë„ ë§Œë“¤ì—ˆìŠµë‹ˆë‹¤.
         {
-            Debug.Log("Àû°ú Ãæµ¹");
-            //µ¥¹ÌÁö¸¦ ¹Ş´Â´Ù
+            Debug.Log("ì ê³¼ ì¶©ëŒ");
+            //ë°ë¯¸ì§€ë¥¼ ë°›ëŠ”ë‹¤
             GetDamage(collision.gameObject);
         }
-        else if (collision.gameObject.tag == "Dead")       // ºó °ø°£¿¡ ºüÁ³À» ¶§ dead¿ÀºêÁ§Æ® Æ®¸®°Å ¹ßµ¿
+        else if (collision.gameObject.tag == "Dead")       // ë¹ˆ ê³µê°„ì— ë¹ ì¡Œì„ ë•Œ deadì˜¤ë¸Œì íŠ¸ íŠ¸ë¦¬ê±° ë°œë™
         {
-            Debug.Log("±¸¸Û¿¡ ºüÁü");
-            // ÀÓ½Ã
+            Debug.Log("êµ¬ë©ì— ë¹ ì§");
+            // ì„ì‹œ
             GetDamage(collision.gameObject);
         }
-        else if (collision.gameObject.tag == "Goal")     // clear ¿ÀºêÁ§Æ®¿¡ ´ê¾ÒÀ»½Ã °ÔÀÓÅ¬¸®¾î
+        else if (collision.gameObject.tag == "Goal")     // clear ì˜¤ë¸Œì íŠ¸ì— ë‹¿ì•˜ì„ì‹œ ê²Œì„í´ë¦¬ì–´
         {
-            Debug.Log("°ÔÀÓ Å¬¸®¾î");
+            Debug.Log("ê²Œì„ í´ë¦¬ì–´");
             gameState = "gameclear";
         }
         if (collision.gameObject.tag == "Parry")
         {
-            Debug.Log("ÆĞ¸µ °¨Áö");
+            Debug.Log("íŒ¨ë§ ê°ì§€");
             ParrySucceed();
             Vector2 jumpPw = new Vector2(0, jump);
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);
@@ -480,27 +500,48 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Ãæµ¹ÇßÀ» ¶§ hp°¡ ¼ø½Ä°£¿¡ ±ğÀÌ´Â°Ô ¹®Á¦
+    //ì¶©ëŒí–ˆì„ ë•Œ hpê°€ ìˆœì‹ê°„ì— ê¹ì´ëŠ”ê²Œ ë¬¸ì œ
     void GetDamage(GameObject enemy)
     {
         if (gameState == "playing")
         {
-            gameObject.layer = 11; //PlayerDamaged ·¹ÀÌ¾î·Î ¹Ù²ã¼­ ÇÇ°İÆÇÁ¤ ¾ø¾Ø´Ù.
-            Debug.Log("°Ù µ¥¹ÌÁö ÇÔ¼ö ¹ßµ¿");
+            Invincible();
+            Debug.Log("ê²Ÿ ë°ë¯¸ì§€ í•¨ìˆ˜ ë°œë™");
             hp--;
-            PlayerPrefs.SetInt("PlayerHP", hp); //ÇöÀç hp °»½Å
+            PlayerPrefs.SetInt("PlayerHP", hp); //í˜„ì¬ hp ê°±ì‹ 
             if (hp > 0)
             {
-                Debug.Log("Ã¼·ÂÀÌ 0º¸´Ù Å¬ ¶§ °Ù µ¥¹ÌÁö ÇÔ¼ö ¹ßµ¿");
-                //ÀÌµ¿ ÁßÁö
+                Debug.Log("ì²´ë ¥ì´ 0ë³´ë‹¤ í´ ë•Œ ê²Ÿ ë°ë¯¸ì§€ í•¨ìˆ˜ ë°œë™");
+                //ì´ë™ ì¤‘ì§€
                 rbody.velocity = new Vector2(0, 0);
+                //ì–´ë–»ê²Œ í•´ì•¼ ì œëŒ€ë¡œ ëœ í”¼ê²© íŒì •ì´ ëœ°ê¹Œ
+                /* 
+                Vector2 attackedVelocity = Vector2.zero;
+                if(enemy.gameObject.transform.position.x>transform.position.x)
+                {
+                    attackedVelocity = new Vector2(-12f, 0f);
+                }
+                else 
+                {
+                    attackedVelocity = new Vector2(12f, 0f);
+                }
+                rbody.AddForce(attackedVelocity, ForceMode2D.Impulse);
+                */
                 animator.Play(hitAnime);
                 inDamage = true;
-                Invoke("DamageEnd", 1f);
+                Invoke("DamageEnd", 1.0f);
+                Invoke("InvincibleEnd", 3f);
+                AudioSource sound = GetComponent<AudioSource>();
+                if (sound != null)
+                {
+                    sound.PlayOneShot(PlayerHit);
+                }
+
+
             }
             else
             {
-                Debug.Log("°ÔÀÓ¿À¹ö ÇÔ¼ö È£Ãâ");
+                Debug.Log("ê²Œì„ì˜¤ë²„ í•¨ìˆ˜ í˜¸ì¶œ");
                 GameOver();
             }
         }
@@ -509,29 +550,44 @@ public class PlayerController : MonoBehaviour
     void DamageEnd()
     {
         inDamage = false;
-        gameObject.layer = 6; //ÇÃ·¹ÀÌ¾î ·¹ÀÌ¾î·Î º¯È¯
-        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        
     }
 
-    //ÇÔ¼ö È£ÃâÀº µÇ´Âµ¥ ¿Ö ÇÔ¼ö Àû¿ëÀÌ ¾ÈµÊ?
+    
+    void Invincible()
+    {
+        inIvincible = true;
+        gameObject.layer = 11; //í”Œë ˆì´ì–´ ë°ë¯¸ì§€ ë ˆì´ì–´ë¡œ ë³€í™˜
+        Debug.Log("ë¬´ì  ë°œë™");
+    }
+
+    void InvincibleEnd()
+    {
+        inIvincible = false;
+        gameObject.layer = 6; //í”Œë ˆì´ì–´ ë ˆì´ì–´ë¡œ ë³€í™˜
+        Debug.Log("ë¬´ì  ë");
+        
+    }
+
+    //í•¨ìˆ˜ í˜¸ì¶œì€ ë˜ëŠ”ë° ì™œ í•¨ìˆ˜ ì ìš©ì´ ì•ˆë¨?
     void GameOver()
     {
-        Debug.Log("°ÔÀÓ¿À¹ö");
-        //°ÔÀÓ¿À¹ö·Î ¸¸µé°í
+        Debug.Log("ê²Œì„ì˜¤ë²„");
+        //ê²Œì„ì˜¤ë²„ë¡œ ë§Œë“¤ê³ 
         gameState = "gameover";
-        GetComponent<CapsuleCollider2D>().enabled = false; //Ä¸½¶ Äİ¶óÀÌ´õ¸¦ ¼­Å¬ Äİ¶óÀÌ´õ·Î Àû¿ëÇØ³õ°í ¾ÈµÈ´Ù°í ÇÏ°í ÀÖ¾ú³× ¤»¤»
+        GetComponent<CapsuleCollider2D>().enabled = false; //ìº¡ìŠ ì½œë¼ì´ë”ë¥¼ ì„œí´ ì½œë¼ì´ë”ë¡œ ì ìš©í•´ë†“ê³  ì•ˆëœë‹¤ê³  í•˜ê³  ìˆì—ˆë„¤ ã…‹ã…‹
         rbody.velocity = new Vector2(0, 0);
         rbody.gravityScale = 1;
         rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
         GetComponent<Animator>().Play(deadAnime);
-        //ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ ±»ÀÌ ¾ø¾îÁú ÀÌÀ¯´Â ¾ø±äÇÏ´Ù
+        //í”Œë ˆì´ì–´ ìºë¦­í„°ê°€ êµ³ì´ ì—†ì–´ì§ˆ ì´ìœ ëŠ” ì—†ê¸´í•˜ë‹¤
         Destroy(gameObject, 1.0f);
     }
 
     public void DownJump()
     {
         downJump = true;
-        Debug.Log("´Ù¿î Á¡ÇÁ");
+        Debug.Log("ë‹¤ìš´ ì í”„");
 
     }
 
@@ -540,9 +596,14 @@ public class PlayerController : MonoBehaviour
         isParry = true;
         GetComponent<CircleCollider2D>().enabled = true;
         GetComponent<Animator>().Play("PlayerParry");
-        
+        AudioSource sound = GetComponent<AudioSource>();
+        if (sound != null)
+        {
+            sound.PlayOneShot(PlayerParry);
+        }
 
-        Debug.Log("ÆĞ¸µ");
+
+        Debug.Log("íŒ¨ë§");
 
     }
 
@@ -550,20 +611,32 @@ public class PlayerController : MonoBehaviour
     {
         isParry = false;
         GetComponent<CircleCollider2D>().enabled = false;
-        Debug.Log("ÆĞ¸µ ³¡");
+        Debug.Log("íŒ¨ë§ ë");
     }
 
     public void ParrySucceed()
     {
         isParrySucced = true;
         GetComponent<Animator>().Play("PlayerParrySucceed");
-        Debug.Log("ÆĞ¸µ ¼º°ø");
+        Debug.Log("íŒ¨ë§ ì„±ê³µ");
     }
     public void ParrySucceedEnd()
     {
         isParrySucced = false;
-        Debug.Log("ÆĞ¸µ ¼º°ø ³¡");
+        Debug.Log("íŒ¨ë§ ì„±ê³µ ë");
     }
-    //Å¬·¡½º º¯¼ö¿¡´Ù°¡ public bool isParry = false; Ãß°¡
-    //BoxCollider2D¸¦ Ãß°¡ÇØ¼­ Exclude Layer¿¡ Everything Ã¼Å© ÈÄ Parry Ã¼Å©ÇØ¼­ Parry¿¡¸¸ ¹İÀÀÇÏ°Ô
+    //í´ë˜ìŠ¤ ë³€ìˆ˜ì—ë‹¤ê°€ public bool isParry = false; ì¶”ê°€
+    //BoxCollider2Dë¥¼ ì¶”ê°€í•´ì„œ Exclude Layerì— Everything ì²´í¬ í›„ Parry ì²´í¬í•´ì„œ Parryì—ë§Œ ë°˜ì‘í•˜ê²Œ
+    public void SuperBeam()
+    {
+        isSuperBeam = true;
+        GetComponent<Animator>().Play("PlayerSuperBeam");
+        Debug.Log("ìŠˆí¼ë¹” ë°œì‚¬");
+    }
+
+    public void SuperBeamEnd()
+    {
+        isSuperBeam = false;
+        Debug.Log("ìŠˆí¼ë¹” ë");
+    }
 }

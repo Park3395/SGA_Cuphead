@@ -163,7 +163,7 @@ public class OverworldChar : MonoBehaviour
             Tag_Num = 14;//쉬프트 키보드 이벤트
             if (Heart == 1)
                 EquipM[5].SetActive(true);
-            else if (Spread==1)
+            if (Spread==1)
                 EquipM[4].SetActive(true);
         }
         //EQUIT 종료
@@ -245,6 +245,9 @@ public class OverworldChar : MonoBehaviour
             Bgm.volume = 0.6f;
             Bridge1.volume = 1.0f;
             Bridge2.volume = 1.0f;
+            RETURN.text = "";
+            OPTIONS.text = "";
+            EXIT.text = "";
             Save();
             SceneManager.LoadScene("StartScene");//타이틀로
         }
@@ -280,6 +283,8 @@ public class OverworldChar : MonoBehaviour
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
+                    TitleCard.SetActive(false);
+                    TitleCard2.SetActive(false);
                     Invoke("GoHome",1.5f);
                 }
                     
@@ -287,6 +292,8 @@ public class OverworldChar : MonoBehaviour
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
+                    TitleCard.SetActive(false);
+                    TitleCard2.SetActive(false);
                     Invoke("GoDungeon", 1.5f);
                 }
                     
@@ -294,17 +301,21 @@ public class OverworldChar : MonoBehaviour
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
+                    TitleCard.SetActive(false);
+                    TitleCard2.SetActive(false);
                     Invoke("GoTree", 1.5f);
                 }
                     
                 else if (Tag_Num == 4)
-                {
+                { 
                     Shop_Event();
                 }
                 else if (Tag_Num == 5)
                 {
                     IrisOff.SetActive(true);
                     IrisCloseSound.Play();
+                    TitleCard.SetActive(false);
+                    TitleCard2.SetActive(false);
                     Invoke("GoBotanic",1.5f);
                 }
                     
@@ -421,12 +432,14 @@ public class OverworldChar : MonoBehaviour
             {
                 //Zkey.transform.localScale = new Vector3(-0.67f, 0.67f, 0.67f);
                 transform.localScale = new Vector3(-1.35f, 1.35f, 1.35f);
+                EquipM[0].transform.localScale = new Vector3(-1.0f,1.0f, 1.0f);
                 CameraObj.transform.localScale = new Vector3(-0.62f, 0.62f, 0.62f);
                 EscMenu.transform.localScale = new Vector3(-1.0f, 0.7f, 0.74f);
             }
             if (h == 1)
             {
                 //Zkey.transform.localScale = new Vector3(0.67f, 0.67f, 0.67f);
+                EquipM[0].transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 transform.localScale = new Vector3(1.35f, 1.35f, 1.35f);
                 CameraObj.transform.localScale = new Vector3(0.62f, 0.62f, 0.62f);
                 EscMenu.transform.localScale = new Vector3(1.0f, 0.7f, 0.74f);
@@ -444,18 +457,23 @@ public class OverworldChar : MonoBehaviour
     }
     void GoHome()
     {
+        
+
         SceneManager.LoadScene("Tutorial");//집
     }
     void GoDungeon()
     {
+
         SceneManager.LoadScene("RnGstage1");//던전
     }
     void GoTree()
     {
+
         SceneManager.LoadScene("Ruse of an Ooze");//트리
     }
     void GoBotanic()
     {
+ 
         SceneManager.LoadScene("Botanic Panic");//농장
     }
     void CoinView()

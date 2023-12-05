@@ -20,7 +20,8 @@ public class RngManager : MonoBehaviour
     TimeController timeCnt;             // TimeController 클래스
 
     public static float clearTime;                     // 클리어 타임
-    public static int goldScore = 0;          // 스테이지 점수
+    public static int gold;          // 획득한 골드
+    public int goldmax = 5;          // 최대 골드
     public static int hpScore = 0;            // 클리어 시 남아있는 체력
 
     public string sceneName = "";       // 결과 씬
@@ -53,6 +54,13 @@ public class RngManager : MonoBehaviour
 
             PlayerController.gameState = "gameend";
 
+            gold = PlayerController.coin;
+
+            if (gold > goldmax)
+            {
+                gold = goldmax;
+            }
+
             hpScore = PlayerController.hp;
 
             if (timeCnt != null)
@@ -75,6 +83,7 @@ public class RngManager : MonoBehaviour
         {
             gameOver.SetActive(true);
             Invoke("activePanel", 1.7f);
+            Invoke("inactivegameover", 2.0f);
 
             PlayerController.gameState = "gameend";
 
@@ -113,6 +122,11 @@ public class RngManager : MonoBehaviour
     void activePanel()
     {
         panel.SetActive(true);
+    }
+
+    void inactivegameover()
+    {
+        gameOver.SetActive(false);
     }
 
     public void LoadScene()

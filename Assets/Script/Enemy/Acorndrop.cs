@@ -18,16 +18,8 @@ public class Acorndrop : EnemyController
 
     protected override void Update()
     {
-        if (RngManager.GameIsPaused)
-        {
-            Vector2 nowPos= transform.position;
-            transform.position= nowPos;
-        }
-        else
-        {
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
-            acornProp.transform.Translate(Vector3.up * speed * 1.5f * Time.deltaTime);
-        }
+        transform.Translate(Vector3.down * speed * Time.deltaTime);
+        acornProp.transform.Translate(Vector3.up * speed * 1.5f * Time.deltaTime);
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)

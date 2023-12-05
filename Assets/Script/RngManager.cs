@@ -30,6 +30,7 @@ public class RngManager : MonoBehaviour
     void Start()
     {
         PlayerController.hp = 3;
+        Time.timeScale = 1;
 
         timeCnt = GetComponent<TimeController>();
         AudioSource sound = GetComponent<AudioSource>();

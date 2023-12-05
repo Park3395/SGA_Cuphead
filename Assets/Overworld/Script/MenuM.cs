@@ -54,6 +54,7 @@ public class MenuM : MonoBehaviour
     public AudioSource Reddy;
     public AudioSource StartSellect;
 
+    public AudioSource IntroSound;
     int WindowStart = 0;//SellectNumber
     int DelayFlag = 1;//enter 연속누름방지
     int Clear_Score1 = 0;
@@ -82,6 +83,7 @@ public class MenuM : MonoBehaviour
     }
     private void Start()
     {
+        IntroSound.Play();
         Invoke("IrisOpenFun", 1.2f);
         ControlWindow.SetActive(false);
     }
@@ -209,18 +211,21 @@ public class MenuM : MonoBehaviour
             if (DelayFlag == 1 && Clear_Score1 == -1 && WindowStart == 1)
             {
                 Reddy.Play();
+                IntroSound.Stop();
                 PlayerPrefs.SetInt("SaveFileNum", 1);
                 SceneManager.LoadScene("BookScene");
             }
             else if (DelayFlag == 1 && Clear_Score2 == -1 && WindowStart == 2)
             {
                 Reddy.Play();
+                IntroSound.Stop();
                 PlayerPrefs.SetInt("SaveFileNum", 2);
                 SceneManager.LoadScene("BookScene");
             }
             else if (DelayFlag == 1 && Clear_Score3 == -1 && WindowStart == 3)
             {
                 Reddy.Play();
+                IntroSound.Stop();
                 PlayerPrefs.SetInt("SaveFileNum", 3);
                 SceneManager.LoadScene("BookScene");
             }
@@ -229,18 +234,21 @@ public class MenuM : MonoBehaviour
             if (Clear_Score1 >= 0 && DelayFlag == 1 && WindowStart == 1)
             {
                 Reddy.Play();
+                IntroSound.Stop();
                 PlayerPrefs.SetInt("SaveFileNum", 1);
                 SceneManager.LoadScene("OverWorld");
             }
             else if (Clear_Score1 >= 0 && DelayFlag == 1 && WindowStart == 2)
             {
                 Reddy.Play();
+                IntroSound.Stop();
                 PlayerPrefs.SetInt("SaveFileNum", 2);
                 SceneManager.LoadScene("OverWorld");
             }
             else if (Clear_Score1 >= 0 && DelayFlag == 1 && WindowStart == 3)
             {
                 Reddy.Play();
+                IntroSound.Stop();
                 PlayerPrefs.SetInt("SaveFileNum", 3);
                 SceneManager.LoadScene("OverWorld");
             }

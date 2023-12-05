@@ -53,8 +53,8 @@ public class InterfaceM : MonoBehaviour
             if (PlayerPrefs.GetInt("Heart3") == 1)
                 Heart = 1;
         }
-        //하트 아이템이 있을시 최대 목숨이랑 현제4라이프 되있던게 까이게된다. 
-        if(Heart==1)
+        //하트 아이템이 없을시 최대 목숨이랑 현제4라이프 되있던게 까이게된다. 
+        if(Heart==0)
         {
             Life_Img[Life + 1].SetActive(false);
             MaxLife -= 1;

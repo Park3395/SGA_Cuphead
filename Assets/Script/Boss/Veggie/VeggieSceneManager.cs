@@ -24,7 +24,6 @@ public class VeggieSceneManager : MonoBehaviour
     private string clearMsg = "Clear";
     private string goverMsg = "Gameover";
 
-    private bool isStop = false;
     public void clear()
     {
         msgCard.SetActive(true);

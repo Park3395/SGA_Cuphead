@@ -28,6 +28,8 @@ public class RngManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerController.hp = 3;
+
         timeCnt = GetComponent<TimeController>();
         AudioSource sound = GetComponent<AudioSource>();
         if(sound != null)
@@ -112,6 +114,5 @@ public class RngManager : MonoBehaviour
     public void LoadScene()
     {
         SceneManager.LoadScene(sceneName);
-        PlayerController.gameState = "gameend";
     }
 }

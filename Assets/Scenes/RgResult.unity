@@ -1790,6 +1790,7 @@ MonoBehaviour:
   hpText: {fileID: 1357484876}
   goldText: {fileID: 1575797388}
   gradeText: {fileID: 467271884}
+  sceneName: OverWorld
 --- !u!82 &1923189722
 AudioSource:
   m_ObjectHideFlags: 0

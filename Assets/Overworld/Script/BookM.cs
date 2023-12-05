@@ -37,6 +37,7 @@ public class BookM : MonoBehaviour
     public AudioSource DevilLaugh;
     public AudioSource DevilLaugh2;
     public AudioSource DevilKick;
+    public AudioSource BookBgm;
     bool CanKey = false;
     int Bookmark = 0;//현재 페이지
     // Start is called before the first frame update
@@ -44,6 +45,7 @@ public class BookM : MonoBehaviour
     {
         Intro.SetActive(true);
         Invoke("IntroOff", 9.0f);
+        BookBgm.Play();
     }
 
     // Update is called once per frame
@@ -152,6 +154,7 @@ public class BookM : MonoBehaviour
     }
     void Overworld_Enter()
     {
+        BookBgm.Stop();
         SceneManager.LoadScene("OverWorld");
     }
     void Page1()

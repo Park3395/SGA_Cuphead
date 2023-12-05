@@ -290,7 +290,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.005420089}
   serializedVersion: 2
   m_Radius: 0.899663
---- !u!114 &-8787951676187694839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,8 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6578f5621c3f3324196eb19ba6556a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  superbeamPrefeb: {fileID: 2103681957599815143, guid: 00edec539ab3315439e4638c4ec1af96, type: 3}
---- !u!1 &5363662576228337226
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

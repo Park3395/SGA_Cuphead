@@ -1,0 +1,725 @@
+fileFormatVersion: 2
+guid: e9c60b4e8c9f7cc4f95a21df8199498f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_6
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 867
+        width: 48
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3701d5f6f3e2147b550d7a433080ad
+      internalID: -973862926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_8
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 811
+        width: 49
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 831e9c2315956c9439f77245c946c5e2
+      internalID: -1852764878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_47
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 658
+        width: 48
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d35ba51654e5b4192ec76100b90633
+      internalID: -1504667943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_54
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 640
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36d70ee2a8a2eed4bbb9e7d13c6b8e96
+      internalID: -1860289623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_132
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 508
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c32c154a27915474dbaa9e1b1a5f1c7f
+      internalID: -766435522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_145
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 427
+        width: 65
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b6efb9e16fbd54698f2a98abba76ab
+      internalID: -940067103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_169
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 259
+        width: 65
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e753d5461437d8142ad4ac479e45cd1d
+      internalID: 1333278316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_172
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 260
+        width: 63
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d5312187a0872541981f3f4d2bdfa15
+      internalID: 1894773956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_174
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 259
+        width: 65
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee09ea5b17963674997316c5b89f456a
+      internalID: 774962481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_177
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 259
+        width: 65
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94798d5b6fe9efd48a8b206f64589b8a
+      internalID: 75953221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_182
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 176
+        width: 63
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c03ae2a2b76656d46b2b7b9af0d1ea52
+      internalID: 1661244582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_221
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 6
+        width: 68
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 602419b25b7d8c64e8e44c7925c438bb
+      internalID: 2087518511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_0
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 258
+        width: 68
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21626580f907b5a44b39bd3d00871656
+      internalID: -1348990087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_1
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 175
+        width: 71
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e22b1e2309c9a024390e181df9f03648
+      internalID: -447348813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_2
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 175
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad05019ae40b464a91d51036007f522
+      internalID: 1851643217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_3
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 427
+        width: 68
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46558a53930f6b341a7b1a36883b8afd
+      internalID: 640741110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1024x1024-BC7-Equip_Icons-98af2476_4
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 258
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffe3a025f63037240a78837769ddf720
+      internalID: 1895804887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_0: -1348990087
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_1: -447348813
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_10: -1563260460
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_100: -64416764
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_101: -156378937
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_102: -1520505292
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_103: -973862926
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_104: 664858596
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_105: -1852764878
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_106: 1500722924
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_107: -1329787800
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_108: 1165907077
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_109: -259457074
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_11: 661756088
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_110: 1586995503
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_111: 472731418
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_112: 1769478225
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_113: -107390348
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_114: 193641400
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_115: -1761237916
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_116: 457775081
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_117: 2114551762
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_118: 273261276
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_119: -229765739
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_12: 2052587086
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_120: 71935949
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_121: 150708953
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_122: 1595416516
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_123: -132641316
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_124: 758720437
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_125: -1493020824
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_126: -788453322
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_127: 227111188
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_128: -1294664409
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_129: -518311153
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_13: -1360829400
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_130: 373436548
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_131: 142014899
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_132: -782826987
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_133: 939089220
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_134: -1962145694
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_135: 1273502633
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_136: -588393820
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_137: -20280381
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_138: 1421394841
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_139: 1005956387
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_14: 1235092597
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_140: -1504667943
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_141: 297854377
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_142: 1421537259
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_143: -245814419
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_144: -741606896
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_145: -1802512665
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_146: -1919802275
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_147: -1860289623
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_148: 16078317
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_149: -1977363076
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_15: 845393092
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_150: -1289543344
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_151: -76085726
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_152: -584036366
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_153: -67857460
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_154: -311309393
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_155: -514105338
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_156: -1777807259
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_157: -371479676
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_158: 583573199
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_159: -983141462
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_16: -1543918894
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_160: -244412165
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_161: -505681833
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_162: 938610995
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_163: -557443474
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_164: 1110037397
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_165: -947427773
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_166: -529860933
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_167: -1544083800
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_168: 1545621580
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_169: 332945509
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_17: -160805255
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_170: 1844862428
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_171: -358934165
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_172: 228653878
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_173: -1887556703
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_174: 376658972
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_175: -1834365861
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_176: -1053865655
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_177: 1556167691
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_178: -270235526
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_179: -1091938364
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_18: -1820434010
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_180: 459286951
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_181: 710149791
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_182: 677996211
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_183: -1562817706
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_184: 1928921957
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_185: -534758476
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_186: -214856436
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_187: 301271958
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_188: -1870057178
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_189: 249216453
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_19: 1897593501
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_190: 989262539
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_191: -147480389
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_192: -1033441042
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_193: -635583546
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_194: -144534244
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_195: 696011944
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_196: -164811919
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_197: -226050580
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_198: 1788812519
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_199: 1054991373
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_2: 1851643217
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_20: -151691963
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_200: 1520786725
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_201: 49870434
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_202: -1095070029
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_203: 2088838731
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_204: 1066956874
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_205: -653395919
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_206: 196036367
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_207: 1472617189
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_208: -2144017318
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_209: -574919393
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_21: 1642440305
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_210: 756997424
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_211: -1842790478
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_212: -1406669404
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_213: 1149443774
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_214: 662717399
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_215: -1345371324
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_216: 1198342695
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_217: -766435522
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_218: 1821052791
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_219: 677261118
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_22: 485105377
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_220: 1540673451
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_221: -231329874
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_222: -1655483304
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_223: 58097190
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_224: -1837315631
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_225: -1518308232
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_226: 1600670284
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_227: 1569273552
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_23: -1534390187
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_24: -940067103
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_25: 454893982
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_26: -290538491
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_27: 246010733
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_28: 1614421956
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_29: -1635245559
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_3: 640741110
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_30: -1181231634
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_31: 1565795319
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_32: 574188815
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_33: 1468863414
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_34: -1082326694
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_35: 1051132247
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_36: -145005558
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_37: -2145922486
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_38: 1097244636
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_39: -1534519680
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_4: 1895804887
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_40: -375078640
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_41: 310442100
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_42: 1611035943
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_43: 675022139
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_44: -415887721
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_45: -1355865710
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_46: 1333278316
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_47: -970313063
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_48: 904739094
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_49: 1894773956
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_5: 2106316408
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_50: 774962481
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_51: 586677780
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_52: 1699225674
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_53: 75953221
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_54: 2144643146
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_55: -1720242390
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_56: -249625491
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_57: 1513373144
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_58: 1661244582
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_59: 1826836849
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_6: -501655376
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_60: 674262808
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_61: 2129633973
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_62: -1527226147
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_63: 84613691
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_64: -1183213519
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_65: -358748552
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_66: -1748968644
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_67: 1269341386
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_68: -50650183
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_69: 228327415
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_7: -770791813
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_70: -2024918475
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_71: 964632886
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_72: -828188413
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_73: -1425246362
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_74: -1363305166
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_75: -1645637906
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_76: -960966789
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_77: 2029885102
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_78: -155711536
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_79: 499144067
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_8: 1167300906
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_80: 1732596493
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_81: 1672632620
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_82: 626271704
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_83: -661199114
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_84: 994328128
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_85: 428644372
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_86: -879250912
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_87: -407609485
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_88: 1969739180
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_89: 344421815
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_9: -2007536624
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_90: -561715400
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_91: 259567266
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_92: -669626240
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_93: 2087518511
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_94: 196315060
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_95: -1402831340
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_96: 1832090140
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_97: 1098097731
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_98: -55843040
+      sactx-1024x1024-BC7-Equip_Icons-98af2476_99: 463627594
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

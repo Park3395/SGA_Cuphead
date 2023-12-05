@@ -10,9 +10,9 @@ public class TearControl : BulletBase
 
     void Start()
     {
-        num = Random.Range(0, 4);
+        num = Random.Range(0, 5);
         this.GetComponent<Animator>().SetInteger("type", num);
-        num = Random.Range(0, 2);
+        num = Random.Range(0, 3);
         this.GetComponent<Animator>().SetInteger("endtype", num);
     }
 }

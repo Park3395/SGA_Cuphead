@@ -29,7 +29,6 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject, 0.25f);
 
         }
-
         if (NewBehaviourScript.instance.equipSpread && collision.gameObject.tag == "Enemy")
         {
             GetComponent<Animator>().Play("SpreadDead");

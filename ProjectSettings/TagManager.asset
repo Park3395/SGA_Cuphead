@@ -4,17 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Door
-  - Descend
-  - OutLine
-  - Parry
   - Enemy
   - Damage
   - Bullet
   - Pink
-  - SuperBeam
   - Coin
+  - Ground
+  - Parry
+  - SuperBeam
   layers:
   - Default
   - TransparentFX

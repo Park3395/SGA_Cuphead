@@ -22,8 +22,12 @@ public class Potato : BossBase
     void Update()
     {
         idleTime += Time.deltaTime;
-        if (NowHP == 0)
+        if (NowHP <= 0)
+        {
             this.GetComponent<Animator>().Play(DeadAnim);
+            this.GetComponent<CapsuleCollider2D>().enabled = false;
+            explode.SetActive(true);
+        }
         else if (NowHP / MaxHP < 0.5f)
         {
             this.GetComponent<Animator>().speed = 1.5f;
@@ -57,7 +61,6 @@ public class Potato : BossBase
     {
         if(shootTime == 0f)
         {
-            Debug.Log(shootCount);
             if (shootCount < 3)
             {
                 this.GetComponent<Animator>().Play("veggie_potato_shoot");
@@ -73,12 +76,12 @@ public class Potato : BossBase
 
         if (NowHP / MaxHP > 0.5f)
         {
-            if (shootTime > 1.5f)
+            if (shootTime > 2f)
                 shootTime = 0f;
         }
         else
         {
-            if (shootTime > 1.0f)
+            if (shootTime > 1.5f)
             {
                 shootTime = 0f;
             }

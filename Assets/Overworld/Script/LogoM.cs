@@ -12,6 +12,7 @@ public class LogoM : MonoBehaviour
     public GameObject Title_Background;
     public GameObject IrisA_;
     public GameObject Title_Text;
+    public AudioSource Intro;
 
     public AudioSource LogoSound;
     bool CanKey = false;
@@ -28,6 +29,7 @@ public class LogoM : MonoBehaviour
         {
             IrisA_.SetActive(true);
             Title_Text.SetActive(false);
+            Intro.Stop();
             Invoke("StartScene",3.1f);
         }
     }

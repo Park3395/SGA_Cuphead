@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -102,11 +102,15 @@ public class OverworldChar : MonoBehaviour
     //장비 관련 오브젝트
     public GameObject[] EquipM = new GameObject [7];//Hierarchy의 배치순서대로
     bool ShiftFlag = false;
-    
 
+    int ff = 0;
     //GameObject scanObject;
 
     private void Awake()
+    {
+       
+    }
+    private void Start()
     {
         PlayerPrefs.SetInt("OpenTitle", 1);//타이틀을 한번이라도 열었는지 체크
         PlayerPrefs.Save();
@@ -114,16 +118,14 @@ public class OverworldChar : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         load();
         Save();
-    }
-    private void Start()
-    {        
+        isHorizonMove = true;
         Bgm.Play();
         Bgm.loop = true;
-        Invoke("IrisOn_Start", 1.25f); //검은화면 오픈 애니메이션
+        Invoke("IrisOn_Start", 1.5f); //검은화면 오픈 애니메이션
     }
     void Update()
     {
-        
+
         Zkey.transform.position = new Vector3(transform.position.x, transform.position.y+1.0f, transform.position.z);
         CoinEvent.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
         if (OpenRoadOn == 0 && Clear_Dungeon==5)
@@ -167,7 +169,7 @@ public class OverworldChar : MonoBehaviour
                 EquipM[4].SetActive(true);
         }
         //EQUIT 종료
-        if (isHorizonMove == false && Input.GetKeyDown(KeyCode.Escape) && Tag_Num == 14)
+        if (isHorizonMove == false && (Input.GetKeyDown(KeyCode.Escape)|| Input.GetKeyDown(KeyCode.Return)) && Tag_Num == 14)
         {
             Bgm.volume = 0.6f;
             Bridge1.volume = 1.0f;

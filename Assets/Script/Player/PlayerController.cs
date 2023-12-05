@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public string dustAnime = "PlayerDust"; //대쉬할 때 사라지는 애니메이션
     public string hitAnime = "PlayerHit";   //맞았을 때 애니메이션
     public string deadAnime = "PlayerDead"; //죽었을 때 애니메이션
+    public string parryAnime = "PlayerParry"; //패링 애니메이션
+    public string parrysucceedAnime = "PlayerParrySucceed";
 
     string nowAnime = "";
     string oldAnime = "";
@@ -48,10 +50,12 @@ public class PlayerController : MonoBehaviour
     bool inDamage = false;
     public static PlayerController instance; //싱글톤 패턴에 쓴다?
     public bool isParry = false;      //패링 상태
+    public bool isParrySucced = false; //패링 성공여부
     //근데 싱글톤 패턴이 뭐였냐
+
     private void Awake()
     {
-        GetComponent<CircleCollider2D>().enabled = false;
+        
         if (PlayerController.instance == null)
         {
             PlayerController.instance = this;
@@ -60,6 +64,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<CircleCollider2D>().enabled = false;
         // RigidBody 2D 컴포넌트 정보 가져오기
         rbody = this.GetComponent<Rigidbody2D>();
 
@@ -311,6 +316,8 @@ public class PlayerController : MonoBehaviour
         }*/
         if (onGround == false && Input.GetKeyDown(KeyCode.Space))
         {
+            //nowAnime = parryAnime;
+            //animator.Play(nowAnime);
             Parry();
             Invoke("ParryEnd", 0.25f);
         }
@@ -462,12 +469,13 @@ public class PlayerController : MonoBehaviour
             Debug.Log("게임 클리어");
             gameState = "gameclear";
         }
-
         if (collision.gameObject.tag == "Parry")
         {
             Debug.Log("패링 감지");
+            ParrySucceed();
             Vector2 jumpPw = new Vector2(0, jump);
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);
+            Invoke("ParrySucceedEnd", 0.25f);
 
         }
     }
@@ -531,6 +539,9 @@ public class PlayerController : MonoBehaviour
     {
         isParry = true;
         GetComponent<CircleCollider2D>().enabled = true;
+        GetComponent<Animator>().Play("PlayerParry");
+        
+
         Debug.Log("패링");
 
     }
@@ -540,6 +551,18 @@ public class PlayerController : MonoBehaviour
         isParry = false;
         GetComponent<CircleCollider2D>().enabled = false;
         Debug.Log("패링 끝");
+    }
+
+    public void ParrySucceed()
+    {
+        isParrySucced = true;
+        GetComponent<Animator>().Play("PlayerParrySucceed");
+        Debug.Log("패링 성공");
+    }
+    public void ParrySucceedEnd()
+    {
+        isParrySucced = false;
+        Debug.Log("패링 성공 끝");
     }
     //클래스 변수에다가 public bool isParry = false; 추가
     //BoxCollider2D를 추가해서 Exclude Layer에 Everything 체크 후 Parry 체크해서 Parry에만 반응하게

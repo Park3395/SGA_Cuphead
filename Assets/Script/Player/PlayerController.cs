@@ -490,6 +490,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("게임 클리어");
             gameState = "gameclear";
         }
+        else if (collision.gameObject.tag == "Coin")
+        {
+            Debug.Log("코인 획득");
+            coin++;
+        }
         if (collision.gameObject.tag == "Parry")
         {
             Debug.Log("패링 감지");

@@ -194,8 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c20e766bb500241800bb0123142a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-=======
 --- !u!82 &-7075896719720529509
 AudioSource:
   m_ObjectHideFlags: 0
@@ -292,4 +290,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
->>>>>>> 46b266c0c7ab2550ca31b5a83a61de784f52256d

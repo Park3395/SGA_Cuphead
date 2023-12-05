@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         gameState = "playing";
 
         //HP 불러오기
-        hp = PlayerPrefs.GetInt("PlayerHP");
+        //hp = PlayerPrefs.GetInt("PlayerHP");
 
     }
 
@@ -515,7 +515,7 @@ public class PlayerController : MonoBehaviour
             audioSource.PlayOneShot(PlayerHit);
             Debug.Log("겟 데미지 함수 발동");
             hp--;
-            PlayerPrefs.SetInt("PlayerHP", hp); //현재 hp 갱신
+            //PlayerPrefs.SetInt("PlayerHP", hp); //현재 hp 갱신
             if (hp > 0)
             {
                 Debug.Log("체력이 0보다 클 때 겟 데미지 함수 발동");

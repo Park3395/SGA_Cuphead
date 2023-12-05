@@ -1355,6 +1355,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee61f634124ea174fb371d5d7504578f, type: 3}
+--- !u!1 &522085564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4768427360697396801, guid: ee61f634124ea174fb371d5d7504578f, type: 3}
+  m_PrefabInstance: {fileID: 522085563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &544136341
 GameObject:
   m_ObjectHideFlags: 0
@@ -4778,7 +4783,7 @@ MonoBehaviour:
   Potato: {fileID: 969329035}
   Onion: {fileID: 1715347358}
   Carrot: {fileID: 1071749158}
-  Player: {fileID: 0}
+  Player: {fileID: 522085564}
   overUI: {fileID: 1980076227}
   overtext:
   - {fileID: 1642369389}

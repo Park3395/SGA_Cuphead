@@ -116,7 +116,7 @@ public class OverworldChar : MonoBehaviour
         Save();
     }
     private void Start()
-    {
+    {        
         Bgm.Play();
         Bgm.loop = true;
         Invoke("IrisOn_Start", 1.25f); //검은화면 오픈 애니메이션

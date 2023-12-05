@@ -66,7 +66,7 @@ public class Blobmelt : EnemyController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Turnwall")
+        if (collision.gameObject.tag == "Turnwall")
         {
             if (direction1 == "right")
             {
